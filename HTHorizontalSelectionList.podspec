@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "HTHorizontalSelectionList"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "A simple, horizontally-scrolling list of buttons."
 
   s.description  = <<-DESC
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "7.0"
 
-  s.source       = { :git => "http://github.com/hightower/HTHorizontalSelectionList.git", :tag => "0.0.1" }
+  s.source       = { :git => "https://github.com/hightower/HTHorizontalSelectionList.git", :tag => "0.1.1" }
   s.source_files  = 'HTHorizontalSelectionList'
   s.requires_arc = true
   s.frameworks        = 'Foundation', 'UIKit'

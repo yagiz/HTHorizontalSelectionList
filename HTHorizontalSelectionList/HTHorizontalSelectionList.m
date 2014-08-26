@@ -48,6 +48,7 @@
         _selectionIndicator.backgroundColor = [UIColor blackColor];
 
         _buttonColorsByState = [NSMutableDictionary dictionary];
+        _buttonColorsByState[@(UIControlStateNormal)] = [UIColor blackColor];
     }
     return self;
 }

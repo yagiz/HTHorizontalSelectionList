@@ -67,3 +67,15 @@ The horizontal selection list uses a data-source/delegate model (similar to UITa
 }
 
 ```
+
+###Customizing the colors
+
+The HTHorizontalSelectionList can be configured with the following properties and methods:
+```objc
+@property (nonatomic, strong) UIColor *selectionIndicatorColor;
+@property (nonatomic, strong) UIColor *bottomTrimColor;
+
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
+```
+
+The `selectionIndicatorColor` is the color of the thicker, bottom bar below the selected button.  The `bottomTrimColor` changes the appearance of the thin line below the entire control.

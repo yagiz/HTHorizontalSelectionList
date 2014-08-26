@@ -16,6 +16,11 @@
 @property (nonatomic, weak) id<HTHorizontalSelectionListDataSource> dataSource;
 @property (nonatomic, weak) id<HTHorizontalSelectionListDelegate> delegate;
 
+@property (nonatomic, strong) UIColor *selectionIndicatorColor;
+@property (nonatomic, strong) UIColor *bottomTrimColor;
+
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
+
 @end
 
 @protocol HTHorizontalSelectionListDataSource <NSObject>

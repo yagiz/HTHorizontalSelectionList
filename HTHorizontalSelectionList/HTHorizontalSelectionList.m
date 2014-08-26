@@ -15,6 +15,10 @@
 
 @property (nonatomic, strong) UIView *selectionIndicator;
 
+@property (nonatomic, strong) UIView *bottomTrim;
+
+@property (nonatomic, strong) NSMutableDictionary *buttonColorsByState;
+
 @end
 
 #define kHTHorizontalSelectionListHorizontalMargin 10
@@ -34,16 +38,40 @@
         _scrollView.scrollsToTop = NO;
         [self addSubview:_scrollView];
 
-        UIView *bottomTrim = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height - 0.5, frame.size.width, 0.5)];
-        bottomTrim.backgroundColor = [UIColor hightowerDarkGrey];
-        [self addSubview:bottomTrim];
+        _bottomTrim = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height - 0.5, frame.size.width, 0.5)];
+        _bottomTrim.backgroundColor = [UIColor blackColor];
+        [self addSubview:_bottomTrim];
 
         _buttons = [NSMutableArray array];
 
         _selectionIndicator = [[UIView alloc] init];
-        _selectionIndicator.backgroundColor = [UIColor hightowerBlue];
+        _selectionIndicator.backgroundColor = [UIColor blackColor];
+
+        _buttonColorsByState = [NSMutableDictionary dictionary];
     }
     return self;
+}
+
+#pragma mark - Custom Getters and Setters
+
+- (void)setSelectionIndicatorColor:(UIColor *)selectionIndicatorColor {
+    self.selectionIndicator.backgroundColor = selectionIndicatorColor;
+}
+
+- (UIColor *)selectionIndicatorColor {
+    return self.selectionIndicator.backgroundColor;
+}
+
+- (void)setBottomTrimColor:(UIColor *)bottomTrimColor {
+    self.bottomTrim.backgroundColor = bottomTrimColor;
+}
+
+- (UIColor *)bottomTrimColor {
+    return self.bottomTrim.backgroundColor;
+}
+
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
+    self.buttonColorsByState[@(state)] = color;
 }
 
 #pragma mark - Private Methods
@@ -97,9 +125,12 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     [button setTitle:buttonTitle.uppercaseString forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor hightowerDarkGrey] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor hightowerBlue] forState:UIControlStateSelected];
-    button.titleLabel.font = [UIFont hightowerSmallFont];
+
+    for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
+        [button setTitleColor:self.buttonColorsByState[controlState] forState:controlState.integerValue];
+    }
+
+    button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button sizeToFit];
 
     [button addTarget:self

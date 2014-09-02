@@ -34,6 +34,7 @@
         self.backgroundColor = [UIColor whiteColor];
 
         _scrollView = [[UIScrollView alloc] initWithFrame:frame];
+        _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.scrollsToTop = NO;
         [self addSubview:_scrollView];
@@ -111,15 +112,20 @@
     self.scrollView.contentSize = CGSizeMake(currentX + kHTHorizontalSelectionListHorizontalMargin, self.scrollView.frame.size.height);
 
     self.selectedButtonIndex = 0;
-    UIButton *firstButton = self.buttons[self.selectedButtonIndex];
-    firstButton.selected = YES;
 
-    self.selectionIndicator.frame = CGRectMake(firstButton.frame.origin.x,
-                                               self.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight,
-                                               firstButton.frame.size.width,
-                                               kHTHorizontalSelectionListSelectionIndicatorHeight);
+    if (totalButtons > 0) {
+        UIButton *firstButton = self.buttons[self.selectedButtonIndex];
+        firstButton.selected = YES;
 
-    [self.scrollView addSubview:self.selectionIndicator];
+        self.selectionIndicator.frame = CGRectMake(firstButton.frame.origin.x,
+                                                   self.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight,
+                                                   firstButton.frame.size.width,
+                                                   kHTHorizontalSelectionListSelectionIndicatorHeight);
+
+        [self.scrollView addSubview:self.selectionIndicator];
+    }
+
+    [self sendSubviewToBack:self.bottomTrim];
 }
 
 - (UIButton *)selectionListButtonWithTitle:(NSString *)buttonTitle {

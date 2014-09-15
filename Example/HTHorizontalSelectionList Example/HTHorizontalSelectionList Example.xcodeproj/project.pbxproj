@@ -13,6 +13,7 @@
 		036F054C19C624D9000D2EEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F054B19C624D9000D2EEB /* Images.xcassets */; };
 		036F054F19C624D9000D2EEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F054D19C624D9000D2EEB /* LaunchScreen.xib */; };
 		036F056719C62517000D2EEB /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F056619C62517000D2EEB /* HTHorizontalSelectionList.m */; };
+		03AEDF7919C72C180012581D /* HTHorizontalSelectionListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AEDF7819C72C180012581D /* HTHorizontalSelectionListScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		036F054E19C624D9000D2EEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		036F056519C62517000D2EEB /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionList.h; sourceTree = "<group>"; };
 		036F056619C62517000D2EEB /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionList.m; sourceTree = "<group>"; };
+		03AEDF7719C72C180012581D /* HTHorizontalSelectionListScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListScrollView.h; sourceTree = "<group>"; };
+		03AEDF7819C72C180012581D /* HTHorizontalSelectionListScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 			children = (
 				036F056519C62517000D2EEB /* HTHorizontalSelectionList.h */,
 				036F056619C62517000D2EEB /* HTHorizontalSelectionList.m */,
+				03AEDF7719C72C180012581D /* HTHorizontalSelectionListScrollView.h */,
+				03AEDF7819C72C180012581D /* HTHorizontalSelectionListScrollView.m */,
 			);
 			name = HTHorizontalSelectionList;
 			path = ../../HTHorizontalSelectionList;
@@ -163,6 +168,7 @@
 				036F054419C624D9000D2EEB /* AppDelegate.m in Sources */,
 				036F056719C62517000D2EEB /* HTHorizontalSelectionList.m in Sources */,
 				036F054119C624D9000D2EEB /* main.m in Sources */,
+				03AEDF7919C72C180012581D /* HTHorizontalSelectionListScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

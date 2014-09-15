@@ -7,6 +7,7 @@
 //
 
 #import "HTHorizontalSelectionList.h"
+#import "HTHorizontalSelectionListScrollView.h"
 
 @interface HTHorizontalSelectionList ()
 
@@ -39,10 +40,11 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
 
-        _scrollView = [[UIScrollView alloc] init];
+        _scrollView = [[HTHorizontalSelectionListScrollView alloc] init];
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.scrollsToTop = NO;
+        _scrollView.canCancelContentTouches = YES;
         _scrollView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_scrollView];
 

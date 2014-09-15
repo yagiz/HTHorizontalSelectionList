@@ -13,6 +13,8 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *buttons;
 
+@property (nonatomic, strong) UIView *contentView;
+
 @property (nonatomic, strong) UIView *selectionIndicator;
 
 @property (nonatomic, strong) UIView *bottomTrim;
@@ -26,6 +28,8 @@
 
 #define kHTHorizontalSelectionListSelectionIndicatorHeight 3
 
+#define kHTHorizontalSelectionListTrimHeight 0.5
+
 @implementation HTHorizontalSelectionList
 
 - (id)initWithFrame:(CGRect)frame {
@@ -33,19 +37,67 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
 
-        _scrollView = [[UIScrollView alloc] initWithFrame:frame];
+        _scrollView = [[UIScrollView alloc] init];
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.showsHorizontalScrollIndicator = NO;
         _scrollView.scrollsToTop = NO;
+        _scrollView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_scrollView];
 
-        _bottomTrim = [[UIView alloc] initWithFrame:CGRectMake(0, frame.size.height - 0.5, frame.size.width, 0.5)];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|"
+                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                     metrics:nil
+                                                                       views:NSDictionaryOfVariableBindings(_scrollView)]];
+
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollView]|"
+                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                     metrics:nil
+                                                                       views:NSDictionaryOfVariableBindings(_scrollView)]];
+
+        _contentView = [[UIView alloc] init];
+        _contentView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_scrollView addSubview:_contentView];
+
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
+                                                         attribute:NSLayoutAttributeTop
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:self
+                                                         attribute:NSLayoutAttributeTop
+                                                        multiplier:1.0
+                                                          constant:0.0]];
+
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
+                                                         attribute:NSLayoutAttributeBottom
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:self
+                                                         attribute:NSLayoutAttributeBottom
+                                                        multiplier:1.0
+                                                          constant:0.0]];
+
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentView]|"
+                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                     metrics:nil
+                                                                       views:NSDictionaryOfVariableBindings(_contentView)]];
+
+        _bottomTrim = [[UIView alloc] init];
         _bottomTrim.backgroundColor = [UIColor blackColor];
+        _bottomTrim.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_bottomTrim];
+
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_bottomTrim]|"
+                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                     metrics:nil
+                                                                       views:NSDictionaryOfVariableBindings(_bottomTrim)]];
+
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomTrim(height)]|"
+                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                     metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
+                                                                       views:NSDictionaryOfVariableBindings(_bottomTrim)]];
 
         _buttons = [NSMutableArray array];
 
         _selectionIndicator = [[UIView alloc] init];
+        _selectionIndicator.translatesAutoresizingMaskIntoConstraints = NO;
         _selectionIndicator.backgroundColor = [UIColor blackColor];
 
         _buttonColorsByState = [NSMutableDictionary dictionary];
@@ -86,30 +138,45 @@
     [self.selectionIndicator removeFromSuperview];
     [self.buttons removeAllObjects];
 
-    CGFloat currentX = kHTHorizontalSelectionListHorizontalMargin;
-
     NSInteger totalButtons = [self.dataSource numberOfItemsInSelectionList:self];
+
+    UIButton *previousButton;
 
     for (NSInteger index = 0; index < totalButtons; index++) {
         NSString *buttonTitle = [self.dataSource selectionList:self titleForItemWithIndex:index];
 
-        if (self.buttons.count) {
-            currentX += kHTHorizontalSelectionListInternalPadding;
+        UIButton *button = [self selectionListButtonWithTitle:buttonTitle];
+        [self.contentView addSubview:button];
+
+        if (previousButton) {
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[previousButton]-padding-[button]"
+                                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                     metrics:@{@"padding" : @(kHTHorizontalSelectionListInternalPadding)}
+                                                                                       views:NSDictionaryOfVariableBindings(previousButton, button)]];
+        } else {
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[button]"
+                                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                     metrics:@{@"margin" : @(kHTHorizontalSelectionListHorizontalMargin)}
+                                                                                       views:NSDictionaryOfVariableBindings(button)]];
         }
 
-        UIButton *button = [self selectionListButtonWithTitle:buttonTitle];
-        button.frame = CGRectMake(currentX,
-                                  kHTHorizontalSelectionListSelectionIndicatorHeight/2,
-                                  button.frame.size.width,
-                                  self.scrollView.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight);
-        currentX += button.frame.size.width;
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:button
+                                                         attribute:NSLayoutAttributeCenterY
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:self.contentView
+                                                         attribute:NSLayoutAttributeCenterY
+                                                        multiplier:1.0
+                                                          constant:0.0]];
 
-        [self.scrollView addSubview:button];
+        previousButton = button;
 
         [self.buttons addObject:button];
     }
 
-    self.scrollView.contentSize = CGSizeMake(currentX + kHTHorizontalSelectionListHorizontalMargin, self.scrollView.frame.size.height);
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[previousButton]-margin-|"
+                                                                             options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                             metrics:@{@"margin" : @(kHTHorizontalSelectionListHorizontalMargin)}
+                                                                               views:NSDictionaryOfVariableBindings(previousButton)]];
 
     self.selectedButtonIndex = 0;
 
@@ -122,7 +189,7 @@
                                                    firstButton.frame.size.width,
                                                    kHTHorizontalSelectionListSelectionIndicatorHeight);
 
-        [self.scrollView addSubview:self.selectionIndicator];
+        [self.contentView addSubview:self.selectionIndicator];
     }
 
     [self sendSubviewToBack:self.bottomTrim];
@@ -130,7 +197,7 @@
 
 - (UIButton *)selectionListButtonWithTitle:(NSString *)buttonTitle {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 5);
+    button.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     [button setTitle:buttonTitle.uppercaseString forState:UIControlStateNormal];
 
     for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
@@ -144,6 +211,7 @@
                action:@selector(buttonWasTapped:)
      forControlEvents:UIControlEventTouchUpInside];
 
+    button.translatesAutoresizingMaskIntoConstraints = NO;
     return button;
 }
 

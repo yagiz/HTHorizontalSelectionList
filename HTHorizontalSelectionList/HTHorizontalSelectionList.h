@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Hightower Inc. All rights reserved.
 //
 
+@import UIKit;
+
 @protocol HTHorizontalSelectionListDataSource;
 @protocol HTHorizontalSelectionListDelegate;
 

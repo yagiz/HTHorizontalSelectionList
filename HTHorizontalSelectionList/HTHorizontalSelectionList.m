@@ -187,11 +187,9 @@
                                                                              metrics:@{@"margin" : @(kHTHorizontalSelectionListHorizontalMargin)}
                                                                                views:NSDictionaryOfVariableBindings(previousButton)]];
 
-    self.selectedButtonIndex = 0;
-
     if (totalButtons > 0) {
-        UIButton *firstButton = self.buttons[self.selectedButtonIndex];
-        firstButton.selected = YES;
+        UIButton *selectedButton = self.buttons[self.selectedButtonIndex];
+        selectedButton.selected = YES;
 
         [self.contentView addSubview:self.selectionIndicator];
 
@@ -200,7 +198,7 @@
                                                                                  metrics:@{@"height" : @(kHTHorizontalSelectionListSelectionIndicatorHeight)}
                                                                                    views:NSDictionaryOfVariableBindings(_selectionIndicator)]];
 
-        [self alignSelectionIndicatorWithButton:firstButton];
+        [self alignSelectionIndicatorWithButton:selectedButton];
     }
 
     [self sendSubviewToBack:self.bottomTrim];

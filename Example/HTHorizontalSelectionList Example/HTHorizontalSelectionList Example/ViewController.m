@@ -14,6 +14,8 @@
 @property (nonatomic, strong) HTHorizontalSelectionList *selectionList;
 @property (nonatomic, strong) NSArray *carMakes;
 
+@property (nonatomic, strong) UILabel *selectedItemLabel;
+
 @end
 
 @implementation ViewController
@@ -37,6 +39,27 @@
                       @"MAN"];
     
     [self.view addSubview:self.selectionList];
+
+    self.selectedItemLabel = [[UILabel alloc] init];
+    self.selectedItemLabel.text = self.carMakes[self.selectionList.selectedButtonIndex];
+    self.selectedItemLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.selectedItemLabel];
+
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectedItemLabel
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0
+                                                           constant:0.0]];
+
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectedItemLabel
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.0
+                                                           constant:0.0]];
 }
 
 #pragma mark - HTHorizontalSelectionListDataSource Protocol Methods
@@ -53,6 +76,7 @@
 
 - (void)selectionList:(HTHorizontalSelectionList *)selectionList didSelectButtonWithIndex:(NSInteger)index {
     // update the view for the corresponding index
+    self.selectedItemLabel.text = self.carMakes[index];
 }
 
 @end

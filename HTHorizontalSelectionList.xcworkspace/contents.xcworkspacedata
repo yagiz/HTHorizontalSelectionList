@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "group:HTHorizontalSelectionList"
-      name = "HTHorizontalSelectionList">
-      <FileRef
-         location = "group:HTHorizontalSelectionList.h">
-      </FileRef>
-      <FileRef
-         location = "group:HTHorizontalSelectionList.m">
-      </FileRef>
-   </Group>
+   <FileRef
+      location = "group:Example/HTHorizontalSelectionList Example/HTHorizontalSelectionList Example.xcodeproj">
+   </FileRef>
 </Workspace>

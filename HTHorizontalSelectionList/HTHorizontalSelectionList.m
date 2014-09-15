@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) UIView *selectionIndicator;
 
+@property (nonatomic, strong) NSLayoutConstraint *leftSelectionIndicatorConstraint, *rightSelectionIndicatorConstraint;
+
 @property (nonatomic, strong) UIView *bottomTrim;
 
 @property (nonatomic, strong) NSMutableDictionary *buttonColorsByState;
@@ -184,12 +186,14 @@
         UIButton *firstButton = self.buttons[self.selectedButtonIndex];
         firstButton.selected = YES;
 
-        self.selectionIndicator.frame = CGRectMake(firstButton.frame.origin.x,
-                                                   self.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight,
-                                                   firstButton.frame.size.width,
-                                                   kHTHorizontalSelectionListSelectionIndicatorHeight);
-
         [self.contentView addSubview:self.selectionIndicator];
+
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_selectionIndicator(height)]|"
+                                                                                options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                 metrics:@{@"height" : @(kHTHorizontalSelectionListSelectionIndicatorHeight)}
+                                                                                   views:NSDictionaryOfVariableBindings(_selectionIndicator)]];
+
+        [self alignSelectionIndicatorWithButton:firstButton];
     }
 
     [self sendSubviewToBack:self.bottomTrim];
@@ -215,6 +219,26 @@
     return button;
 }
 
+- (void)alignSelectionIndicatorWithButton:(UIButton *)button {
+    self.leftSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicator
+                                                                         attribute:NSLayoutAttributeLeft
+                                                                         relatedBy:NSLayoutRelationEqual
+                                                                            toItem:button
+                                                                         attribute:NSLayoutAttributeLeft
+                                                                        multiplier:1.0
+                                                                          constant:0.0];
+    [self.contentView addConstraint:self.leftSelectionIndicatorConstraint];
+
+    self.rightSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicator
+                                                                          attribute:NSLayoutAttributeRight
+                                                                          relatedBy:NSLayoutRelationEqual
+                                                                             toItem:button
+                                                                          attribute:NSLayoutAttributeRight
+                                                                         multiplier:1.0
+                                                                           constant:0.0];
+    [self.contentView addConstraint:self.rightSelectionIndicatorConstraint];
+}
+
 #pragma mark - Action Handlers
 
 - (void)buttonWasTapped:(id)sender {
@@ -231,16 +255,18 @@
         UIButton *tappedButton = (UIButton *)sender;
         tappedButton.selected = YES;
 
+        [self layoutIfNeeded];
         [UIView animateWithDuration:0.4
                               delay:0
              usingSpringWithDamping:0.5
               initialSpringVelocity:0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             self.selectionIndicator.frame = CGRectMake(tappedButton.frame.origin.x,
-                                                                        self.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight,
-                                                                        tappedButton.frame.size.width,
-                                                                        kHTHorizontalSelectionListSelectionIndicatorHeight);
+                             [self.contentView removeConstraint:self.leftSelectionIndicatorConstraint];
+                             [self.contentView removeConstraint:self.rightSelectionIndicatorConstraint];
+
+                             [self alignSelectionIndicatorWithButton:tappedButton];
+                             [self layoutIfNeeded];
                          }
                          completion:nil];
 

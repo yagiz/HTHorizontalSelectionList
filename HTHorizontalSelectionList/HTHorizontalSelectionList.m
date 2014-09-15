@@ -197,6 +197,8 @@
     }
 
     [self sendSubviewToBack:self.bottomTrim];
+
+    [super layoutSubviews];
 }
 
 - (UIButton *)selectionListButtonWithTitle:(NSString *)buttonTitle {

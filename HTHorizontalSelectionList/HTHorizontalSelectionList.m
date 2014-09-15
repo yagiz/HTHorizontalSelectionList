@@ -81,6 +81,11 @@
                                                                      metrics:nil
                                                                        views:NSDictionaryOfVariableBindings(_contentView)]];
 
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_contentView]|"
+                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                     metrics:nil
+                                                                       views:NSDictionaryOfVariableBindings(_contentView)]];
+
         _bottomTrim = [[UIView alloc] init];
         _bottomTrim.backgroundColor = [UIColor blackColor];
         _bottomTrim.translatesAutoresizingMaskIntoConstraints = NO;
@@ -272,7 +277,8 @@
                          }
                          completion:nil];
 
-        [self.scrollView scrollRectToVisible:CGRectInset(tappedButton.frame, -kHTHorizontalSelectionListHorizontalMargin, 0) animated:YES];
+        [self.scrollView scrollRectToVisible:CGRectInset(tappedButton.frame, -kHTHorizontalSelectionListHorizontalMargin, 0)
+                                    animated:YES];
 
         if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
             [self.delegate selectionList:self didSelectButtonWithIndex:index];

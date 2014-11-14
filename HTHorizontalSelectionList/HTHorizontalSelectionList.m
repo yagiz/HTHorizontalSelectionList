@@ -149,6 +149,10 @@
 
     NSInteger totalButtons = [self.dataSource numberOfItemsInSelectionList:self];
 
+    if (totalButtons < 1) {
+        return;
+    }
+
     UIButton *previousButton;
 
     for (NSInteger index = 0; index < totalButtons; index++) {

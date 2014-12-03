@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) UIView *contentView;
 
-@property (nonatomic, strong) UIView *selectionIndicator;
+@property (nonatomic, strong) UIView *selectionIndicatorBar;
 
 @property (nonatomic, strong) NSLayoutConstraint *leftSelectionIndicatorConstraint, *rightSelectionIndicatorConstraint;
 
@@ -103,11 +103,14 @@
                                                                      metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
                                                                        views:NSDictionaryOfVariableBindings(_bottomTrim)]];
 
+        self.buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+        self.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
+
         _buttons = [NSMutableArray array];
 
-        _selectionIndicator = [[UIView alloc] init];
-        _selectionIndicator.translatesAutoresizingMaskIntoConstraints = NO;
-        _selectionIndicator.backgroundColor = [UIColor blackColor];
+        _selectionIndicatorBar = [[UIView alloc] init];
+        _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
+        _selectionIndicatorBar.backgroundColor = [UIColor blackColor];
 
         _buttonColorsByState = [NSMutableDictionary dictionary];
         _buttonColorsByState[@(UIControlStateNormal)] = [UIColor blackColor];
@@ -118,11 +121,15 @@
 #pragma mark - Custom Getters and Setters
 
 - (void)setSelectionIndicatorColor:(UIColor *)selectionIndicatorColor {
-    self.selectionIndicator.backgroundColor = selectionIndicatorColor;
+    self.selectionIndicatorBar.backgroundColor = selectionIndicatorColor;
+
+    if (!self.buttonColorsByState[@(UIControlStateSelected)]) {
+        self.buttonColorsByState[@(UIControlStateSelected)] = selectionIndicatorColor;
+    }
 }
 
 - (UIColor *)selectionIndicatorColor {
-    return self.selectionIndicator.backgroundColor;
+    return self.selectionIndicatorBar.backgroundColor;
 }
 
 - (void)setBottomTrimColor:(UIColor *)bottomTrimColor {
@@ -144,7 +151,7 @@
         [button removeFromSuperview];
     }
 
-    [self.selectionIndicator removeFromSuperview];
+    [self.selectionIndicatorBar removeFromSuperview];
     [self.buttons removeAllObjects];
 
     NSInteger totalButtons = [self.dataSource numberOfItemsInSelectionList:self];
@@ -195,14 +202,24 @@
         UIButton *selectedButton = self.buttons[self.selectedButtonIndex];
         selectedButton.selected = YES;
 
-        [self.contentView addSubview:self.selectionIndicator];
+        switch (self.selectionIndicatorStyle) {
+            case HTHorizontalSelectionIndicatorStyleBottomBar: {
+                [self.contentView addSubview:self.selectionIndicatorBar];
 
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_selectionIndicator(height)]|"
-                                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                 metrics:@{@"height" : @(kHTHorizontalSelectionListSelectionIndicatorHeight)}
-                                                                                   views:NSDictionaryOfVariableBindings(_selectionIndicator)]];
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_selectionIndicatorBar(height)]|"
+                                                                                         options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                         metrics:@{@"height" : @(kHTHorizontalSelectionListSelectionIndicatorHeight)}
+                                                                                           views:NSDictionaryOfVariableBindings(_selectionIndicatorBar)]];
 
-        [self alignSelectionIndicatorWithButton:selectedButton];
+                [self alignSelectionIndicatorWithButton:selectedButton];
+                break;
+            }
+
+            case HTHorizontalSelectionIndicatorStyleButtonBorder: {
+                selectedButton.layer.borderColor = self.selectionIndicatorColor.CGColor;
+                break;
+            }
+        }
     }
 
     [self sendSubviewToBack:self.bottomTrim];
@@ -222,7 +239,7 @@
 
 - (UIButton *)selectionListButtonWithTitle:(NSString *)buttonTitle {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    button.contentEdgeInsets = self.buttonInsets;
     [button setTitle:buttonTitle.uppercaseString forState:UIControlStateNormal];
 
     for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
@@ -232,6 +249,13 @@
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button sizeToFit];
 
+    if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
+        button.layer.borderWidth = 1.0;
+        button.layer.cornerRadius = 3.0;
+        button.layer.borderColor = [UIColor clearColor].CGColor;
+        button.layer.masksToBounds = YES;
+    }
+
     [button addTarget:self
                action:@selector(buttonWasTapped:)
      forControlEvents:UIControlEventTouchUpInside];
@@ -240,8 +264,27 @@
     return button;
 }
 
+- (void)setupSelectedButton:(UIButton *)selectedButton oldSelectedButton:(UIButton *)oldSelectedButton {
+    switch (self.selectionIndicatorStyle) {
+        case HTHorizontalSelectionIndicatorStyleBottomBar: {
+            [self.contentView removeConstraint:self.leftSelectionIndicatorConstraint];
+            [self.contentView removeConstraint:self.rightSelectionIndicatorConstraint];
+
+            [self alignSelectionIndicatorWithButton:selectedButton];
+            [self layoutIfNeeded];
+            break;
+        }
+
+        case HTHorizontalSelectionIndicatorStyleButtonBorder: {
+            selectedButton.layer.borderColor = self.selectionIndicatorColor.CGColor;
+            oldSelectedButton.layer.borderColor = [UIColor clearColor].CGColor;
+            break;
+        }
+    }
+}
+
 - (void)alignSelectionIndicatorWithButton:(UIButton *)button {
-    self.leftSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicator
+    self.leftSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicatorBar
                                                                          attribute:NSLayoutAttributeLeft
                                                                          relatedBy:NSLayoutRelationEqual
                                                                             toItem:button
@@ -250,7 +293,7 @@
                                                                           constant:0.0];
     [self.contentView addConstraint:self.leftSelectionIndicatorConstraint];
 
-    self.rightSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicator
+    self.rightSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicatorBar
                                                                           attribute:NSLayoutAttributeRight
                                                                           relatedBy:NSLayoutRelationEqual
                                                                              toItem:button
@@ -283,11 +326,7 @@
               initialSpringVelocity:0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             [self.contentView removeConstraint:self.leftSelectionIndicatorConstraint];
-                             [self.contentView removeConstraint:self.rightSelectionIndicatorConstraint];
-
-                             [self alignSelectionIndicatorWithButton:tappedButton];
-                             [self layoutIfNeeded];
+                             [self setupSelectedButton:tappedButton oldSelectedButton:oldSelectedButton];
                          }
                          completion:nil];
 

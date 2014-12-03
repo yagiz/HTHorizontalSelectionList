@@ -174,12 +174,12 @@
         }
 
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:button
-                                                         attribute:NSLayoutAttributeCenterY
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self.contentView
-                                                         attribute:NSLayoutAttributeCenterY
-                                                        multiplier:1.0
-                                                          constant:0.0]];
+                                                                     attribute:NSLayoutAttributeCenterY
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.contentView
+                                                                     attribute:NSLayoutAttributeCenterY
+                                                                    multiplier:1.0
+                                                                      constant:0.0]];
 
         previousButton = button;
 
@@ -198,7 +198,7 @@
         [self.contentView addSubview:self.selectionIndicator];
 
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_selectionIndicator(height)]|"
-                                                                                options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
                                                                                  metrics:@{@"height" : @(kHTHorizontalSelectionListSelectionIndicatorHeight)}
                                                                                    views:NSDictionaryOfVariableBindings(_selectionIndicator)]];
 

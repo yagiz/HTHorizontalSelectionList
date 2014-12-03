@@ -240,7 +240,7 @@
 - (UIButton *)selectionListButtonWithTitle:(NSString *)buttonTitle {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.contentEdgeInsets = self.buttonInsets;
-    [button setTitle:buttonTitle.uppercaseString forState:UIControlStateNormal];
+    [button setTitle:buttonTitle forState:UIControlStateNormal];
 
     for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
         [button setTitleColor:self.buttonColorsByState[controlState] forState:controlState.integerValue];

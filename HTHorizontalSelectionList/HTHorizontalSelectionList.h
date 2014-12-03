@@ -11,6 +11,11 @@
 @protocol HTHorizontalSelectionListDataSource;
 @protocol HTHorizontalSelectionListDelegate;
 
+typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
+    HTHorizontalSelectionIndicatorStyleBottomBar,           // Default
+    HTHorizontalSelectionIndicatorStyleButtonBorder
+};
+
 @interface HTHorizontalSelectionList : UIView
 
 @property (nonatomic) NSInteger selectedButtonIndex;
@@ -20,6 +25,10 @@
 
 @property (nonatomic, strong) UIColor *selectionIndicatorColor;
 @property (nonatomic, strong) UIColor *bottomTrimColor;
+
+@property (nonatomic) UIEdgeInsets buttonInsets;
+
+@property (nonatomic) HTHorizontalSelectionIndicatorStyle selectionIndicatorStyle;
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
 

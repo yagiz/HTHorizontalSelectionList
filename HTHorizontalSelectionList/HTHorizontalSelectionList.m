@@ -137,9 +137,9 @@
     self.buttonColorsByState[@(state)] = color;
 }
 
-#pragma mark - Private Methods
+#pragma mark - Public Methods
 
-- (void)layoutSubviews {
+- (void)reloadData {
     for (UIButton *button in self.buttons) {
         [button removeFromSuperview];
     }
@@ -174,12 +174,12 @@
         }
 
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:button
-                                                         attribute:NSLayoutAttributeCenterY
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self.contentView
-                                                         attribute:NSLayoutAttributeCenterY
-                                                        multiplier:1.0
-                                                          constant:0.0]];
+                                                                     attribute:NSLayoutAttributeCenterY
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:self.contentView
+                                                                     attribute:NSLayoutAttributeCenterY
+                                                                    multiplier:1.0
+                                                                      constant:0.0]];
 
         previousButton = button;
 
@@ -198,7 +198,7 @@
         [self.contentView addSubview:self.selectionIndicator];
 
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_selectionIndicator(height)]|"
-                                                                                options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
                                                                                  metrics:@{@"height" : @(kHTHorizontalSelectionListSelectionIndicatorHeight)}
                                                                                    views:NSDictionaryOfVariableBindings(_selectionIndicator)]];
 
@@ -207,8 +207,18 @@
 
     [self sendSubviewToBack:self.bottomTrim];
 
-    [super layoutSubviews];
+    [self updateConstraintsIfNeeded];
 }
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    if (!self.buttons.count) {
+        [self reloadData];
+    }
+}
+
+#pragma mark - Private Methods
 
 - (UIButton *)selectionListButtonWithTitle:(NSString *)buttonTitle {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

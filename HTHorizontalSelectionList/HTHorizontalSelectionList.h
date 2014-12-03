@@ -23,6 +23,8 @@
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
 
+- (void)reloadData;
+
 @end
 
 @protocol HTHorizontalSelectionListDataSource <NSObject>

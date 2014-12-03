@@ -137,9 +137,9 @@
     self.buttonColorsByState[@(state)] = color;
 }
 
-#pragma mark - Private Methods
+#pragma mark - Public Methods
 
-- (void)layoutSubviews {
+- (void)reloadData {
     for (UIButton *button in self.buttons) {
         [button removeFromSuperview];
     }
@@ -207,8 +207,18 @@
 
     [self sendSubviewToBack:self.bottomTrim];
 
-    [super layoutSubviews];
+    [self updateConstraintsIfNeeded];
 }
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    if (!self.buttons.count) {
+        [self reloadData];
+    }
+}
+
+#pragma mark - Private Methods
 
 - (UIButton *)selectionListButtonWithTitle:(NSString *)buttonTitle {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

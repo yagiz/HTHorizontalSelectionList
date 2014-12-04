@@ -41,12 +41,12 @@ The horizontal selection list uses a data-source/delegate model (similar to UITa
 	selectionList.delegate = self;
 	selectionList.dataSource = self;
 
-	self.carMakes = @[@"All cars",
-                      @"Audi",
-                      @"Bitter",
+	self.carMakes = @[@"ALL CARS",
+                      @"AUDI",
+                      @"BITTER",
                       @"BMW",
-                      @"Büssing",
-                      @"Gumpert",
+                      @"BÜSSING",
+                      @"GUMPERT",
                       @"MAN"];
 }
 
@@ -68,14 +68,36 @@ The horizontal selection list uses a data-source/delegate model (similar to UITa
 
 ```
 
-###Customizing the colors
+###Customizing the appearance
 
-The HTHorizontalSelectionList can be configured with the following properties and methods:
+The HTHorizontalSelectionList has a number of configurable properties.
+
+To adjust the selected color of the buttons use the following method:
 ```objc
-@property (nonatomic, strong) UIColor *selectionIndicatorColor;
-@property (nonatomic, strong) UIColor *bottomTrimColor;
-
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
 ```
 
-The `selectionIndicatorColor` is the color of the thicker, bottom bar below the selected button.  The `bottomTrimColor` changes the appearance of the thin line below the entire control.
+Additionally, you can set the selection indicator color with these proprties:
+```objc
+@property (nonatomic, strong) UIColor *selectionIndicatorColor;
+
+@property (nonatomic) HTHorizontalSelectionIndicatorStyle selectionIndicatorStyle;
+```
+
+There are two selection styles:
+```objc
+typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
+    HTHorizontalSelectionIndicatorStyleBottomBar,           // Default
+    HTHorizontalSelectionIndicatorStyleButtonBorder
+};
+```
+
+You can adjust the content insets of each button with:
+```objc
+@property (nonatomic) UIEdgeInsets buttonInsets;
+```
+
+Setting `bottomTrimColor` changes the appearance of the thin line below the entire view:
+```objc
+@property (nonatomic, strong) UIColor *bottomTrimColor;
+```

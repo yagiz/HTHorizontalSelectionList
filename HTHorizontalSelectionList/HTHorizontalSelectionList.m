@@ -228,11 +228,11 @@
 }
 
 - (void)layoutSubviews {
-    [super layoutSubviews];
-
     if (!self.buttons.count) {
         [self reloadData];
     }
+
+    [super layoutSubviews];
 }
 
 #pragma mark - Private Methods

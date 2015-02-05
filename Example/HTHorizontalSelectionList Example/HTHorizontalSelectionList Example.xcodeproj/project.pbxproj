@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		036F054119C624D9000D2EEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054019C624D9000D2EEB /* main.m */; };
 		036F054419C624D9000D2EEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054319C624D9000D2EEB /* AppDelegate.m */; };
-		036F054719C624D9000D2EEB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054619C624D9000D2EEB /* ViewController.m */; };
+		036F054719C624D9000D2EEB /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054619C624D9000D2EEB /* CarsViewController.m */; };
 		036F054C19C624D9000D2EEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F054B19C624D9000D2EEB /* Images.xcassets */; };
 		036F054F19C624D9000D2EEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F054D19C624D9000D2EEB /* LaunchScreen.xib */; };
 		03AEDF8319C7467C0012581D /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */; };
 		03AEDF8419C7467C0012581D /* HTHorizontalSelectionListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AEDF8119C7467C0012581D /* HTHorizontalSelectionListScrollView.m */; };
+		03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */; };
+		03FCAF901A8424A1004857A7 /* spacecat3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */; };
+		03FCAF911A8424A1004857A7 /* spacecat2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */; };
+		03FCAF921A8424A1004857A7 /* spacecat1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */; };
+		03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FCAF941A842B1B004857A7 /* CatsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,14 +27,20 @@
 		036F054019C624D9000D2EEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		036F054219C624D9000D2EEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		036F054319C624D9000D2EEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		036F054519C624D9000D2EEB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		036F054619C624D9000D2EEB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		036F054519C624D9000D2EEB /* CarsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarsViewController.h; sourceTree = "<group>"; };
+		036F054619C624D9000D2EEB /* CarsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
 		036F054B19C624D9000D2EEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		036F054E19C624D9000D2EEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		03AEDF7E19C7467C0012581D /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionList.h; sourceTree = "<group>"; };
 		03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionList.m; sourceTree = "<group>"; };
 		03AEDF8019C7467C0012581D /* HTHorizontalSelectionListScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListScrollView.h; sourceTree = "<group>"; };
 		03AEDF8119C7467C0012581D /* HTHorizontalSelectionListScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListScrollView.m; sourceTree = "<group>"; };
+		03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat4.jpeg; path = Resources/spacecat4.jpeg; sourceTree = "<group>"; };
+		03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat3.jpeg; path = Resources/spacecat3.jpeg; sourceTree = "<group>"; };
+		03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat2.jpeg; path = Resources/spacecat2.jpeg; sourceTree = "<group>"; };
+		03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat1.jpeg; path = Resources/spacecat1.jpeg; sourceTree = "<group>"; };
+		03FCAF931A842B1B004857A7 /* CatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatsViewController.h; sourceTree = "<group>"; };
+		03FCAF941A842B1B004857A7 /* CatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +74,13 @@
 		036F053D19C624D9000D2EEB /* HTHorizontalSelectionList Example */ = {
 			isa = PBXGroup;
 			children = (
+				03FCAF821A84235C004857A7 /* Resources */,
 				036F054219C624D9000D2EEB /* AppDelegate.h */,
 				036F054319C624D9000D2EEB /* AppDelegate.m */,
-				036F054519C624D9000D2EEB /* ViewController.h */,
-				036F054619C624D9000D2EEB /* ViewController.m */,
+				036F054519C624D9000D2EEB /* CarsViewController.h */,
+				036F054619C624D9000D2EEB /* CarsViewController.m */,
+				03FCAF931A842B1B004857A7 /* CatsViewController.h */,
+				03FCAF941A842B1B004857A7 /* CatsViewController.m */,
 				036F054B19C624D9000D2EEB /* Images.xcassets */,
 				036F054D19C624D9000D2EEB /* LaunchScreen.xib */,
 				036F053E19C624D9000D2EEB /* Supporting Files */,
@@ -93,6 +107,17 @@
 			);
 			name = HTHorizontalSelectionList;
 			path = ../../HTHorizontalSelectionList;
+			sourceTree = "<group>";
+		};
+		03FCAF821A84235C004857A7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */,
+				03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */,
+				03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */,
+				03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,8 +177,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03FCAF911A8424A1004857A7 /* spacecat2.jpeg in Resources */,
 				036F054F19C624D9000D2EEB /* LaunchScreen.xib in Resources */,
+				03FCAF901A8424A1004857A7 /* spacecat3.jpeg in Resources */,
 				036F054C19C624D9000D2EEB /* Images.xcassets in Resources */,
+				03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */,
+				03FCAF921A8424A1004857A7 /* spacecat1.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +193,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				036F054719C624D9000D2EEB /* ViewController.m in Sources */,
+				036F054719C624D9000D2EEB /* CarsViewController.m in Sources */,
+				03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */,
 				036F054419C624D9000D2EEB /* AppDelegate.m in Sources */,
 				03AEDF8319C7467C0012581D /* HTHorizontalSelectionList.m in Sources */,
 				036F054119C624D9000D2EEB /* main.m in Sources */,

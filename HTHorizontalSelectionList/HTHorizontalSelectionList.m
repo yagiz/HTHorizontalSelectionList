@@ -163,9 +163,20 @@
     UIButton *previousButton;
 
     for (NSInteger index = 0; index < totalButtons; index++) {
-        NSString *buttonTitle = [self.dataSource selectionList:self titleForItemWithIndex:index];
+        UIButton *button;
 
-        UIButton *button = [self selectionListButtonWithTitle:buttonTitle];
+        if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
+            UIView *buttonView = [self.dataSource selectionList:self viewForItemWithIndex:index];
+
+            button = [self selectionListButtonWithView:buttonView];
+        }
+
+        if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
+            NSString *buttonTitle = [self.dataSource selectionList:self titleForItemWithIndex:index];
+
+            button = [self selectionListButtonWithTitle:buttonTitle];
+        }
+
         [self.contentView addSubview:button];
 
         if (previousButton) {
@@ -255,6 +266,19 @@
         button.layer.borderColor = [UIColor clearColor].CGColor;
         button.layer.masksToBounds = YES;
     }
+
+    [button addTarget:self
+               action:@selector(buttonWasTapped:)
+     forControlEvents:UIControlEventTouchUpInside];
+
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    return button;
+}
+
+- (UIButton *)selectionListButtonWithView:(UIView *)buttonView {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    [button addSubview:buttonView];
 
     [button addTarget:self
                action:@selector(buttonWasTapped:)

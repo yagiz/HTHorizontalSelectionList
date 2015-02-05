@@ -7,9 +7,12 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "CarsViewController.h"
+#import "CatsViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UITabBarControllerDelegate>
+
+@property (nonatomic, strong) UITabBarController *tabBarController;
 
 @end
 
@@ -20,8 +23,16 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];
-    self.window.rootViewController = navigationController;
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.delegate = self;
+
+    self.window.rootViewController = self.tabBarController;
+
+    UINavigationController *carsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[CarsViewController alloc] init]];
+    UINavigationController *catsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[CatsViewController alloc] init]];
+
+    self.tabBarController.viewControllers = @[carsNavigationController, catsNavigationController];
+
     self.window.backgroundColor = [UIColor lightGrayColor];
     [self.window makeKeyAndVisible];
     

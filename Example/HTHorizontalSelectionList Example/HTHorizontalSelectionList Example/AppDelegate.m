@@ -29,7 +29,9 @@
     self.window.rootViewController = self.tabBarController;
 
     UINavigationController *carsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[CarsViewController alloc] init]];
+    carsNavigationController.tabBarItem.title = @"Cars";
     UINavigationController *catsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[CatsViewController alloc] init]];
+    catsNavigationController.tabBarItem.title = @"Cats";
 
     self.tabBarController.viewControllers = @[carsNavigationController, catsNavigationController];
 

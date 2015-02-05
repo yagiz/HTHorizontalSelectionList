@@ -30,6 +30,8 @@
     self.customViewSelectionList.delegate = self;
     self.customViewSelectionList.dataSource = self;
 
+    self.customViewSelectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleNone;
+
     self.spaceCats = @[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat1.jpeg"]],
                        [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat2.jpeg"]],
                        [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat3.jpeg"]],

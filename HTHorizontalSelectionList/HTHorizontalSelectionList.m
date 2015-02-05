@@ -235,6 +235,9 @@
                 selectedButton.layer.borderColor = self.selectionIndicatorColor.CGColor;
                 break;
             }
+
+            default:
+                break;
         }
     }
 
@@ -330,6 +333,11 @@
             selectedButton.layer.borderColor = self.selectionIndicatorColor.CGColor;
             oldSelectedButton.layer.borderColor = [UIColor clearColor].CGColor;
             break;
+        }
+
+        case HTHorizontalSelectionIndicatorStyleNone: {
+            selectedButton.layer.borderColor = [UIColor clearColor].CGColor;
+            oldSelectedButton.layer.borderColor = [UIColor clearColor].CGColor;
         }
     }
 }

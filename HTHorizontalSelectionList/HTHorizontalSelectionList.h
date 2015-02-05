@@ -13,7 +13,8 @@
 
 typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
     HTHorizontalSelectionIndicatorStyleBottomBar,           // Default
-    HTHorizontalSelectionIndicatorStyleButtonBorder
+    HTHorizontalSelectionIndicatorStyleButtonBorder,
+    HTHorizontalSelectionIndicatorStyleNone
 };
 
 @interface HTHorizontalSelectionList : UIView

@@ -199,6 +199,11 @@
                                                                     multiplier:1.0
                                                                       constant:0.0]];
 
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[button]|"
+                                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                 metrics:@{@"margin" : @(kHTHorizontalSelectionListHorizontalMargin)}
+                                                                                   views:NSDictionaryOfVariableBindings(button)]];
+
         previousButton = button;
 
         [self.buttons addObject:button];
@@ -279,6 +284,28 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 
     [button addSubview:buttonView];
+
+    buttonView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    CGFloat aspectRatio = buttonView.frame.size.height/buttonView.frame.size.width;
+
+    [buttonView addConstraint:[NSLayoutConstraint constraintWithItem:buttonView
+                                                           attribute:NSLayoutAttributeHeight
+                                                           relatedBy:NSLayoutRelationEqual
+                                                              toItem:buttonView
+                                                           attribute:NSLayoutAttributeWidth
+                                                          multiplier:aspectRatio
+                                                            constant:0.0]];
+
+    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[buttonView]|"
+                                                                   options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                   metrics:nil
+                                                                     views:NSDictionaryOfVariableBindings(buttonView)]];
+
+    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[buttonView]|"
+                                                                   options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                   metrics:nil
+                                                                     views:NSDictionaryOfVariableBindings(buttonView)]];
 
     [button addTarget:self
                action:@selector(buttonWasTapped:)

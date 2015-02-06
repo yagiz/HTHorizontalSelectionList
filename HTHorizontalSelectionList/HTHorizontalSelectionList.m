@@ -100,7 +100,7 @@
 
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomTrim(height)]|"
                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
+                                                                     metrics:@{@"height" : self.bottomTrimHeight ? @(self.bottomTrimHeight) : @(kHTHorizontalSelectionListTrimHeight)}
                                                                        views:NSDictionaryOfVariableBindings(_bottomTrim)]];
 
         self.buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);

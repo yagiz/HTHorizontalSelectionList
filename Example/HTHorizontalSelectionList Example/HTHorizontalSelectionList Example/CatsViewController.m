@@ -31,6 +31,7 @@
     self.customViewSelectionList.dataSource = self;
 
     self.customViewSelectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleNone;
+    self.customViewSelectionList.bottomTrimHeight = 0.0f;
 
     self.spaceCats = @[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat1.jpeg"]],
                        [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat2.jpeg"]],

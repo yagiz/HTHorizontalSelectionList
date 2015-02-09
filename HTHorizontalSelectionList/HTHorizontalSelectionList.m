@@ -100,7 +100,7 @@
 
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomTrim(height)]|"
                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:@{@"height" : self.bottomTrimHeight ? @(self.bottomTrimHeight) : @(kHTHorizontalSelectionListTrimHeight)}
+                                                                     metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
                                                                        views:NSDictionaryOfVariableBindings(_bottomTrim)]];
 
         self.buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
@@ -140,6 +140,14 @@
     return self.bottomTrim.backgroundColor;
 }
 
+- (void)setBottomTrimHidden:(BOOL)bottomTrimHidden {
+    self.bottomTrim.hidden = bottomTrimHidden;
+}
+
+- (BOOL)bottomTrimHidden {
+    return self.bottomTrim.hidden;
+}
+
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
     self.buttonColorsByState[@(state)] = color;
 }
@@ -169,15 +177,30 @@
             UIView *buttonView = [self.dataSource selectionList:self viewForItemWithIndex:index];
 
             button = [self selectionListButtonWithView:buttonView];
-        }
+            [self.contentView addSubview:button];
 
-        if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topInset-[button]-bottomInset-|"
+                                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                     metrics:@{@"topInset" : @(self.buttonInsets.top),
+                                                                                               @"bottomInset" : @(self.buttonInsets.bottom)}
+                                                                                       views:NSDictionaryOfVariableBindings(button)]];
+
+        } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
             NSString *buttonTitle = [self.dataSource selectionList:self titleForItemWithIndex:index];
 
             button = [self selectionListButtonWithTitle:buttonTitle];
+            [self.contentView addSubview:button];
+        } else {
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [self.contentView addSubview:button];
         }
 
-        [self.contentView addSubview:button];
+        if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
+            button.layer.borderWidth = 1.0;
+            button.layer.cornerRadius = 3.0;
+            button.layer.borderColor = [UIColor clearColor].CGColor;
+            button.layer.masksToBounds = YES;
+        }
 
         if (previousButton) {
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[previousButton]-padding-[button]"
@@ -198,11 +221,6 @@
                                                                      attribute:NSLayoutAttributeCenterY
                                                                     multiplier:1.0
                                                                       constant:0.0]];
-
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[button]|"
-                                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                 metrics:@{@"margin" : @(kHTHorizontalSelectionListHorizontalMargin)}
-                                                                                   views:NSDictionaryOfVariableBindings(button)]];
 
         previousButton = button;
 
@@ -268,13 +286,6 @@
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button sizeToFit];
 
-    if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
-        button.layer.borderWidth = 1.0;
-        button.layer.cornerRadius = 3.0;
-        button.layer.borderColor = [UIColor clearColor].CGColor;
-        button.layer.masksToBounds = YES;
-    }
-
     [button addTarget:self
                action:@selector(buttonWasTapped:)
      forControlEvents:UIControlEventTouchUpInside];
@@ -285,7 +296,6 @@
 
 - (UIButton *)selectionListButtonWithView:(UIView *)buttonView {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-
     [button addSubview:buttonView];
 
     buttonView.translatesAutoresizingMaskIntoConstraints = NO;

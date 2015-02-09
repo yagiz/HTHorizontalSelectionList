@@ -179,9 +179,10 @@
             button = [self selectionListButtonWithView:buttonView];
             [self.contentView addSubview:button];
 
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[button]|"
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topInset-[button]-bottomInset-|"
                                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                     metrics:nil
+                                                                                     metrics:@{@"topInset" : @(self.buttonInsets.top),
+                                                                                               @"bottomInset" : @(self.buttonInsets.bottom)}
                                                                                        views:NSDictionaryOfVariableBindings(button)]];
 
         } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
@@ -192,6 +193,13 @@
         } else {
             button = [UIButton buttonWithType:UIButtonTypeCustom];
             [self.contentView addSubview:button];
+        }
+
+        if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
+            button.layer.borderWidth = 1.0;
+            button.layer.cornerRadius = 3.0;
+            button.layer.borderColor = [UIColor clearColor].CGColor;
+            button.layer.masksToBounds = YES;
         }
 
         if (previousButton) {
@@ -278,13 +286,6 @@
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button sizeToFit];
 
-    if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
-        button.layer.borderWidth = 1.0;
-        button.layer.cornerRadius = 3.0;
-        button.layer.borderColor = [UIColor clearColor].CGColor;
-        button.layer.masksToBounds = YES;
-    }
-
     [button addTarget:self
                action:@selector(buttonWasTapped:)
      forControlEvents:UIControlEventTouchUpInside];
@@ -295,7 +296,6 @@
 
 - (UIButton *)selectionListButtonWithView:(UIView *)buttonView {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-
     [button addSubview:buttonView];
 
     buttonView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -310,16 +310,14 @@
                                                           multiplier:aspectRatio
                                                             constant:0.0]];
 
-    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftInset-[buttonView]-rightInset-|"
+    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[buttonView]|"
                                                                    options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                   metrics:@{@"leftInset" : @(self.buttonInsets.left),
-                                                                             @"rightInset" : @(self.buttonInsets.right)}
+                                                                   metrics:nil
                                                                      views:NSDictionaryOfVariableBindings(buttonView)]];
 
-    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topInset-[buttonView]-bottomInset-|"
+    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[buttonView]|"
                                                                    options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                   metrics:@{@"topInset" : @(self.buttonInsets.top),
-                                                                             @"bottomInset" : @(self.buttonInsets.bottom)}
+                                                                   metrics:nil
                                                                      views:NSDictionaryOfVariableBindings(buttonView)]];
 
     [button addTarget:self

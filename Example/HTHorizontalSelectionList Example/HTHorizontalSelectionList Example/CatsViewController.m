@@ -30,6 +30,8 @@
     self.customViewSelectionList.delegate = self;
     self.customViewSelectionList.dataSource = self;
 
+    self.customViewSelectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleButtonBorder;
+    self.customViewSelectionList.selectionIndicatorColor = [UIColor blueColor];
     self.customViewSelectionList.bottomTrimHidden = YES;
 
     self.spaceCats = @[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat1.jpeg"]],

@@ -140,6 +140,14 @@
     return self.bottomTrim.backgroundColor;
 }
 
+- (void)setBottomTrimHidden:(BOOL)bottomTrimHidden {
+    self.bottomTrim.hidden = bottomTrimHidden;
+}
+
+- (BOOL)bottomTrimHidden {
+    return self.bottomTrim.hidden;
+}
+
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
     self.buttonColorsByState[@(state)] = color;
 }

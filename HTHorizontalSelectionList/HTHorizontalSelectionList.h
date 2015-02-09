@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
 @property (nonatomic, strong) UIColor *selectionIndicatorColor;
 @property (nonatomic, strong) UIColor *bottomTrimColor;
 @property (nonatomic) CGFloat bottomTrimHeight;
+@property (nonatomic) BOOL bottomTrimHidden;
 
 @property (nonatomic) UIEdgeInsets buttonInsets;
 

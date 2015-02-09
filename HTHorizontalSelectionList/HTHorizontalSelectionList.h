@@ -13,7 +13,8 @@
 
 typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
     HTHorizontalSelectionIndicatorStyleBottomBar,           // Default
-    HTHorizontalSelectionIndicatorStyleButtonBorder
+    HTHorizontalSelectionIndicatorStyleButtonBorder,
+    HTHorizontalSelectionIndicatorStyleNone
 };
 
 @interface HTHorizontalSelectionList : UIView
@@ -25,6 +26,7 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
 
 @property (nonatomic, strong) UIColor *selectionIndicatorColor;
 @property (nonatomic, strong) UIColor *bottomTrimColor;
+@property (nonatomic) CGFloat bottomTrimHeight;
 
 @property (nonatomic) UIEdgeInsets buttonInsets;
 
@@ -39,7 +41,10 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
 @protocol HTHorizontalSelectionListDataSource <NSObject>
 
 - (NSInteger)numberOfItemsInSelectionList:(HTHorizontalSelectionList *)selectionList;
+
+@optional
 - (NSString *)selectionList:(HTHorizontalSelectionList *)selectionList titleForItemWithIndex:(NSInteger)index;
+- (UIView *)selectionList:(HTHorizontalSelectionList *)selectionList viewForItemWithIndex:(NSInteger)index;
 
 @end
 

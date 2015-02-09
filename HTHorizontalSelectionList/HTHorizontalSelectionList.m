@@ -177,15 +177,24 @@
             UIView *buttonView = [self.dataSource selectionList:self viewForItemWithIndex:index];
 
             button = [self selectionListButtonWithView:buttonView];
-        }
+            [self.contentView addSubview:button];
 
-        if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
+            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[button]|"
+                                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                     metrics:nil
+                                                                                       views:NSDictionaryOfVariableBindings(button)]];
+
+        } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
             NSString *buttonTitle = [self.dataSource selectionList:self titleForItemWithIndex:index];
 
             button = [self selectionListButtonWithTitle:buttonTitle];
+            [self.contentView addSubview:button];
+        } else {
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [self.contentView addSubview:button];
         }
 
-        [self.contentView addSubview:button];
+
 
         if (previousButton) {
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[previousButton]-padding-[button]"
@@ -206,11 +215,6 @@
                                                                      attribute:NSLayoutAttributeCenterY
                                                                     multiplier:1.0
                                                                       constant:0.0]];
-
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[button]|"
-                                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                 metrics:@{@"margin" : @(kHTHorizontalSelectionListHorizontalMargin)}
-                                                                                   views:NSDictionaryOfVariableBindings(button)]];
 
         previousButton = button;
 

@@ -100,7 +100,7 @@
 
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomTrim(height)]|"
                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:@{@"height" : self.bottomTrimHeight ? @(self.bottomTrimHeight) : @(kHTHorizontalSelectionListTrimHeight)}
+                                                                     metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
                                                                        views:NSDictionaryOfVariableBindings(_bottomTrim)]];
 
         self.buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
@@ -193,8 +193,6 @@
             button = [UIButton buttonWithType:UIButtonTypeCustom];
             [self.contentView addSubview:button];
         }
-
-
 
         if (previousButton) {
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[previousButton]-padding-[button]"

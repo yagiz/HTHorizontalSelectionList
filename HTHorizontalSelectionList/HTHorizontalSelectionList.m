@@ -312,14 +312,16 @@
                                                           multiplier:aspectRatio
                                                             constant:0.0]];
 
-    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[buttonView]|"
+    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftInset-[buttonView]-rightInset-|"
                                                                    options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                   metrics:nil
+                                                                   metrics:@{@"leftInset" : @(self.buttonInsets.left),
+                                                                             @"rightInset" : @(self.buttonInsets.right)}
                                                                      views:NSDictionaryOfVariableBindings(buttonView)]];
 
-    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[buttonView]|"
+    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topInset-[buttonView]-bottomInset-|"
                                                                    options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                   metrics:nil
+                                                                   metrics:@{@"topInset" : @(self.buttonInsets.top),
+                                                                             @"bottomInset" : @(self.buttonInsets.bottom)}
                                                                      views:NSDictionaryOfVariableBindings(buttonView)]];
 
     [button addTarget:self

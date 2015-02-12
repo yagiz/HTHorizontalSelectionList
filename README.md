@@ -12,7 +12,7 @@ A simple side-scrolling list of items (perhaps filters for a UITableView below).
 
 Add HTHorizontalSelectionList pod into your Podfile
 ```
-pod 'HTHorizontalSelectionList', '~> 0.2.4'
+pod 'HTHorizontalSelectionList', '~> 0.3.0'
 ```
 
 ##Usage
@@ -84,11 +84,12 @@ Additionally, you can set the selection indicator color with these proprties:
 @property (nonatomic) HTHorizontalSelectionIndicatorStyle selectionIndicatorStyle;
 ```
 
-There are two selection styles:
+There are three selection styles:
 ```objc
 typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
     HTHorizontalSelectionIndicatorStyleBottomBar,           // Default
-    HTHorizontalSelectionIndicatorStyleButtonBorder
+    HTHorizontalSelectionIndicatorStyleButtonBorder,
+    HTHorizontalSelectionIndicatorStyleNone
 };
 ```
 
@@ -100,4 +101,5 @@ You can adjust the content insets of each button with:
 Setting `bottomTrimColor` changes the appearance of the thin line below the entire view:
 ```objc
 @property (nonatomic, strong) UIColor *bottomTrimColor;
+@property (nonatomic) BOOL bottomTrimHidden;
 ```

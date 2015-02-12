@@ -378,6 +378,12 @@
     NSInteger index = [self.buttons indexOfObject:sender];
     if (index != NSNotFound) {
         if (index == self.selectedButtonIndex) {
+            if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleNone) {
+                if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
+                    [self.delegate selectionList:self didSelectButtonWithIndex:index];
+                }
+            }
+
             return;
         }
 

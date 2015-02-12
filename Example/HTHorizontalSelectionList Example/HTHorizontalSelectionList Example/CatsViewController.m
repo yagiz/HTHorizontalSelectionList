@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) UIImageView *selectedSpaceCatImageView;
 
+@property (nonatomic) BOOL filtered;
+
 @end
 
 @implementation CatsViewController
@@ -61,6 +63,35 @@
                                                               attribute:NSLayoutAttributeCenterY
                                                              multiplier:1.0
                                                                constant:0.0]];
+
+    UIButton *filterToggleButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    filterToggleButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    [filterToggleButton setTitle:@"Filter Selection List" forState:UIControlStateNormal];
+    [filterToggleButton setTitle:@"Unfilter Selection List" forState:UIControlStateSelected];
+
+    [filterToggleButton addTarget:self
+                           action:@selector(filterToggleButtonTapped:)
+                 forControlEvents:UIControlEventTouchUpInside];
+
+    filterToggleButton.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [self.view addSubview:filterToggleButton];
+
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:filterToggleButton
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0
+                                                           constant:0.0]];
+
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:filterToggleButton
+                                                          attribute:NSLayoutAttributeBottom
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeBottom
+                                                         multiplier:1.0
+                                                           constant:-20.0]];
 }
 
 #pragma mark - HTHorizontalSelectionListDataSource Protocol Methods
@@ -78,6 +109,31 @@
 - (void)selectionList:(HTHorizontalSelectionList *)selectionList didSelectButtonWithIndex:(NSInteger)index {
     // update the view for the corresponding index
     self.selectedSpaceCatImageView.image = ((UIImageView *)self.spaceCats[index]).image;
+}
+
+#pragma mark - Action Handlers
+
+- (void)filterToggleButtonTapped:(id)sender {
+    self.filtered = !self.filtered;
+    ((UIButton *)sender).selected = !((UIButton *)sender).selected;
+
+    [self.customViewSelectionList reloadData];
+
+    // NOTE: After changing the selection list data source and reloading,
+    // it is up to the data source to reselect the correct button
+    // (or do what is happening here: deselect everything by setting
+    // |selectedButtonIndex| to -1
+    self.customViewSelectionList.selectedButtonIndex = -1;
+}
+
+#pragma mark - Custom Getters and Setters
+
+- (NSArray *)spaceCats {
+    if (self.filtered) {
+        return [_spaceCats subarrayWithRange:NSMakeRange(_spaceCats.count/2, _spaceCats.count/2)];
+    }
+
+    return _spaceCats;
 }
 
 @end

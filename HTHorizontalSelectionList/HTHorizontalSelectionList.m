@@ -295,8 +295,12 @@
         _selectedButtonIndex = -1;
     }
 
-    UIButton *selectedButton = self.buttons[selectedButtonIndex];
-    selectedButton.selected = YES;
+    UIButton *selectedButton;
+
+    if (_selectedButtonIndex != -1) {
+        selectedButton = self.buttons[_selectedButtonIndex];
+        selectedButton.selected = YES;
+    }
 
     [self layoutIfNeeded];
     [UIView animateWithDuration:animated ? 0.4 : 0.0

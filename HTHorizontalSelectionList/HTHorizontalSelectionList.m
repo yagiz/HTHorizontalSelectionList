@@ -118,7 +118,19 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    if (!self.buttons.count) {
+        [self reloadData];
+    }
+
+    [super layoutSubviews];
+}
+
 #pragma mark - Custom Getters and Setters
+
+- (void)setSelectedButtonIndex:(NSInteger)selectedButtonIndex {
+    [self setSelectedButtonIndex:selectedButtonIndex animated:NO];
+}
 
 - (void)setSelectionIndicatorColor:(UIColor *)selectionIndicatorColor {
     self.selectionIndicatorBar.backgroundColor = selectionIndicatorColor;
@@ -148,11 +160,11 @@
     return self.bottomTrim.hidden;
 }
 
+#pragma mark - Public Methods
+
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
     self.buttonColorsByState[@(state)] = color;
 }
-
-#pragma mark - Public Methods
 
 - (void)reloadData {
     for (UIButton *button in self.buttons) {
@@ -166,6 +178,10 @@
 
     if (totalButtons < 1) {
         return;
+    }
+
+    if (_selectedButtonIndex > totalButtons - 1) {
+        _selectedButtonIndex = -1;
     }
 
     UIButton *previousButton;
@@ -232,7 +248,7 @@
                                                                              metrics:@{@"margin" : @(kHTHorizontalSelectionListHorizontalMargin)}
                                                                                views:NSDictionaryOfVariableBindings(previousButton)]];
 
-    if (totalButtons > 0) {
+    if (totalButtons > 0 && _selectedButtonIndex >= 0 && _selectedButtonIndex < totalButtons) {
         UIButton *selectedButton = self.buttons[self.selectedButtonIndex];
         selectedButton.selected = YES;
 
@@ -264,12 +280,41 @@
     [self updateConstraintsIfNeeded];
 }
 
-- (void)layoutSubviews {
-    if (!self.buttons.count) {
-        [self reloadData];
+- (void)setSelectedButtonIndex:(NSInteger)selectedButtonIndex animated:(BOOL)animated {
+
+    NSInteger oldSelectedIndex = _selectedButtonIndex;
+    UIButton *oldSelectedButton;
+    if (oldSelectedIndex < self.buttons.count && oldSelectedIndex >= 0) {
+        oldSelectedButton = self.buttons[oldSelectedIndex];
+        oldSelectedButton.selected = NO;
     }
 
-    [super layoutSubviews];
+    if (selectedButtonIndex < self.buttons.count && selectedButtonIndex >= 0) {
+        _selectedButtonIndex = selectedButtonIndex;
+    } else {
+        _selectedButtonIndex = -1;
+    }
+
+    UIButton *selectedButton;
+
+    if (_selectedButtonIndex != -1) {
+        selectedButton = self.buttons[_selectedButtonIndex];
+        selectedButton.selected = YES;
+    }
+
+    [self layoutIfNeeded];
+    [UIView animateWithDuration:animated ? 0.4 : 0.0
+                          delay:0
+         usingSpringWithDamping:0.5
+          initialSpringVelocity:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         [self setupSelectedButton:selectedButton oldSelectedButton:oldSelectedButton];
+                     }
+                     completion:nil];
+
+    [self.scrollView scrollRectToVisible:CGRectInset(selectedButton.frame, -kHTHorizontalSelectionListHorizontalMargin, 0)
+                                animated:animated];
 }
 
 #pragma mark - Private Methods
@@ -387,26 +432,7 @@
             return;
         }
 
-        UIButton *oldSelectedButton = self.buttons[self.selectedButtonIndex];
-        oldSelectedButton.selected = NO;
-        self.selectedButtonIndex = index;
-
-        UIButton *tappedButton = (UIButton *)sender;
-        tappedButton.selected = YES;
-
-        [self layoutIfNeeded];
-        [UIView animateWithDuration:0.4
-                              delay:0
-             usingSpringWithDamping:0.5
-              initialSpringVelocity:0
-                            options:UIViewAnimationOptionCurveLinear
-                         animations:^{
-                             [self setupSelectedButton:tappedButton oldSelectedButton:oldSelectedButton];
-                         }
-                         completion:nil];
-
-        [self.scrollView scrollRectToVisible:CGRectInset(tappedButton.frame, -kHTHorizontalSelectionListHorizontalMargin, 0)
-                                    animated:YES];
+        [self setSelectedButtonIndex:index animated:YES];
 
         if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
             [self.delegate selectionList:self didSelectButtonWithIndex:index];

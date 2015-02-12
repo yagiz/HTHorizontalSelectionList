@@ -19,7 +19,9 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
 
 @interface HTHorizontalSelectionList : UIView
 
-@property (nonatomic) NSInteger selectedButtonIndex;
+@property (nonatomic) NSInteger selectedButtonIndex;        // returns selected button index. -1 if nothing selected
+                                                            // to animate this change, use `-setSelectedButtonIndex:animated:`
+                                                            // NOTE: this value will persist between calls to `-reloadData`
 
 @property (nonatomic, weak) id<HTHorizontalSelectionListDataSource> dataSource;
 @property (nonatomic, weak) id<HTHorizontalSelectionListDelegate> delegate;
@@ -35,6 +37,8 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
 
 - (void)reloadData;
+
+- (void)setSelectedButtonIndex:(NSInteger)selectedButtonIndex animated:(BOOL)animated;
 
 @end
 

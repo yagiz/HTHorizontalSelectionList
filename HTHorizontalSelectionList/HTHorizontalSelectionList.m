@@ -282,14 +282,18 @@
 
 - (void)setSelectedButtonIndex:(NSInteger)selectedButtonIndex animated:(BOOL)animated {
 
+    NSInteger buttonCount = [self.dataSource numberOfItemsInSelectionList:self];
+
     NSInteger oldSelectedIndex = _selectedButtonIndex;
     UIButton *oldSelectedButton;
-    if (oldSelectedIndex < self.buttons.count && oldSelectedIndex >= 0) {
-        oldSelectedButton = self.buttons[oldSelectedIndex];
-        oldSelectedButton.selected = NO;
+    if (oldSelectedIndex < buttonCount && oldSelectedIndex >= 0) {
+        if (oldSelectedIndex < self.buttons.count) {
+            oldSelectedButton = self.buttons[oldSelectedIndex];
+            oldSelectedButton.selected = NO;
+        }
     }
 
-    if (selectedButtonIndex < self.buttons.count && selectedButtonIndex >= 0) {
+    if (selectedButtonIndex < buttonCount && selectedButtonIndex >= 0) {
         _selectedButtonIndex = selectedButtonIndex;
     } else {
         _selectedButtonIndex = -1;
@@ -298,8 +302,10 @@
     UIButton *selectedButton;
 
     if (_selectedButtonIndex != -1) {
-        selectedButton = self.buttons[_selectedButtonIndex];
-        selectedButton.selected = YES;
+        if (_selectedButtonIndex < self.buttons.count) {
+            selectedButton = self.buttons[_selectedButtonIndex];
+            selectedButton.selected = YES;
+        }
     }
 
     [self layoutIfNeeded];

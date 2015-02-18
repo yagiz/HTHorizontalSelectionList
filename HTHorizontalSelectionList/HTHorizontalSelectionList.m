@@ -350,6 +350,7 @@
     [button addSubview:buttonView];
 
     buttonView.translatesAutoresizingMaskIntoConstraints = NO;
+    buttonView.userInteractionEnabled = NO;
 
     CGFloat aspectRatio = buttonView.frame.size.height/buttonView.frame.size.width;
 

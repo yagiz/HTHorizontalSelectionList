@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0335781B1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */; };
 		036F054119C624D9000D2EEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054019C624D9000D2EEB /* main.m */; };
 		036F054419C624D9000D2EEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054319C624D9000D2EEB /* AppDelegate.m */; };
 		036F054719C624D9000D2EEB /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054619C624D9000D2EEB /* CarsViewController.m */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		033578191A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListLabelCell.h; path = Cells/HTHorizontalSelectionListLabelCell.h; sourceTree = "<group>"; };
+		0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListLabelCell.m; path = Cells/HTHorizontalSelectionListLabelCell.m; sourceTree = "<group>"; };
 		036F053B19C624D9000D2EEB /* HTHorizontalSelectionList Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HTHorizontalSelectionList Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F053F19C624D9000D2EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		036F054019C624D9000D2EEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -54,6 +57,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		033578181A9FDD830009DB4C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				033578191A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.h */,
+				0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		036F053219C624D9000D2EEB = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +116,7 @@
 				03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */,
 				03AEDF8019C7467C0012581D /* HTHorizontalSelectionListScrollView.h */,
 				03AEDF8119C7467C0012581D /* HTHorizontalSelectionListScrollView.m */,
+				033578181A9FDD830009DB4C /* Cells */,
 			);
 			name = HTHorizontalSelectionList;
 			path = ../../HTHorizontalSelectionList;
@@ -193,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0335781B1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m in Sources */,
 				036F054719C624D9000D2EEB /* CarsViewController.m in Sources */,
 				03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */,
 				036F054419C624D9000D2EEB /* AppDelegate.m in Sources */,

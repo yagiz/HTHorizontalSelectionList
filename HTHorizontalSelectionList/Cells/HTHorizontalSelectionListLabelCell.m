@@ -57,6 +57,16 @@
     self.state = UIControlStateNormal;
 }
 
+#pragma mark - Public Methods
+
++ (CGSize)sizeForTitle:(NSString *)title {
+    CGRect titleRect = [title boundingRectWithSize:CGSizeMake(FLT_MAX, FLT_MAX)
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13]}
+                                           context:nil];
+    return CGSizeMake(titleRect.size.width + 20, titleRect.size.height);
+}
+
 #pragma mark - Custom Getters and Setters
 
 - (void)setTitle:(NSString *)title {

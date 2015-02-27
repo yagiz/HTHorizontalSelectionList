@@ -269,13 +269,13 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:ViewCellIdentifier
                                                          forIndexPath:indexPath];
 
-        [cell.contentView addSubview:[self.dataSource selectionList:self viewForItemWithIndex:indexPath.row]];
+        [cell.contentView addSubview:[self.dataSource selectionList:self viewForItemWithIndex:indexPath.item]];
 
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:LabelCellIdentifier
                                                          forIndexPath:indexPath];
 
-        ((HTHorizontalSelectionListLabelCell *)cell).title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.row];
+        ((HTHorizontalSelectionListLabelCell *)cell).title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
 
         for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
             [((HTHorizontalSelectionListLabelCell *)cell) setTitleColor:self.buttonColorsByState[controlState]
@@ -300,13 +300,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
-        UIView *view = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.row];
+        UIView *view = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.item];
         return view.frame.size;
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
-        // TODO return correct size for text
-//        NSString *title = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.row];
-
-        return CGSizeMake(100, 30);
+        NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
+        return [HTHorizontalSelectionListLabelCell sizeForTitle:title];
     }
 
     return CGSizeZero;
@@ -320,20 +318,20 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == self.selectedButtonIndex) {
+    if (indexPath.item == self.selectedButtonIndex) {
         if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleNone) {
             if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
-                [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.row];
+                [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
             }
         }
 
         return;
     }
 
-    [self setSelectedButtonIndex:indexPath.row animated:YES];
+    [self setSelectedButtonIndex:indexPath.item animated:YES];
 
     if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
-        [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.row];
+        [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
     }
 }
 

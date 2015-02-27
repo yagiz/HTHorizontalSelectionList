@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0335781B1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */; };
 		0335781F1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */; };
+		033578231AA125340009DB4C /* spacecat5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 033578221AA125340009DB4C /* spacecat5.jpeg */; };
 		036F054119C624D9000D2EEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054019C624D9000D2EEB /* main.m */; };
 		036F054419C624D9000D2EEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054319C624D9000D2EEB /* AppDelegate.m */; };
 		036F054719C624D9000D2EEB /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054619C624D9000D2EEB /* CarsViewController.m */; };
@@ -28,6 +29,7 @@
 		0335781C1AA0EE9C0009DB4C /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCell.h; path = Cells/HTHorizontalSelectionListCell.h; sourceTree = "<group>"; };
 		0335781D1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCustomViewCell.h; path = Cells/HTHorizontalSelectionListCustomViewCell.h; sourceTree = "<group>"; };
 		0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListCustomViewCell.m; path = Cells/HTHorizontalSelectionListCustomViewCell.m; sourceTree = "<group>"; };
+		033578221AA125340009DB4C /* spacecat5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat5.jpeg; path = Resources/spacecat5.jpeg; sourceTree = "<group>"; };
 		036F053B19C624D9000D2EEB /* HTHorizontalSelectionList Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HTHorizontalSelectionList Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F053F19C624D9000D2EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		036F054019C624D9000D2EEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -127,10 +129,11 @@
 		03FCAF821A84235C004857A7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */,
-				03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */,
-				03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */,
 				03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */,
+				03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */,
+				03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */,
+				03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */,
+				033578221AA125340009DB4C /* spacecat5.jpeg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				036F054C19C624D9000D2EEB /* Images.xcassets in Resources */,
 				03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */,
 				03FCAF921A8424A1004857A7 /* spacecat1.jpeg in Resources */,
+				033578231AA125340009DB4C /* spacecat5.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

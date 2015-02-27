@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0335781B1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */; };
+		0335781F1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */; };
 		036F054119C624D9000D2EEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054019C624D9000D2EEB /* main.m */; };
 		036F054419C624D9000D2EEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054319C624D9000D2EEB /* AppDelegate.m */; };
 		036F054719C624D9000D2EEB /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054619C624D9000D2EEB /* CarsViewController.m */; };
@@ -26,6 +27,8 @@
 		033578191A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListLabelCell.h; path = Cells/HTHorizontalSelectionListLabelCell.h; sourceTree = "<group>"; };
 		0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListLabelCell.m; path = Cells/HTHorizontalSelectionListLabelCell.m; sourceTree = "<group>"; };
 		0335781C1AA0EE9C0009DB4C /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCell.h; path = Cells/HTHorizontalSelectionListCell.h; sourceTree = "<group>"; };
+		0335781D1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCustomViewCell.h; path = Cells/HTHorizontalSelectionListCustomViewCell.h; sourceTree = "<group>"; };
+		0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListCustomViewCell.m; path = Cells/HTHorizontalSelectionListCustomViewCell.m; sourceTree = "<group>"; };
 		036F053B19C624D9000D2EEB /* HTHorizontalSelectionList Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HTHorizontalSelectionList Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F053F19C624D9000D2EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		036F054019C624D9000D2EEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -62,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				0335781C1AA0EE9C0009DB4C /* HTHorizontalSelectionListCell.h */,
+				0335781D1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.h */,
+				0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */,
 				033578191A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.h */,
 				0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */,
 			);
@@ -210,6 +215,7 @@
 			files = (
 				0335781B1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m in Sources */,
 				036F054719C624D9000D2EEB /* CarsViewController.m in Sources */,
+				0335781F1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m in Sources */,
 				03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */,
 				036F054419C624D9000D2EEB /* AppDelegate.m in Sources */,
 				03AEDF8319C7467C0012581D /* HTHorizontalSelectionList.m in Sources */,

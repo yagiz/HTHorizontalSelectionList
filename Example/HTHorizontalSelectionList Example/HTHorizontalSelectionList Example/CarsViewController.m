@@ -36,7 +36,16 @@
                       @"BMW",
                       @"Büssing",
                       @"Gumpert",
-                      @"MAN"];
+                      @"MAN",
+                      @"Mercedes-Benz",
+                      @"Multicar",
+                      @"Neoplan",
+                      @"NSU",
+                      @"Opel",
+                      @"Porsche",
+                      @"Robur",
+                      @"Volkswagen",
+                      @"Wiesmann"];
     
     [self.view addSubview:self.textSelectionList];
 

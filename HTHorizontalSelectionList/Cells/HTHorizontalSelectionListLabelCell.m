@@ -12,9 +12,13 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
+@property (nonatomic, strong) NSMutableDictionary *titleColorsByState;
+
 @end
 
 @implementation HTHorizontalSelectionListLabelCell
+
+@synthesize state = _state;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -35,8 +39,22 @@
                                                                                  options:NSLayoutFormatDirectionLeadingToTrailing
                                                                                  metrics:nil
                                                                                    views:NSDictionaryOfVariableBindings(_titleLabel)]];
+
+        _titleColorsByState = [NSMutableDictionary dictionary];
+        _titleColorsByState[@(UIControlStateNormal)] = [UIColor blackColor];
+
+        _state = UIControlStateNormal;
     }
     return self;
+}
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+
+    self.title = nil;
+    self.titleColorsByState = [NSMutableDictionary dictionary];
+    self.titleColorsByState[@(UIControlStateNormal)] = [UIColor blackColor];
+    self.state = UIControlStateNormal;
 }
 
 #pragma mark - Custom Getters and Setters
@@ -44,6 +62,24 @@
 - (void)setTitle:(NSString *)title {
     _title = title;
     self.titleLabel.text = title;
+}
+
+- (void)setState:(UIControlState)state {
+    _state = state;
+
+    [self updateTitleColor];
+}
+
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
+    self.titleColorsByState[@(state)] = color;
+
+    [self updateTitleColor];
+}
+
+#pragma mark - Private Methods
+
+- (void)updateTitleColor {
+    self.titleLabel.textColor = self.titleColorsByState[@(self.state)];
 }
 
 @end

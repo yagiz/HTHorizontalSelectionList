@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTHorizontalSelectionListCell.h"
 
-@interface HTHorizontalSelectionListLabelCell : UICollectionViewCell
+@interface HTHorizontalSelectionListLabelCell : UICollectionViewCell <HTHorizontalSelectionListCell>
 
 @property (nonatomic, strong) NSString *title;
+
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
 
 @end

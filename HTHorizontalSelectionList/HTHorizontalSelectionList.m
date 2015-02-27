@@ -189,6 +189,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     if (totalButtons > 0 && self.selectedButtonIndex >= 0 && self.selectedButtonIndex < totalButtons) {
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0]];
 
+        ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateSelected;
+
         switch (self.selectionIndicatorStyle) {
             case HTHorizontalSelectionIndicatorStyleBottomBar: {
                 [self.contentView addSubview:self.selectionIndicatorBar];
@@ -274,6 +276,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                          forIndexPath:indexPath];
 
         ((HTHorizontalSelectionListLabelCell *)cell).title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.row];
+
+        for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
+            [((HTHorizontalSelectionListLabelCell *)cell) setTitleColor:self.buttonColorsByState[controlState]
+                                                               forState:controlState.integerValue];
+        }
     }
 
     if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
@@ -332,26 +339,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 #pragma mark - Private Methods
 
-- (UIButton *)selectionListButtonWithTitle:(NSString *)buttonTitle {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    button.contentEdgeInsets = self.buttonInsets;
-//    [button setTitle:buttonTitle forState:UIControlStateNormal];
-//
-//    for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
-//        [button setTitleColor:self.buttonColorsByState[controlState] forState:controlState.integerValue];
-//    }
-//
-//    button.titleLabel.font = [UIFont systemFontOfSize:13];
-//    [button sizeToFit];
-//
-//    [button addTarget:self
-//               action:@selector(buttonWasTapped:)
-//     forControlEvents:UIControlEventTouchUpInside];
-//
-//    button.translatesAutoresizingMaskIntoConstraints = NO;
-    return button;
-}
-
 - (UIButton *)selectionListButtonWithView:(UIView *)buttonView {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [button addSubview:buttonView];
@@ -388,6 +375,9 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 }
 
 - (void)setupSelectedCell:(UICollectionViewCell *)selectedCell oldSelectedCell:(UICollectionViewCell *)oldSelectedCell {
+    ((id<HTHorizontalSelectionListCell>)selectedCell).state = UIControlStateSelected;
+    ((id<HTHorizontalSelectionListCell>)oldSelectedCell).state = UIControlStateNormal;
+
     switch (self.selectionIndicatorStyle) {
         case HTHorizontalSelectionIndicatorStyleBottomBar: {
             [self alignSelectionIndicatorWithCell:selectedCell];

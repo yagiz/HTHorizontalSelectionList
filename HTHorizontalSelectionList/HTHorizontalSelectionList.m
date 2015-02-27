@@ -290,6 +290,12 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         cell.layer.masksToBounds = YES;
     }
 
+    if (indexPath.item == self.selectedButtonIndex) {
+        ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateSelected;
+    } else {
+        ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateNormal;
+    }
+
     return cell;
 }
 
@@ -348,6 +354,20 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     }
 }
 
+#pragma mark - UICollectionViewDelegate Protocol Methods
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (((id<HTHorizontalSelectionListCell>)cell).state == UIControlStateSelected) {
+        self.selectionIndicatorBar.hidden = NO;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (((id<HTHorizontalSelectionListCell>)cell).state == UIControlStateSelected) {
+        self.selectionIndicatorBar.hidden = YES;
+    }
+}
+
 #pragma mark - Private Methods
 
 - (void)setupSelectedCell:(UICollectionViewCell *)selectedCell oldSelectedCell:(UICollectionViewCell *)oldSelectedCell {
@@ -395,6 +415,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                                          multiplier:1.0
                                                                            constant:0.0];
     [self.collectionView addConstraint:self.rightSelectionIndicatorConstraint];
+
+    self.selectionIndicatorBar.hidden = ![self.collectionView.visibleCells containsObject:cell];
 }
 
 @end

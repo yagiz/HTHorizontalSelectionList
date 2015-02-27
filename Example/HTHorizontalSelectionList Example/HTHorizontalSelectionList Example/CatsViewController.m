@@ -28,13 +28,15 @@
     self.title = @"Cats";
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    self.customViewSelectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+    self.customViewSelectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 80)];
     self.customViewSelectionList.delegate = self;
     self.customViewSelectionList.dataSource = self;
 
     self.customViewSelectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleButtonBorder;
     self.customViewSelectionList.selectionIndicatorColor = [UIColor blueColor];
     self.customViewSelectionList.bottomTrimHidden = YES;
+
+    self.customViewSelectionList.buttonInsets = UIEdgeInsetsMake(3, 20, 3, 20);
 
     self.spaceCats = @[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat1.jpeg"]],
                        [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat2.jpeg"]],
@@ -49,20 +51,20 @@
     [self.view addSubview:self.selectedSpaceCatImageView];
 
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectedSpaceCatImageView
-                                                              attribute:NSLayoutAttributeCenterX
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeCenterX
-                                                             multiplier:1.0
-                                                               constant:0.0]];
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1.0
+                                                           constant:0.0]];
 
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectedSpaceCatImageView
-                                                              attribute:NSLayoutAttributeCenterY
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeCenterY
-                                                             multiplier:1.0
-                                                               constant:0.0]];
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1.0
+                                                           constant:0.0]];
 
     UIButton *filterToggleButton = [UIButton buttonWithType:UIButtonTypeSystem];
     filterToggleButton.titleLabel.font = [UIFont systemFontOfSize:12];

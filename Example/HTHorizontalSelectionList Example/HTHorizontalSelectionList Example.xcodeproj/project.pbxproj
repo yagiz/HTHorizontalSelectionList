@@ -15,7 +15,6 @@
 		036F054C19C624D9000D2EEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F054B19C624D9000D2EEB /* Images.xcassets */; };
 		036F054F19C624D9000D2EEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F054D19C624D9000D2EEB /* LaunchScreen.xib */; };
 		03AEDF8319C7467C0012581D /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */; };
-		03AEDF8419C7467C0012581D /* HTHorizontalSelectionListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AEDF8119C7467C0012581D /* HTHorizontalSelectionListScrollView.m */; };
 		03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */; };
 		03FCAF901A8424A1004857A7 /* spacecat3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */; };
 		03FCAF911A8424A1004857A7 /* spacecat2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */; };
@@ -40,8 +39,6 @@
 		036F054E19C624D9000D2EEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		03AEDF7E19C7467C0012581D /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionList.h; sourceTree = "<group>"; };
 		03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionList.m; sourceTree = "<group>"; };
-		03AEDF8019C7467C0012581D /* HTHorizontalSelectionListScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListScrollView.h; sourceTree = "<group>"; };
-		03AEDF8119C7467C0012581D /* HTHorizontalSelectionListScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListScrollView.m; sourceTree = "<group>"; };
 		03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat4.jpeg; path = Resources/spacecat4.jpeg; sourceTree = "<group>"; };
 		03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat3.jpeg; path = Resources/spacecat3.jpeg; sourceTree = "<group>"; };
 		03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat2.jpeg; path = Resources/spacecat2.jpeg; sourceTree = "<group>"; };
@@ -121,8 +118,6 @@
 			children = (
 				03AEDF7E19C7467C0012581D /* HTHorizontalSelectionList.h */,
 				03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */,
-				03AEDF8019C7467C0012581D /* HTHorizontalSelectionListScrollView.h */,
-				03AEDF8119C7467C0012581D /* HTHorizontalSelectionListScrollView.m */,
 				033578181A9FDD830009DB4C /* Cells */,
 			);
 			name = HTHorizontalSelectionList;
@@ -220,7 +215,6 @@
 				036F054419C624D9000D2EEB /* AppDelegate.m in Sources */,
 				03AEDF8319C7467C0012581D /* HTHorizontalSelectionList.m in Sources */,
 				036F054119C624D9000D2EEB /* main.m in Sources */,
-				03AEDF8419C7467C0012581D /* HTHorizontalSelectionListScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

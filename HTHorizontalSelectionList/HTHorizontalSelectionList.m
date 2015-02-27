@@ -25,6 +25,8 @@
 
 @end
 
+#define kHTHorizontalSelectionListHorizontalMargin 10
+
 #define kHTHorizontalSelectionListSelectionIndicatorHeight 3
 #define kHTHorizontalSelectionListTrimHeight 0.5
 
@@ -245,9 +247,10 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                      }
                      completion:nil];
 
-    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0]
-                                atScrollPosition:UICollectionViewScrollPositionRight
-                                        animated:YES];
+    if (selectedCell) {
+        [self.collectionView scrollRectToVisible:CGRectInset(selectedCell.frame, -kHTHorizontalSelectionListHorizontalMargin, 0)
+                                        animated:animated];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource Protocol Methods

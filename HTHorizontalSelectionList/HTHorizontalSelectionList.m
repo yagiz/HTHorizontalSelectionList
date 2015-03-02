@@ -16,9 +16,6 @@
 @property (nonatomic, strong) UIView *contentView;
 
 @property (nonatomic, strong) UIView *selectionIndicatorBar;
-
-@property (nonatomic, strong) NSLayoutConstraint *leftSelectionIndicatorConstraint, *rightSelectionIndicatorConstraint;
-
 @property (nonatomic, strong) UIView *bottomTrim;
 
 @property (nonatomic, strong) NSMutableDictionary *buttonColorsByState;
@@ -354,20 +351,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     }
 }
 
-#pragma mark - UICollectionViewDelegate Protocol Methods
-
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (((id<HTHorizontalSelectionListCell>)cell).state == UIControlStateSelected) {
-        self.selectionIndicatorBar.hidden = NO;
-    }
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (((id<HTHorizontalSelectionListCell>)cell).state == UIControlStateSelected) {
-        self.selectionIndicatorBar.hidden = YES;
-    }
-}
-
 #pragma mark - Private Methods
 
 - (void)setupSelectedCell:(UICollectionViewCell *)selectedCell oldSelectedCell:(UICollectionViewCell *)oldSelectedCell {
@@ -377,7 +360,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     switch (self.selectionIndicatorStyle) {
         case HTHorizontalSelectionIndicatorStyleBottomBar: {
             [self alignSelectionIndicatorWithCell:selectedCell];
-            [self layoutIfNeeded];
             break;
         }
 
@@ -395,28 +377,19 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 }
 
 - (void)alignSelectionIndicatorWithCell:(UICollectionViewCell *)cell {
-    [self.collectionView removeConstraint:self.leftSelectionIndicatorConstraint];
-    [self.collectionView removeConstraint:self.rightSelectionIndicatorConstraint];
+    NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:cell];
 
-    self.leftSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicatorBar
-                                                                         attribute:NSLayoutAttributeLeft
-                                                                         relatedBy:NSLayoutRelationEqual
-                                                                            toItem:cell
-                                                                         attribute:NSLayoutAttributeLeft
-                                                                        multiplier:1.0
-                                                                          constant:0.0];
-    [self.collectionView addConstraint:self.leftSelectionIndicatorConstraint];
+    if (selectedIndexPath) {
+        [self layoutIfNeeded];
 
-    self.rightSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicatorBar
-                                                                          attribute:NSLayoutAttributeRight
-                                                                          relatedBy:NSLayoutRelationEqual
-                                                                             toItem:cell
-                                                                          attribute:NSLayoutAttributeRight
-                                                                         multiplier:1.0
-                                                                           constant:0.0];
-    [self.collectionView addConstraint:self.rightSelectionIndicatorConstraint];
+        UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:selectedIndexPath];
+        CGRect cellRect = attributes.frame;
 
-    self.selectionIndicatorBar.hidden = ![self.collectionView.visibleCells containsObject:cell];
+        self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x,
+                                                      self.selectionIndicatorBar.frame.origin.y,
+                                                      cellRect.size.width,
+                                                      self.selectionIndicatorBar.frame.size.height);
+    }
 }
 
 @end

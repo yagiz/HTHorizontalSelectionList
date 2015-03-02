@@ -30,6 +30,8 @@
     self.textSelectionList.delegate = self;
     self.textSelectionList.dataSource = self;
     
+    self.textSelectionList.selectionIndicatorColor = [UIColor redColor];
+
     self.carMakes = @[@"All cars",
                       @"Audi",
                       @"Bitter",

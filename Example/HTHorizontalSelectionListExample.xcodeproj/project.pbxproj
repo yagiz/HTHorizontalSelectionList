@@ -7,28 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0335781B1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */; };
-		0335781F1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */; };
 		033578231AA125340009DB4C /* spacecat5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 033578221AA125340009DB4C /* spacecat5.jpeg */; };
 		036F054119C624D9000D2EEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054019C624D9000D2EEB /* main.m */; };
 		036F054419C624D9000D2EEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054319C624D9000D2EEB /* AppDelegate.m */; };
 		036F054719C624D9000D2EEB /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054619C624D9000D2EEB /* CarsViewController.m */; };
 		036F054C19C624D9000D2EEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F054B19C624D9000D2EEB /* Images.xcassets */; };
 		036F054F19C624D9000D2EEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F054D19C624D9000D2EEB /* LaunchScreen.xib */; };
-		03AEDF8319C7467C0012581D /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */; };
 		03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */; };
 		03FCAF901A8424A1004857A7 /* spacecat3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */; };
 		03FCAF911A8424A1004857A7 /* spacecat2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */; };
 		03FCAF921A8424A1004857A7 /* spacecat1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */; };
 		03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FCAF941A842B1B004857A7 /* CatsViewController.m */; };
+		EDF540BAA6CF4691A14FDFE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D75892556E902593167951 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		033578191A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListLabelCell.h; path = Cells/HTHorizontalSelectionListLabelCell.h; sourceTree = "<group>"; };
-		0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListLabelCell.m; path = Cells/HTHorizontalSelectionListLabelCell.m; sourceTree = "<group>"; };
-		0335781C1AA0EE9C0009DB4C /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCell.h; path = Cells/HTHorizontalSelectionListCell.h; sourceTree = "<group>"; };
-		0335781D1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCustomViewCell.h; path = Cells/HTHorizontalSelectionListCustomViewCell.h; sourceTree = "<group>"; };
-		0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListCustomViewCell.m; path = Cells/HTHorizontalSelectionListCustomViewCell.m; sourceTree = "<group>"; };
 		033578221AA125340009DB4C /* spacecat5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat5.jpeg; path = Resources/spacecat5.jpeg; sourceTree = "<group>"; };
 		036F053B19C624D9000D2EEB /* HTHorizontalSelectionList Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HTHorizontalSelectionList Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F053F19C624D9000D2EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,14 +32,15 @@
 		036F054619C624D9000D2EEB /* CarsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
 		036F054B19C624D9000D2EEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		036F054E19C624D9000D2EEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		03AEDF7E19C7467C0012581D /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionList.h; sourceTree = "<group>"; };
-		03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionList.m; sourceTree = "<group>"; };
 		03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat4.jpeg; path = Resources/spacecat4.jpeg; sourceTree = "<group>"; };
 		03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat3.jpeg; path = Resources/spacecat3.jpeg; sourceTree = "<group>"; };
 		03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat2.jpeg; path = Resources/spacecat2.jpeg; sourceTree = "<group>"; };
 		03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat1.jpeg; path = Resources/spacecat1.jpeg; sourceTree = "<group>"; };
 		03FCAF931A842B1B004857A7 /* CatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatsViewController.h; sourceTree = "<group>"; };
 		03FCAF941A842B1B004857A7 /* CatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatsViewController.m; sourceTree = "<group>"; };
+		3822EECEE73FE98A333005FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5A76B993AA991B87BBB0F365 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B7D75892556E902593167951 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,30 +48,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF540BAA6CF4691A14FDFE1 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		033578181A9FDD830009DB4C /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				0335781C1AA0EE9C0009DB4C /* HTHorizontalSelectionListCell.h */,
-				0335781D1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.h */,
-				0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */,
-				033578191A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.h */,
-				0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
 		036F053219C624D9000D2EEB = {
 			isa = PBXGroup;
 			children = (
-				03AEDF8219C7467C0012581D /* HTHorizontalSelectionList */,
 				036F053D19C624D9000D2EEB /* HTHorizontalSelectionList Example */,
 				036F053C19C624D9000D2EEB /* Products */,
+				0F0C42EBE787870EA0F72779 /* Pods */,
+				60D84FDE1A2DB966BAF0A040 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,7 +87,8 @@
 				036F054D19C624D9000D2EEB /* LaunchScreen.xib */,
 				036F053E19C624D9000D2EEB /* Supporting Files */,
 			);
-			path = "HTHorizontalSelectionList Example";
+			name = "HTHorizontalSelectionList Example";
+			path = HTHorizontalSelectionListExample;
 			sourceTree = "<group>";
 		};
 		036F053E19C624D9000D2EEB /* Supporting Files */ = {
@@ -113,17 +98,6 @@
 				036F054019C624D9000D2EEB /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		03AEDF8219C7467C0012581D /* HTHorizontalSelectionList */ = {
-			isa = PBXGroup;
-			children = (
-				03AEDF7E19C7467C0012581D /* HTHorizontalSelectionList.h */,
-				03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */,
-				033578181A9FDD830009DB4C /* Cells */,
-			);
-			name = HTHorizontalSelectionList;
-			path = ../../HTHorizontalSelectionList;
 			sourceTree = "<group>";
 		};
 		03FCAF821A84235C004857A7 /* Resources */ = {
@@ -138,22 +112,41 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		0F0C42EBE787870EA0F72779 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A76B993AA991B87BBB0F365 /* Pods.debug.xcconfig */,
+				3822EECEE73FE98A333005FF /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		60D84FDE1A2DB966BAF0A040 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7D75892556E902593167951 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		036F053A19C624D9000D2EEB /* HTHorizontalSelectionList Example */ = {
+		036F053A19C624D9000D2EEB /* HTHorizontalSelectionListExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 036F055E19C624D9000D2EEB /* Build configuration list for PBXNativeTarget "HTHorizontalSelectionList Example" */;
+			buildConfigurationList = 036F055E19C624D9000D2EEB /* Build configuration list for PBXNativeTarget "HTHorizontalSelectionListExample" */;
 			buildPhases = (
+				94A481C578F3C845AEDB9997 /* Check Pods Manifest.lock */,
 				036F053719C624D9000D2EEB /* Sources */,
 				036F053819C624D9000D2EEB /* Frameworks */,
 				036F053919C624D9000D2EEB /* Resources */,
+				16C31D4F889A7CC67344D1D6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "HTHorizontalSelectionList Example";
+			name = HTHorizontalSelectionListExample;
 			productName = "HTHorizontalSelectionList Example";
 			productReference = 036F053B19C624D9000D2EEB /* HTHorizontalSelectionList Example.app */;
 			productType = "com.apple.product-type.application";
@@ -172,7 +165,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 036F053619C624D9000D2EEB /* Build configuration list for PBXProject "HTHorizontalSelectionList Example" */;
+			buildConfigurationList = 036F053619C624D9000D2EEB /* Build configuration list for PBXProject "HTHorizontalSelectionListExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -185,7 +178,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				036F053A19C624D9000D2EEB /* HTHorizontalSelectionList Example */,
+				036F053A19C624D9000D2EEB /* HTHorizontalSelectionListExample */,
 			);
 		};
 /* End PBXProject section */
@@ -207,17 +200,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		16C31D4F889A7CC67344D1D6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94A481C578F3C845AEDB9997 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		036F053719C624D9000D2EEB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0335781B1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m in Sources */,
 				036F054719C624D9000D2EEB /* CarsViewController.m in Sources */,
-				0335781F1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m in Sources */,
 				03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */,
 				036F054419C624D9000D2EEB /* AppDelegate.m in Sources */,
-				03AEDF8319C7467C0012581D /* HTHorizontalSelectionList.m in Sources */,
 				036F054119C624D9000D2EEB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,10 +339,11 @@
 		};
 		036F055F19C624D9000D2EEB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A76B993AA991B87BBB0F365 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = "HTHorizontalSelectionList Example/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/HTHorizontalSelectionListExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -328,10 +352,11 @@
 		};
 		036F056019C624D9000D2EEB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3822EECEE73FE98A333005FF /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				INFOPLIST_FILE = "HTHorizontalSelectionList Example/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/HTHorizontalSelectionListExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -341,7 +366,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		036F053619C624D9000D2EEB /* Build configuration list for PBXProject "HTHorizontalSelectionList Example" */ = {
+		036F053619C624D9000D2EEB /* Build configuration list for PBXProject "HTHorizontalSelectionListExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				036F055C19C624D9000D2EEB /* Debug */,
@@ -350,7 +375,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		036F055E19C624D9000D2EEB /* Build configuration list for PBXNativeTarget "HTHorizontalSelectionList Example" */ = {
+		036F055E19C624D9000D2EEB /* Build configuration list for PBXNativeTarget "HTHorizontalSelectionListExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				036F055F19C624D9000D2EEB /* Debug */,

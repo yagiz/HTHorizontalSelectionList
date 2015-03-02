@@ -1,0 +1,14 @@
+PODS:
+  - HTHorizontalSelectionList (0.4.1)
+
+DEPENDENCIES:
+  - HTHorizontalSelectionList (from `../`)
+
+EXTERNAL SOURCES:
+  HTHorizontalSelectionList:
+    :path: ../
+
+SPEC CHECKSUMS:
+  HTHorizontalSelectionList: 54ee9ba136bf7b49c30c19f1852d79d860f52e33
+
+COCOAPODS: 0.35.0

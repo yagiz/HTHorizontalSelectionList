@@ -7,13 +7,12 @@
 //
 
 #import "HTHorizontalSelectionList.h"
-#import "HTHorizontalSelectionListScrollView.h"
+#import "HTHorizontalSelectionListLabelCell.h"
+#import "HTHorizontalSelectionListCustomViewCell.h"
 
-@interface HTHorizontalSelectionList ()
+@interface HTHorizontalSelectionList () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableArray *buttons;
-
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UIView *contentView;
 
 @property (nonatomic, strong) UIView *selectionIndicatorBar;
@@ -27,11 +26,12 @@
 @end
 
 #define kHTHorizontalSelectionListHorizontalMargin 10
-#define kHTHorizontalSelectionListInternalPadding 15
 
 #define kHTHorizontalSelectionListSelectionIndicatorHeight 3
-
 #define kHTHorizontalSelectionListTrimHeight 0.5
+
+static NSString *LabelCellIdentifier = @"LabelCell";
+static NSString *ViewCellIdentifier = @"ViewCell";
 
 @implementation HTHorizontalSelectionList
 
@@ -40,27 +40,36 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
 
-        _scrollView = [[HTHorizontalSelectionListScrollView alloc] init];
-        _scrollView.backgroundColor = [UIColor clearColor];
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.scrollsToTop = NO;
-        _scrollView.canCancelContentTouches = YES;
-        _scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_scrollView];
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        flowLayout.itemSize = CGSizeMake(100, 50);
 
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|"
+        _collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
+        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
+        _collectionView.backgroundColor = [UIColor clearColor];
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.scrollsToTop = NO;
+        _collectionView.canCancelContentTouches = YES;
+        _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:_collectionView];
+
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_collectionView]|"
                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
                                                                      metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_scrollView)]];
+                                                                       views:NSDictionaryOfVariableBindings(_collectionView)]];
 
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollView]|"
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_collectionView]|"
                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
                                                                      metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_scrollView)]];
+                                                                       views:NSDictionaryOfVariableBindings(_collectionView)]];
+
+        [_collectionView registerClass:[HTHorizontalSelectionListLabelCell class] forCellWithReuseIdentifier:LabelCellIdentifier];
+        [_collectionView registerClass:[HTHorizontalSelectionListCustomViewCell class] forCellWithReuseIdentifier:ViewCellIdentifier];
 
         _contentView = [[UIView alloc] init];
         _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-        [_scrollView addSubview:_contentView];
+        [_collectionView addSubview:_contentView];
 
         [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
                                                          attribute:NSLayoutAttributeTop
@@ -106,8 +115,6 @@
         self.buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         self.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
 
-        _buttons = [NSMutableArray array];
-
         _selectionIndicatorBar = [[UIView alloc] init];
         _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
         _selectionIndicatorBar.backgroundColor = [UIColor blackColor];
@@ -119,9 +126,7 @@
 }
 
 - (void)layoutSubviews {
-    if (!self.buttons.count) {
-        [self reloadData];
-    }
+    [self reloadData];
 
     [super layoutSubviews];
 }
@@ -167,12 +172,8 @@
 }
 
 - (void)reloadData {
-    for (UIButton *button in self.buttons) {
-        [button removeFromSuperview];
-    }
-
-    [self.selectionIndicatorBar removeFromSuperview];
-    [self.buttons removeAllObjects];
+    [self.collectionView reloadData];
+    [self.collectionView layoutIfNeeded];
 
     NSInteger totalButtons = [self.dataSource numberOfItemsInSelectionList:self];
 
@@ -184,73 +185,10 @@
         _selectedButtonIndex = -1;
     }
 
-    UIButton *previousButton;
+    if (totalButtons > 0 && self.selectedButtonIndex >= 0 && self.selectedButtonIndex < totalButtons) {
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0]];
 
-    for (NSInteger index = 0; index < totalButtons; index++) {
-        UIButton *button;
-
-        if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
-            UIView *buttonView = [self.dataSource selectionList:self viewForItemWithIndex:index];
-
-            button = [self selectionListButtonWithView:buttonView];
-            [self.contentView addSubview:button];
-
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topInset-[button]-bottomInset-|"
-                                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                     metrics:@{@"topInset" : @(self.buttonInsets.top),
-                                                                                               @"bottomInset" : @(self.buttonInsets.bottom)}
-                                                                                       views:NSDictionaryOfVariableBindings(button)]];
-
-        } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
-            NSString *buttonTitle = [self.dataSource selectionList:self titleForItemWithIndex:index];
-
-            button = [self selectionListButtonWithTitle:buttonTitle];
-            [self.contentView addSubview:button];
-        } else {
-            button = [UIButton buttonWithType:UIButtonTypeCustom];
-            [self.contentView addSubview:button];
-        }
-
-        if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
-            button.layer.borderWidth = 1.0;
-            button.layer.cornerRadius = 3.0;
-            button.layer.borderColor = [UIColor clearColor].CGColor;
-            button.layer.masksToBounds = YES;
-        }
-
-        if (previousButton) {
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[previousButton]-padding-[button]"
-                                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                     metrics:@{@"padding" : @(kHTHorizontalSelectionListInternalPadding)}
-                                                                                       views:NSDictionaryOfVariableBindings(previousButton, button)]];
-        } else {
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[button]"
-                                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                     metrics:@{@"margin" : @(kHTHorizontalSelectionListHorizontalMargin)}
-                                                                                       views:NSDictionaryOfVariableBindings(button)]];
-        }
-
-        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:button
-                                                                     attribute:NSLayoutAttributeCenterY
-                                                                     relatedBy:NSLayoutRelationEqual
-                                                                        toItem:self.contentView
-                                                                     attribute:NSLayoutAttributeCenterY
-                                                                    multiplier:1.0
-                                                                      constant:0.0]];
-
-        previousButton = button;
-
-        [self.buttons addObject:button];
-    }
-
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[previousButton]-margin-|"
-                                                                             options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                             metrics:@{@"margin" : @(kHTHorizontalSelectionListHorizontalMargin)}
-                                                                               views:NSDictionaryOfVariableBindings(previousButton)]];
-
-    if (totalButtons > 0 && _selectedButtonIndex >= 0 && _selectedButtonIndex < totalButtons) {
-        UIButton *selectedButton = self.buttons[self.selectedButtonIndex];
-        selectedButton.selected = YES;
+        ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateSelected;
 
         switch (self.selectionIndicatorStyle) {
             case HTHorizontalSelectionIndicatorStyleBottomBar: {
@@ -261,12 +199,13 @@
                                                                                          metrics:@{@"height" : @(kHTHorizontalSelectionListSelectionIndicatorHeight)}
                                                                                            views:NSDictionaryOfVariableBindings(_selectionIndicatorBar)]];
 
-                [self alignSelectionIndicatorWithButton:selectedButton];
+
+                [self alignSelectionIndicatorWithCell:cell];
                 break;
             }
 
             case HTHorizontalSelectionIndicatorStyleButtonBorder: {
-                selectedButton.layer.borderColor = self.selectionIndicatorColor.CGColor;
+                cell.layer.borderColor = self.selectionIndicatorColor.CGColor;
                 break;
             }
 
@@ -285,28 +224,17 @@
     NSInteger buttonCount = [self.dataSource numberOfItemsInSelectionList:self];
 
     NSInteger oldSelectedIndex = _selectedButtonIndex;
-    UIButton *oldSelectedButton;
-    if (oldSelectedIndex < buttonCount && oldSelectedIndex >= 0) {
-        if (oldSelectedIndex < self.buttons.count) {
-            oldSelectedButton = self.buttons[oldSelectedIndex];
-            oldSelectedButton.selected = NO;
-        }
-    }
-
     if (selectedButtonIndex < buttonCount && selectedButtonIndex >= 0) {
         _selectedButtonIndex = selectedButtonIndex;
     } else {
         _selectedButtonIndex = -1;
     }
 
-    UIButton *selectedButton;
+    UICollectionViewCell *oldSelectedCell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:oldSelectedIndex
+                                                                                                            inSection:0]];
 
-    if (_selectedButtonIndex != -1) {
-        if (_selectedButtonIndex < self.buttons.count) {
-            selectedButton = self.buttons[_selectedButtonIndex];
-            selectedButton.selected = YES;
-        }
-    }
+    UICollectionViewCell *selectedCell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectedButtonIndex
+                                                                                                         inSection:0]];
 
     [self layoutIfNeeded];
     [UIView animateWithDuration:animated ? 0.4 : 0.0
@@ -315,136 +243,180 @@
           initialSpringVelocity:0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         [self setupSelectedButton:selectedButton oldSelectedButton:oldSelectedButton];
+                         [self setupSelectedCell:selectedCell oldSelectedCell:oldSelectedCell];
                      }
                      completion:nil];
 
-    [self.scrollView scrollRectToVisible:CGRectInset(selectedButton.frame, -kHTHorizontalSelectionListHorizontalMargin, 0)
-                                animated:animated];
+    if (selectedCell) {
+        [self.collectionView scrollRectToVisible:CGRectInset(selectedCell.frame, -kHTHorizontalSelectionListHorizontalMargin, 0)
+                                        animated:animated];
+    }
+}
+
+#pragma mark - UICollectionViewDataSource Protocol Methods
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [self.dataSource numberOfItemsInSelectionList:self];
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell;
+
+    if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:ViewCellIdentifier
+                                                         forIndexPath:indexPath];
+
+        [((HTHorizontalSelectionListCustomViewCell *)cell) setCustomView:[self.dataSource selectionList:self viewForItemWithIndex:indexPath.item]];
+    } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:LabelCellIdentifier
+                                                         forIndexPath:indexPath];
+
+        ((HTHorizontalSelectionListLabelCell *)cell).title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
+
+        for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
+            [((HTHorizontalSelectionListLabelCell *)cell) setTitleColor:self.buttonColorsByState[controlState]
+                                                               forState:controlState.integerValue];
+        }
+    }
+
+    if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
+        cell.layer.borderWidth = 1.0;
+        cell.layer.cornerRadius = 3.0;
+        cell.layer.borderColor = [UIColor clearColor].CGColor;
+        cell.layer.masksToBounds = YES;
+    }
+
+    if (indexPath.item == self.selectedButtonIndex) {
+        ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateSelected;
+    } else {
+        ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateNormal;
+    }
+
+    return cell;
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout Protocol Methods
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
+        UIView *view = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.item];
+
+        CGFloat maxHeight = self.frame.size.height - self.buttonInsets.top - self.buttonInsets.bottom;
+        CGFloat height = MIN(maxHeight, view.frame.size.height);
+
+        if (self.frame.size.height) {
+            CGFloat scaleFactor = height / view.frame.size.height;
+
+            CGFloat width = view.frame.size.width * scaleFactor;
+
+            return CGSizeMake(width, height);
+        } else {
+            return view.frame.size;
+        }
+
+    } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
+        NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
+        return [HTHorizontalSelectionListLabelCell sizeForTitle:title];
+    }
+
+    return CGSizeZero;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout *)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section {
+
+    return self.buttonInsets;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item == self.selectedButtonIndex) {
+        if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleNone) {
+            if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
+                [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
+            }
+        }
+
+        return;
+    }
+
+    [self setSelectedButtonIndex:indexPath.item animated:YES];
+
+    if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
+        [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
+    }
+}
+
+#pragma mark - UICollectionViewDelegate Protocol Methods
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (((id<HTHorizontalSelectionListCell>)cell).state == UIControlStateSelected) {
+        self.selectionIndicatorBar.hidden = NO;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (((id<HTHorizontalSelectionListCell>)cell).state == UIControlStateSelected) {
+        self.selectionIndicatorBar.hidden = YES;
+    }
 }
 
 #pragma mark - Private Methods
 
-- (UIButton *)selectionListButtonWithTitle:(NSString *)buttonTitle {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.contentEdgeInsets = self.buttonInsets;
-    [button setTitle:buttonTitle forState:UIControlStateNormal];
+- (void)setupSelectedCell:(UICollectionViewCell *)selectedCell oldSelectedCell:(UICollectionViewCell *)oldSelectedCell {
+    ((id<HTHorizontalSelectionListCell>)selectedCell).state = UIControlStateSelected;
+    ((id<HTHorizontalSelectionListCell>)oldSelectedCell).state = UIControlStateNormal;
 
-    for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
-        [button setTitleColor:self.buttonColorsByState[controlState] forState:controlState.integerValue];
-    }
-
-    button.titleLabel.font = [UIFont systemFontOfSize:13];
-    [button sizeToFit];
-
-    [button addTarget:self
-               action:@selector(buttonWasTapped:)
-     forControlEvents:UIControlEventTouchUpInside];
-
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    return button;
-}
-
-- (UIButton *)selectionListButtonWithView:(UIView *)buttonView {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addSubview:buttonView];
-
-    buttonView.translatesAutoresizingMaskIntoConstraints = NO;
-    buttonView.userInteractionEnabled = NO;
-
-    CGFloat aspectRatio = buttonView.frame.size.height/buttonView.frame.size.width;
-
-    [buttonView addConstraint:[NSLayoutConstraint constraintWithItem:buttonView
-                                                           attribute:NSLayoutAttributeHeight
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:buttonView
-                                                           attribute:NSLayoutAttributeWidth
-                                                          multiplier:aspectRatio
-                                                            constant:0.0]];
-
-    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[buttonView]|"
-                                                                   options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                   metrics:nil
-                                                                     views:NSDictionaryOfVariableBindings(buttonView)]];
-
-    [button addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[buttonView]|"
-                                                                   options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                   metrics:nil
-                                                                     views:NSDictionaryOfVariableBindings(buttonView)]];
-
-    [button addTarget:self
-               action:@selector(buttonWasTapped:)
-     forControlEvents:UIControlEventTouchUpInside];
-
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    return button;
-}
-
-- (void)setupSelectedButton:(UIButton *)selectedButton oldSelectedButton:(UIButton *)oldSelectedButton {
     switch (self.selectionIndicatorStyle) {
         case HTHorizontalSelectionIndicatorStyleBottomBar: {
-            [self.contentView removeConstraint:self.leftSelectionIndicatorConstraint];
-            [self.contentView removeConstraint:self.rightSelectionIndicatorConstraint];
-
-            [self alignSelectionIndicatorWithButton:selectedButton];
+            [self alignSelectionIndicatorWithCell:selectedCell];
             [self layoutIfNeeded];
             break;
         }
 
         case HTHorizontalSelectionIndicatorStyleButtonBorder: {
-            selectedButton.layer.borderColor = self.selectionIndicatorColor.CGColor;
-            oldSelectedButton.layer.borderColor = [UIColor clearColor].CGColor;
+            selectedCell.layer.borderColor = self.selectionIndicatorColor.CGColor;
+            oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
             break;
         }
 
         case HTHorizontalSelectionIndicatorStyleNone: {
-            selectedButton.layer.borderColor = [UIColor clearColor].CGColor;
-            oldSelectedButton.layer.borderColor = [UIColor clearColor].CGColor;
+            selectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+            oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
         }
     }
 }
 
-- (void)alignSelectionIndicatorWithButton:(UIButton *)button {
+- (void)alignSelectionIndicatorWithCell:(UICollectionViewCell *)cell {
+    [self.collectionView removeConstraint:self.leftSelectionIndicatorConstraint];
+    [self.collectionView removeConstraint:self.rightSelectionIndicatorConstraint];
+
     self.leftSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicatorBar
                                                                          attribute:NSLayoutAttributeLeft
                                                                          relatedBy:NSLayoutRelationEqual
-                                                                            toItem:button
+                                                                            toItem:cell
                                                                          attribute:NSLayoutAttributeLeft
                                                                         multiplier:1.0
                                                                           constant:0.0];
-    [self.contentView addConstraint:self.leftSelectionIndicatorConstraint];
+    [self.collectionView addConstraint:self.leftSelectionIndicatorConstraint];
 
     self.rightSelectionIndicatorConstraint = [NSLayoutConstraint constraintWithItem:self.selectionIndicatorBar
                                                                           attribute:NSLayoutAttributeRight
                                                                           relatedBy:NSLayoutRelationEqual
-                                                                             toItem:button
+                                                                             toItem:cell
                                                                           attribute:NSLayoutAttributeRight
                                                                          multiplier:1.0
                                                                            constant:0.0];
-    [self.contentView addConstraint:self.rightSelectionIndicatorConstraint];
-}
+    [self.collectionView addConstraint:self.rightSelectionIndicatorConstraint];
 
-#pragma mark - Action Handlers
-
-- (void)buttonWasTapped:(id)sender {
-    NSInteger index = [self.buttons indexOfObject:sender];
-    if (index != NSNotFound) {
-        if (index == self.selectedButtonIndex) {
-            if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleNone) {
-                if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
-                    [self.delegate selectionList:self didSelectButtonWithIndex:index];
-                }
-            }
-
-            return;
-        }
-
-        [self setSelectedButtonIndex:index animated:YES];
-
-        if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
-            [self.delegate selectionList:self didSelectButtonWithIndex:index];
-        }
-    }
+    self.selectionIndicatorBar.hidden = ![self.collectionView.visibleCells containsObject:cell];
 }
 
 @end

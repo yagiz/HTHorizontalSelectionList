@@ -14,7 +14,7 @@
 @property (nonatomic, strong) HTHorizontalSelectionList *customViewSelectionList;
 @property (nonatomic, strong) NSArray *spaceCats;
 
-@property (nonatomic, strong) UIImageView *selectedSpaceCatImageView;
+@property (nonatomic, strong) UIView *selectedSpaceCatView;
 
 @property (nonatomic) BOOL filtered;
 
@@ -28,7 +28,7 @@
     self.title = @"Cats";
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    self.customViewSelectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+    self.customViewSelectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 80)];
     self.customViewSelectionList.delegate = self;
     self.customViewSelectionList.dataSource = self;
 
@@ -36,39 +36,40 @@
     self.customViewSelectionList.selectionIndicatorColor = [UIColor blueColor];
     self.customViewSelectionList.bottomTrimHidden = YES;
 
+    self.customViewSelectionList.buttonInsets = UIEdgeInsetsMake(3, 10, 3, 10);
+
     self.spaceCats = @[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat1.jpeg"]],
                        [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat2.jpeg"]],
                        [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat3.jpeg"]],
-                       [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat4.jpeg"]]];
+                       [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat4.jpeg"]],
+                       [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat5.jpeg"]]];
 
     [self.view addSubview:self.customViewSelectionList];
 
-    self.selectedSpaceCatImageView = [[UIImageView alloc] init];
-    self.selectedSpaceCatImageView.image = ((UIImageView *)self.spaceCats[self.customViewSelectionList.selectedButtonIndex]).image;
-    self.selectedSpaceCatImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:self.selectedSpaceCatImageView];
-
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectedSpaceCatImageView
-                                                              attribute:NSLayoutAttributeCenterX
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeCenterX
-                                                             multiplier:1.0
-                                                               constant:0.0]];
-
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.selectedSpaceCatImageView
-                                                              attribute:NSLayoutAttributeCenterY
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:self.view
-                                                              attribute:NSLayoutAttributeCenterY
-                                                             multiplier:1.0
-                                                               constant:0.0]];
+    self.selectedSpaceCatView = [[UIView alloc] init];
+    UIImage *selectedImage = ((UIImageView *)self.spaceCats[self.customViewSelectionList.selectedButtonIndex]).image;
+    self.selectedSpaceCatView.backgroundColor = [UIColor colorWithPatternImage:selectedImage];
+    self.selectedSpaceCatView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.selectedSpaceCatView];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_selectedSpaceCatView]|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_selectedSpaceCatView)]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_customViewSelectionList][_selectedSpaceCatView]|"
+                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_customViewSelectionList, _selectedSpaceCatView)]];
 
     UIButton *filterToggleButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    filterToggleButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    filterToggleButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     [filterToggleButton setTitle:@"Filter Selection List" forState:UIControlStateNormal];
-    [filterToggleButton setTitle:@"Unfilter Selection List" forState:UIControlStateSelected];
-
+    
+    filterToggleButton.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    filterToggleButton.backgroundColor = [UIColor whiteColor];
+    filterToggleButton.layer.cornerRadius = 3.0;
+    
     [filterToggleButton addTarget:self
                            action:@selector(filterToggleButtonTapped:)
                  forControlEvents:UIControlEventTouchUpInside];
@@ -108,7 +109,8 @@
 
 - (void)selectionList:(HTHorizontalSelectionList *)selectionList didSelectButtonWithIndex:(NSInteger)index {
     // update the view for the corresponding index
-    self.selectedSpaceCatImageView.image = ((UIImageView *)self.spaceCats[index]).image;
+    UIImage *selectedImage = ((UIImageView *)self.spaceCats[index]).image;
+    self.selectedSpaceCatView.backgroundColor = [UIColor colorWithPatternImage:selectedImage];
 }
 
 #pragma mark - Action Handlers

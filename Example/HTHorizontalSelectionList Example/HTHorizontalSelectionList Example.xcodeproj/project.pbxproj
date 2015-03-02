@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0335781B1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */; };
+		0335781F1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */; };
+		033578231AA125340009DB4C /* spacecat5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 033578221AA125340009DB4C /* spacecat5.jpeg */; };
 		036F054119C624D9000D2EEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054019C624D9000D2EEB /* main.m */; };
 		036F054419C624D9000D2EEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054319C624D9000D2EEB /* AppDelegate.m */; };
 		036F054719C624D9000D2EEB /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054619C624D9000D2EEB /* CarsViewController.m */; };
 		036F054C19C624D9000D2EEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F054B19C624D9000D2EEB /* Images.xcassets */; };
 		036F054F19C624D9000D2EEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F054D19C624D9000D2EEB /* LaunchScreen.xib */; };
 		03AEDF8319C7467C0012581D /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */; };
-		03AEDF8419C7467C0012581D /* HTHorizontalSelectionListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AEDF8119C7467C0012581D /* HTHorizontalSelectionListScrollView.m */; };
 		03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */; };
 		03FCAF901A8424A1004857A7 /* spacecat3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */; };
 		03FCAF911A8424A1004857A7 /* spacecat2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */; };
@@ -22,6 +24,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		033578191A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListLabelCell.h; path = Cells/HTHorizontalSelectionListLabelCell.h; sourceTree = "<group>"; };
+		0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListLabelCell.m; path = Cells/HTHorizontalSelectionListLabelCell.m; sourceTree = "<group>"; };
+		0335781C1AA0EE9C0009DB4C /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCell.h; path = Cells/HTHorizontalSelectionListCell.h; sourceTree = "<group>"; };
+		0335781D1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCustomViewCell.h; path = Cells/HTHorizontalSelectionListCustomViewCell.h; sourceTree = "<group>"; };
+		0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListCustomViewCell.m; path = Cells/HTHorizontalSelectionListCustomViewCell.m; sourceTree = "<group>"; };
+		033578221AA125340009DB4C /* spacecat5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat5.jpeg; path = Resources/spacecat5.jpeg; sourceTree = "<group>"; };
 		036F053B19C624D9000D2EEB /* HTHorizontalSelectionList Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HTHorizontalSelectionList Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F053F19C624D9000D2EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		036F054019C624D9000D2EEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -33,8 +41,6 @@
 		036F054E19C624D9000D2EEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		03AEDF7E19C7467C0012581D /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionList.h; sourceTree = "<group>"; };
 		03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionList.m; sourceTree = "<group>"; };
-		03AEDF8019C7467C0012581D /* HTHorizontalSelectionListScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListScrollView.h; sourceTree = "<group>"; };
-		03AEDF8119C7467C0012581D /* HTHorizontalSelectionListScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListScrollView.m; sourceTree = "<group>"; };
 		03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat4.jpeg; path = Resources/spacecat4.jpeg; sourceTree = "<group>"; };
 		03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat3.jpeg; path = Resources/spacecat3.jpeg; sourceTree = "<group>"; };
 		03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat2.jpeg; path = Resources/spacecat2.jpeg; sourceTree = "<group>"; };
@@ -54,6 +60,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		033578181A9FDD830009DB4C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0335781C1AA0EE9C0009DB4C /* HTHorizontalSelectionListCell.h */,
+				0335781D1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.h */,
+				0335781E1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m */,
+				033578191A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.h */,
+				0335781A1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		036F053219C624D9000D2EEB = {
 			isa = PBXGroup;
 			children = (
@@ -102,8 +120,7 @@
 			children = (
 				03AEDF7E19C7467C0012581D /* HTHorizontalSelectionList.h */,
 				03AEDF7F19C7467C0012581D /* HTHorizontalSelectionList.m */,
-				03AEDF8019C7467C0012581D /* HTHorizontalSelectionListScrollView.h */,
-				03AEDF8119C7467C0012581D /* HTHorizontalSelectionListScrollView.m */,
+				033578181A9FDD830009DB4C /* Cells */,
 			);
 			name = HTHorizontalSelectionList;
 			path = ../../HTHorizontalSelectionList;
@@ -112,10 +129,11 @@
 		03FCAF821A84235C004857A7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */,
-				03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */,
-				03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */,
 				03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */,
+				03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */,
+				03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */,
+				03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */,
+				033578221AA125340009DB4C /* spacecat5.jpeg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -183,6 +201,7 @@
 				036F054C19C624D9000D2EEB /* Images.xcassets in Resources */,
 				03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */,
 				03FCAF921A8424A1004857A7 /* spacecat1.jpeg in Resources */,
+				033578231AA125340009DB4C /* spacecat5.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,12 +212,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0335781B1A9FDDC00009DB4C /* HTHorizontalSelectionListLabelCell.m in Sources */,
 				036F054719C624D9000D2EEB /* CarsViewController.m in Sources */,
+				0335781F1AA0F9A40009DB4C /* HTHorizontalSelectionListCustomViewCell.m in Sources */,
 				03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */,
 				036F054419C624D9000D2EEB /* AppDelegate.m in Sources */,
 				03AEDF8319C7467C0012581D /* HTHorizontalSelectionList.m in Sources */,
 				036F054119C624D9000D2EEB /* main.m in Sources */,
-				03AEDF8419C7467C0012581D /* HTHorizontalSelectionListScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

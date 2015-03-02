@@ -124,7 +124,7 @@
     // NOTE: After changing the selection list data source and reloading,
     // it is up to the data source to reselect the correct button
     // (or do what is happening here: deselect everything by setting
-    // |selectedButtonIndex| to -1
+    // |selectedButtonIndex| to -1)
     self.customViewSelectionList.selectedButtonIndex = -1;
 }
 

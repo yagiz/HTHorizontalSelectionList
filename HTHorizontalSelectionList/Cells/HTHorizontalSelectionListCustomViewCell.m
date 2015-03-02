@@ -20,30 +20,34 @@
     return self;
 }
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+
+    for (UIView *subview in [self.contentView subviews]) {
+        [subview removeFromSuperview];
+    }
+
+    self.state = UIControlStateNormal;
+}
+
+#pragma mark - Custom Getters and Setters
+
 - (void)setCustomView:(UIView *)customView {
     customView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    [self.contentView addSubview:customView];
+    if (customView) {
+        [self.contentView addSubview:customView];
 
-    CGFloat aspectRatio = customView.frame.size.height/customView.frame.size.width;
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|"
+                                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                 metrics:nil
+                                                                                   views:NSDictionaryOfVariableBindings(customView)]];
 
-    [customView addConstraint:[NSLayoutConstraint constraintWithItem:customView
-                                                           attribute:NSLayoutAttributeHeight
-                                                           relatedBy:NSLayoutRelationEqual
-                                                              toItem:customView
-                                                           attribute:NSLayoutAttributeWidth
-                                                          multiplier:aspectRatio
-                                                            constant:0.0]];
-
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|"
-                                                                             options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                             metrics:nil
-                                                                               views:NSDictionaryOfVariableBindings(customView)]];
-
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[customView]|"
-                                                                             options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                             metrics:nil
-                                                                               views:NSDictionaryOfVariableBindings(customView)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[customView]|"
+                                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                                 metrics:nil
+                                                                                   views:NSDictionaryOfVariableBindings(customView)]];
+    }
 }
 
 @end

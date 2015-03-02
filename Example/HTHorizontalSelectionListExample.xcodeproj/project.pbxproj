@@ -23,7 +23,7 @@
 
 /* Begin PBXFileReference section */
 		033578221AA125340009DB4C /* spacecat5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat5.jpeg; path = Resources/spacecat5.jpeg; sourceTree = "<group>"; };
-		036F053B19C624D9000D2EEB /* HTHorizontalSelectionList Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HTHorizontalSelectionList Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		036F053B19C624D9000D2EEB /* HTHorizontalSelectionListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTHorizontalSelectionListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F053F19C624D9000D2EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		036F054019C624D9000D2EEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		036F054219C624D9000D2EEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		036F053C19C624D9000D2EEB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				036F053B19C624D9000D2EEB /* HTHorizontalSelectionList Example.app */,
+				036F053B19C624D9000D2EEB /* HTHorizontalSelectionListExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,7 +148,7 @@
 			);
 			name = HTHorizontalSelectionListExample;
 			productName = "HTHorizontalSelectionList Example";
-			productReference = 036F053B19C624D9000D2EEB /* HTHorizontalSelectionList Example.app */;
+			productReference = 036F053B19C624D9000D2EEB /* HTHorizontalSelectionListExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

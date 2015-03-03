@@ -61,10 +61,10 @@
 
 #pragma mark - Public Methods
 
-+ (CGSize)sizeForTitle:(NSString *)title {
++ (CGSize)sizeForTitle:(NSString *)title withFont:(UIFont *)font {
     CGRect titleRect = [title boundingRectWithSize:CGSizeMake(FLT_MAX, FLT_MAX)
                                            options:NSStringDrawingUsesLineFragmentOrigin
-                                        attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:13]}
+                                        attributes:@{NSFontAttributeName : font}
                                            context:nil];
 
     return CGSizeMake(titleRect.size.width + kHTHorizontalSelectionListLabelCellInternalPadding, titleRect.size.height);

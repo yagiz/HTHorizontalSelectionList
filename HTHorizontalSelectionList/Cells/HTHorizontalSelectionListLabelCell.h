@@ -16,6 +16,6 @@
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
 
-+ (CGSize)sizeForTitle:(NSString *)title;
++ (CGSize)sizeForTitle:(NSString *)title withFont:(UIFont *)font;
 
 @end

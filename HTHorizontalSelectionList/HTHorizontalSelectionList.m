@@ -322,7 +322,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
-        return [HTHorizontalSelectionListLabelCell sizeForTitle:title];
+        return [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.font];
     }
 
     return CGSizeZero;

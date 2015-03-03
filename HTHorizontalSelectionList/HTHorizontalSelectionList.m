@@ -130,6 +130,10 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     [super layoutSubviews];
 }
 
+- (void)dealloc {
+    [self.collectionView removeObserver:self forKeyPath:@"contentSize"];
+}
+
 #pragma mark - Custom Getters and Setters
 
 - (void)setSelectedButtonIndex:(NSInteger)selectedButtonIndex {
@@ -359,7 +363,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 #pragma mark - NSKeyValueObserving
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if ([keyPath isEqualToString:@"contentSize"]) {
         self.contentView.contentSize = [(NSValue *)change[NSKeyValueChangeNewKey] CGSizeValue];
     }

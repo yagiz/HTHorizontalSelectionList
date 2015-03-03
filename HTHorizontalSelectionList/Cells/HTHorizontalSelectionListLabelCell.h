@@ -12,6 +12,7 @@
 @interface HTHorizontalSelectionListLabelCell : UICollectionViewCell <HTHorizontalSelectionListCell>
 
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) UIFont *font;
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
 

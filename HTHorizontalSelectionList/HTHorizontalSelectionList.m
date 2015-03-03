@@ -111,6 +111,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         self.buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         self.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
+        
+        _font = [UIFont systemFontOfSize:13];
 
         _selectionIndicatorBar = [[UIView alloc] init];
         _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
@@ -273,7 +275,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                          forIndexPath:indexPath];
 
         ((HTHorizontalSelectionListLabelCell *)cell).title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
-
+        ((HTHorizontalSelectionListLabelCell *)cell).font = self.font;
         for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
             [((HTHorizontalSelectionListLabelCell *)cell) setTitleColor:self.buttonColorsByState[controlState]
                                                                forState:controlState.integerValue];

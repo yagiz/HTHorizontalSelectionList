@@ -72,6 +72,11 @@
 
 #pragma mark - Custom Getters and Setters
 
+- (void)setFont:(UIFont *)font {
+    _font = font;
+    self.titleLabel.font = font;
+}
+
 - (void)setTitle:(NSString *)title {
     _title = title;
     self.titleLabel.text = title;

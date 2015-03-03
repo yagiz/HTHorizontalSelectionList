@@ -13,7 +13,7 @@
 @interface HTHorizontalSelectionList () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) UIScrollView *contentView;
 
 @property (nonatomic, strong) UIView *selectionIndicatorBar;
 @property (nonatomic, strong) UIView *bottomTrim;
@@ -64,9 +64,15 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         [_collectionView registerClass:[HTHorizontalSelectionListLabelCell class] forCellWithReuseIdentifier:LabelCellIdentifier];
         [_collectionView registerClass:[HTHorizontalSelectionListCustomViewCell class] forCellWithReuseIdentifier:ViewCellIdentifier];
 
-        _contentView = [[UIView alloc] init];
+        [_collectionView addObserver:self
+                          forKeyPath:@"contentSize"
+                             options:NSKeyValueObservingOptionNew
+                             context:NULL];
+
+        _contentView = [[UIScrollView alloc] init];
+        _contentView.userInteractionEnabled = NO;
         _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-        [_collectionView addSubview:_contentView];
+        [self addSubview:_contentView];
 
         [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
                                                          attribute:NSLayoutAttributeTop
@@ -88,12 +94,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                                      options:NSLayoutFormatDirectionLeadingToTrailing
                                                                      metrics:nil
                                                                        views:NSDictionaryOfVariableBindings(_contentView)]];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_contentView]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_contentView)]];
-
         _bottomTrim = [[UIView alloc] init];
         _bottomTrim.backgroundColor = [UIColor blackColor];
         _bottomTrim.translatesAutoresizingMaskIntoConstraints = NO;
@@ -109,8 +109,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                                      metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
                                                                        views:NSDictionaryOfVariableBindings(_bottomTrim)]];
 
-        self.buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        self.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
+        _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+        _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
         
         _font = [UIFont systemFontOfSize:13];
 
@@ -192,13 +192,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         switch (self.selectionIndicatorStyle) {
             case HTHorizontalSelectionIndicatorStyleBottomBar: {
                 [self.contentView addSubview:self.selectionIndicatorBar];
-
-                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_selectionIndicatorBar(height)]|"
-                                                                                         options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                         metrics:@{@"height" : @(kHTHorizontalSelectionListSelectionIndicatorHeight)}
-                                                                                           views:NSDictionaryOfVariableBindings(_selectionIndicatorBar)]];
-
-
+                [self.contentView layoutIfNeeded];
                 [self alignSelectionIndicatorWithCell:cell];
                 break;
             }
@@ -353,6 +347,24 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     }
 }
 
+#pragma mark - UIScrollViewDelegate Protocol Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.collectionView) {
+        CGPoint offset = self.contentView.contentOffset;
+        offset.x = scrollView.contentOffset.x;
+        [self.contentView setContentOffset:offset];
+    }
+}
+
+#pragma mark - NSKeyValueObserving
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        self.contentView.contentSize = [(NSValue *)change[NSKeyValueChangeNewKey] CGSizeValue];
+    }
+}
+
 #pragma mark - Private Methods
 
 - (void)setupSelectedCell:(UICollectionViewCell *)selectedCell oldSelectedCell:(UICollectionViewCell *)oldSelectedCell {
@@ -361,6 +373,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
     switch (self.selectionIndicatorStyle) {
         case HTHorizontalSelectionIndicatorStyleBottomBar: {
+            [self layoutIfNeeded];
             [self alignSelectionIndicatorWithCell:selectedCell];
             break;
         }
@@ -382,15 +395,13 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:cell];
 
     if (selectedIndexPath) {
-        [self layoutIfNeeded];
-
         UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:selectedIndexPath];
         CGRect cellRect = attributes.frame;
 
         self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x,
-                                                      self.selectionIndicatorBar.frame.origin.y,
+                                                      self.contentView.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight,
                                                       cellRect.size.width,
-                                                      self.selectionIndicatorBar.frame.size.height);
+                                                      kHTHorizontalSelectionListSelectionIndicatorHeight);
     }
 }
 

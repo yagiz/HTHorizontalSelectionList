@@ -71,6 +71,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         _contentView = [[UIScrollView alloc] init];
         _contentView.userInteractionEnabled = NO;
+        _contentView.scrollsToTop = NO;
         _contentView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:_contentView];
 

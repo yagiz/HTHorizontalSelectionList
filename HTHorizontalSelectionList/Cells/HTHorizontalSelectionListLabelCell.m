@@ -67,7 +67,8 @@
                                         attributes:@{NSFontAttributeName : font}
                                            context:nil];
 
-    return CGSizeMake(titleRect.size.width + kHTHorizontalSelectionListLabelCellInternalPadding, titleRect.size.height);
+    return CGSizeMake(titleRect.size.width + kHTHorizontalSelectionListLabelCellInternalPadding,
+                      titleRect.size.height + kHTHorizontalSelectionListLabelCellInternalPadding);
 }
 
 #pragma mark - Custom Getters and Setters

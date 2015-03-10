@@ -321,7 +321,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
-        return [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.font];
+        CGSize titleSize = [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.font];
+        return CGSizeMake(titleSize.width, MIN(titleSize.height, collectionView.frame.size.height - self.buttonInsets.top - self.buttonInsets.bottom));
     }
 
     return CGSizeZero;

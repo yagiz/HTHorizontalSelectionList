@@ -12,7 +12,7 @@ A simple side-scrolling list of items (perhaps filters for a UITableView below).
 
 Add HTHorizontalSelectionList pod into your Podfile
 ```
-pod 'HTHorizontalSelectionList', '~> 0.4.6'
+pod 'HTHorizontalSelectionList', '~> 0.4.7'
 ```
 
 ##Usage

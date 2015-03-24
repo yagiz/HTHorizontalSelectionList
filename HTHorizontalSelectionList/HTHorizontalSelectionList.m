@@ -353,6 +353,25 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     }
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    id<HTHorizontalSelectionListCell> cell = (id<HTHorizontalSelectionListCell>)[collectionView cellForItemAtIndexPath:indexPath];
+
+    if (cell.state == UIControlStateSelected && self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleNone) {
+        cell.state = UIControlStateHighlighted;
+    } else if (cell.state != UIControlStateSelected) {
+        cell.state = UIControlStateHighlighted;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
+    id<HTHorizontalSelectionListCell> cell = (id<HTHorizontalSelectionListCell>)[collectionView cellForItemAtIndexPath:indexPath];
+
+    if (self.selectedButtonIndex == indexPath.item) {
+        cell.state = UIControlStateSelected;
+    } else {
+        cell.state = UIControlStateNormal;
+    }
+}
 #pragma mark - UIScrollViewDelegate Protocol Methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

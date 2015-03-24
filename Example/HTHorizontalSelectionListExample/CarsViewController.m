@@ -31,6 +31,7 @@
     self.textSelectionList.dataSource = self;
     
     self.textSelectionList.selectionIndicatorColor = [UIColor redColor];
+    [self.textSelectionList setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
 
     self.carMakes = @[@"All cars",
                       @"Audi",

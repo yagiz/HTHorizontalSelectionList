@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "CarsViewController.h"
 #import "CatsViewController.h"
+#import "HTHorizontalSelectionListExample-Swift.h"
 
 @interface AppDelegate () <UITabBarControllerDelegate>
 
@@ -32,8 +33,10 @@
     carsNavigationController.tabBarItem.title = @"Cars";
     UINavigationController *catsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[CatsViewController alloc] init]];
     catsNavigationController.tabBarItem.title = @"Cats";
+    UINavigationController *flowersNavigationController = [[UINavigationController alloc] initWithRootViewController:[[FlowersViewController alloc] init]];
+    flowersNavigationController.tabBarItem.title = @"Flowers";
 
-    self.tabBarController.viewControllers = @[carsNavigationController, catsNavigationController];
+    self.tabBarController.viewControllers = @[carsNavigationController, catsNavigationController, flowersNavigationController];
 
     self.window.backgroundColor = [UIColor lightGrayColor];
     [self.window makeKeyAndVisible];

@@ -121,6 +121,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         _buttonColorsByState = [NSMutableDictionary dictionary];
         _buttonColorsByState[@(UIControlStateNormal)] = [UIColor blackColor];
+
+        _centerAlignButtons = NO;
     }
     return self;
 }
@@ -331,6 +333,27 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                         layout:(UICollectionViewLayout *)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section {
+
+    if (self.centerAlignButtons) {
+
+        CGFloat aggregateItemWidths = 0;
+        NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
+
+        for (NSInteger item = 0; item < numberOfItems; item++) {
+            aggregateItemWidths += [self collectionView:collectionView
+                                                 layout:collectionViewLayout
+                                 sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
+        }
+
+        aggregateItemWidths += (numberOfItems - 1) * self.buttonInsets.left;
+
+        CGFloat leftInset = (collectionView.frame.size.width - aggregateItemWidths)/2;
+
+        return UIEdgeInsetsMake(self.buttonInsets.top,
+                                MAX(self.buttonInsets.left, leftInset),
+                                self.buttonInsets.bottom,
+                                self.buttonInsets.right);
+    }
 
     return self.buttonInsets;
 }

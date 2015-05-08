@@ -1,5 +1,6 @@
 #include "Pods-HTHorizontalSelectionList.xcconfig"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/HTHorizontalSelectionList" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/HTHorizontalSelectionList"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/HTHorizontalSelectionList" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/HTHorizontalSelectionList"
 OTHER_LDFLAGS = ${PODS_HTHORIZONTALSELECTIONLIST_OTHER_LDFLAGS} -ObjC
 PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES

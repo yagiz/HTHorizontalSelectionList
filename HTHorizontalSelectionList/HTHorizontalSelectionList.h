@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
 @property (nonatomic, strong) UIColor *selectionIndicatorColor;
 @property (nonatomic, strong) UIColor *bottomTrimColor;
 @property (nonatomic) BOOL bottomTrimHidden;                // Default is NO
+@property (nonatomic) BOOL centerAlignButtons;              // Default is NO.  Only has an affect if the number of buttons in
+                                                            // the selection list does not fill the space horizontally.
 
 @property (nonatomic, strong) UIFont *font;
 

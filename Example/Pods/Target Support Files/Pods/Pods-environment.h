@@ -10,5 +10,5 @@
 #define COCOAPODS_POD_AVAILABLE_HTHorizontalSelectionList
 #define COCOAPODS_VERSION_MAJOR_HTHorizontalSelectionList 0
 #define COCOAPODS_VERSION_MINOR_HTHorizontalSelectionList 4
-#define COCOAPODS_VERSION_PATCH_HTHorizontalSelectionList 1
+#define COCOAPODS_VERSION_PATCH_HTHorizontalSelectionList 7
 

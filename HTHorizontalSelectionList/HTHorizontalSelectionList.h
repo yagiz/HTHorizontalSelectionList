@@ -32,15 +32,14 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
 @property (nonatomic) BOOL centerAlignButtons;              // Default is NO.  Only has an affect if the number of buttons in
                                                             // the selection list does not fill the space horizontally.
 
-@property (nonatomic) BOOL showsEdgeFadeEffect;              // Default is NO.  If set to YES, the buttons will fade away near the edges of the list.
-
-@property (nonatomic, strong) UIFont *font;
+@property (nonatomic) BOOL showsEdgeFadeEffect;             // Default is NO.  If set to YES, the buttons will fade away near the edges of the list.
 
 @property (nonatomic) UIEdgeInsets buttonInsets;
 
 @property (nonatomic) HTHorizontalSelectionIndicatorStyle selectionIndicatorStyle;
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
+- (void)setTitleFont:(UIFont *)font forState:(UIControlState)state;
 
 - (void)reloadData;
 

@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 
 @property (nonatomic, strong) NSMutableDictionary *titleColorsByState;
+@property (nonatomic, strong) NSMutableDictionary *titleFontsByState;
 
 @end
 
@@ -26,7 +27,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont systemFontOfSize:13];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
@@ -45,6 +45,9 @@
         _titleColorsByState = [NSMutableDictionary dictionary];
         _titleColorsByState[@(UIControlStateNormal)] = [UIColor blackColor];
 
+        _titleFontsByState = [NSMutableDictionary dictionary];
+        _titleFontsByState[@(UIControlStateNormal)] = [UIFont systemFontOfSize:13];
+
         _state = UIControlStateNormal;
     }
     return self;
@@ -56,6 +59,8 @@
     self.title = nil;
     self.titleColorsByState = [NSMutableDictionary dictionary];
     self.titleColorsByState[@(UIControlStateNormal)] = [UIColor blackColor];
+    self.titleFontsByState = [NSMutableDictionary dictionary];
+    self.titleFontsByState[@(UIControlStateNormal)] = [UIFont systemFontOfSize:13];
     self.state = UIControlStateNormal;
 }
 
@@ -73,11 +78,6 @@
 
 #pragma mark - Custom Getters and Setters
 
-- (void)setFont:(UIFont *)font {
-    _font = font;
-    self.titleLabel.font = font;
-}
-
 - (void)setTitle:(NSString *)title {
     _title = title;
     self.titleLabel.text = title;
@@ -87,6 +87,7 @@
     _state = state;
 
     [self updateTitleColor];
+    [self updateTitleFont];
 }
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
@@ -95,10 +96,20 @@
     [self updateTitleColor];
 }
 
+- (void)setTitleFont:(UIFont *)font forState:(UIControlState)state {
+    self.titleFontsByState[@(state)] = font;
+
+    [self updateTitleFont];
+}
+
 #pragma mark - Private Methods
 
 - (void)updateTitleColor {
-    self.titleLabel.textColor = self.titleColorsByState[@(self.state)];
+    self.titleLabel.textColor = self.titleColorsByState[@(self.state)] ?: self.titleColorsByState[@(UIControlStateNormal)];
+}
+
+- (void)updateTitleFont {
+    self.titleLabel.font = self.titleFontsByState[@(self.state)] ?: self.titleFontsByState[@(UIControlStateNormal)];
 }
 
 @end

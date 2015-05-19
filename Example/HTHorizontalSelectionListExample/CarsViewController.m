@@ -32,6 +32,9 @@
     
     self.textSelectionList.selectionIndicatorColor = [UIColor redColor];
     [self.textSelectionList setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [self.textSelectionList setTitleFont:[UIFont systemFontOfSize:13] forState:UIControlStateNormal];
+    [self.textSelectionList setTitleFont:[UIFont boldSystemFontOfSize:13] forState:UIControlStateSelected];
+    [self.textSelectionList setTitleFont:[UIFont boldSystemFontOfSize:13] forState:UIControlStateHighlighted];
 
     self.carMakes = @[@"All cars",
                       @"Audi",

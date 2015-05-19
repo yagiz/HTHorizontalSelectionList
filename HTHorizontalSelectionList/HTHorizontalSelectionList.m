@@ -18,7 +18,8 @@
 @property (nonatomic, strong) UIView *selectionIndicatorBar;
 @property (nonatomic, strong) UIView *bottomTrim;
 
-@property (nonatomic, strong) NSMutableDictionary *buttonColorsByState;
+@property (nonatomic, strong) NSMutableDictionary *titleColorsByState;
+@property (nonatomic, strong) NSMutableDictionary *titleFontsByState;
 
 @property (nonatomic, strong) UIView *edgeFadeGradientView;
 
@@ -150,15 +151,13 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
-        
-        _font = [UIFont systemFontOfSize:13];
 
         _selectionIndicatorBar = [[UIView alloc] init];
         _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
         _selectionIndicatorBar.backgroundColor = [UIColor blackColor];
 
-        _buttonColorsByState = [NSMutableDictionary dictionary];
-        _buttonColorsByState[@(UIControlStateNormal)] = [UIColor blackColor];
+        _titleColorsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIColor blackColor]}];
+        _titleFontsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:13]}];
 
         _centerAlignButtons = NO;
     }
@@ -186,8 +185,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (void)setSelectionIndicatorColor:(UIColor *)selectionIndicatorColor {
     self.selectionIndicatorBar.backgroundColor = selectionIndicatorColor;
 
-    if (!self.buttonColorsByState[@(UIControlStateSelected)]) {
-        self.buttonColorsByState[@(UIControlStateSelected)] = selectionIndicatorColor;
+    if (!self.titleColorsByState[@(UIControlStateSelected)]) {
+        self.titleColorsByState[@(UIControlStateSelected)] = selectionIndicatorColor;
     }
 }
 
@@ -222,7 +221,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 #pragma mark - Public Methods
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {
-    self.buttonColorsByState[@(state)] = color;
+    self.titleColorsByState[@(state)] = color;
+}
+
+- (void)setTitleFont:(UIFont *)font forState:(UIControlState)state {
+    self.titleFontsByState[@(state)] = font;
 }
 
 - (void)reloadData {
@@ -324,10 +327,15 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                          forIndexPath:indexPath];
 
         ((HTHorizontalSelectionListLabelCell *)cell).title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
-        ((HTHorizontalSelectionListLabelCell *)cell).font = self.font;
-        for (NSNumber *controlState in [self.buttonColorsByState allKeys]) {
-            [((HTHorizontalSelectionListLabelCell *)cell) setTitleColor:self.buttonColorsByState[controlState]
+
+        for (NSNumber *controlState in [self.titleColorsByState allKeys]) {
+            [((HTHorizontalSelectionListLabelCell *)cell) setTitleColor:self.titleColorsByState[controlState]
                                                                forState:controlState.integerValue];
+        }
+
+        for (NSNumber *controlState in [self.titleFontsByState allKeys]) {
+            [((HTHorizontalSelectionListLabelCell *)cell) setTitleFont:self.titleFontsByState[controlState]
+                                                              forState:controlState.integerValue];
         }
     }
 
@@ -371,7 +379,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
-        CGSize titleSize = [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.font];
+        CGSize titleSize = [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.titleFontsByState[@(UIControlStateNormal)]];
         return CGSizeMake(titleSize.width, MIN(titleSize.height, collectionView.frame.size.height - self.buttonInsets.top - self.buttonInsets.bottom));
     }
 

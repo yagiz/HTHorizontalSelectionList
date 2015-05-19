@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) NSMutableDictionary *buttonColorsByState;
 
+@property (nonatomic, strong) UIView *edgeFadeGradientView;
+
 @end
 
 #define kHTHorizontalSelectionListHorizontalMargin 10
@@ -63,6 +65,42 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         [_collectionView registerClass:[HTHorizontalSelectionListLabelCell class] forCellWithReuseIdentifier:LabelCellIdentifier];
         [_collectionView registerClass:[HTHorizontalSelectionListCustomViewCell class] forCellWithReuseIdentifier:ViewCellIdentifier];
+
+        CAGradientLayer *maskLayer = [CAGradientLayer layer];
+
+        CGColorRef outerColor = [[UIColor colorWithWhite:0.0 alpha:1.0] CGColor];
+        CGColorRef innerColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
+
+        maskLayer.colors = @[(__bridge id)outerColor,
+                             (__bridge id)innerColor,
+                             (__bridge id)innerColor,
+                             (__bridge id)outerColor];
+
+        maskLayer.locations = @[@0.0, @0.04, @0.96, @1.0];
+
+        [maskLayer setStartPoint:CGPointMake(0, 0.5)];
+        [maskLayer setEndPoint:CGPointMake(1, 0.5)];
+
+        maskLayer.bounds = _collectionView.bounds;
+        maskLayer.anchorPoint = CGPointZero;
+
+        _edgeFadeGradientView = [[UIView alloc] init];
+        _edgeFadeGradientView.backgroundColor = self.backgroundColor;
+        _edgeFadeGradientView.layer.mask = maskLayer;
+        _edgeFadeGradientView.hidden = YES;
+        _edgeFadeGradientView.userInteractionEnabled = NO;
+        _edgeFadeGradientView.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:_edgeFadeGradientView];
+
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_edgeFadeGradientView]|"
+                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                     metrics:nil
+                                                                       views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
+
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_edgeFadeGradientView]-trimHeight-|"
+                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                     metrics:@{@"trimHeight" : @(kHTHorizontalSelectionListTrimHeight)}
+                                                                       views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
 
         [_collectionView addObserver:self
                           forKeyPath:@"contentSize"
@@ -130,6 +168,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (void)layoutSubviews {
     [self reloadData];
 
+    [self bringSubviewToFront:self.edgeFadeGradientView];
+
     [super layoutSubviews];
 }
 
@@ -169,6 +209,14 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 - (BOOL)bottomTrimHidden {
     return self.bottomTrim.hidden;
+}
+
+- (void)setShowsEdgeFadeEffect:(BOOL)showEdgeFadeEffect {
+    self.edgeFadeGradientView.hidden = !showEdgeFadeEffect;
+}
+
+- (BOOL)showsEdgeFadeEffect {
+    return !self.edgeFadeGradientView.hidden;
 }
 
 #pragma mark - Public Methods
@@ -355,7 +403,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                 self.buttonInsets.right);
     }
 
-    return self.buttonInsets;
+    return UIEdgeInsetsMake(0, kHTHorizontalSelectionListHorizontalMargin, 0, kHTHorizontalSelectionListHorizontalMargin);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -446,9 +494,9 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:selectedIndexPath];
         CGRect cellRect = attributes.frame;
 
-        self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x,
+        self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x + self.buttonInsets.left,
                                                       self.contentView.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight,
-                                                      cellRect.size.width,
+                                                      cellRect.size.width - self.buttonInsets.left - self.buttonInsets.right,
                                                       kHTHorizontalSelectionListSelectionIndicatorHeight);
     }
 }

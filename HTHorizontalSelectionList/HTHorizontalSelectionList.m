@@ -391,27 +391,53 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         insetForSectionAtIndex:(NSInteger)section {
 
     if (self.centerAlignButtons) {
-
-        CGFloat aggregateItemWidths = 0;
         NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
 
+        CGFloat interitemSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
+
         for (NSInteger item = 0; item < numberOfItems; item++) {
-            aggregateItemWidths += [self collectionView:collectionView
-                                                 layout:collectionViewLayout
-                                 sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
+            interitemSpacing -= [self collectionView:collectionView
+                                              layout:collectionViewLayout
+                              sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
+
+            if (interitemSpacing < 0) {
+                break;
+            }
         }
 
-        aggregateItemWidths += (numberOfItems - 1) * self.buttonInsets.left;
+        if (interitemSpacing > 0 && numberOfItems > 0) {
+            CGFloat inset = (interitemSpacing / (2 * numberOfItems)) + kHTHorizontalSelectionListHorizontalMargin;
 
-        CGFloat leftInset = (collectionView.frame.size.width - aggregateItemWidths)/2;
-
-        return UIEdgeInsetsMake(self.buttonInsets.top,
-                                MAX(self.buttonInsets.left, leftInset),
-                                self.buttonInsets.bottom,
-                                self.buttonInsets.right);
+            return UIEdgeInsetsMake(0, inset, 0, inset);
+        }
     }
 
     return UIEdgeInsetsMake(0, kHTHorizontalSelectionListHorizontalMargin, 0, kHTHorizontalSelectionListHorizontalMargin);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+
+    if (self.centerAlignButtons) {
+        NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
+
+        CGFloat interitemSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
+
+        for (NSInteger item = 0; item < numberOfItems; item++) {
+            interitemSpacing -= [self collectionView:collectionView
+                                              layout:collectionViewLayout
+                              sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
+
+            if (interitemSpacing < 0) {
+                break;
+            }
+        }
+
+        if (interitemSpacing > 0 && numberOfItems > 0) {
+            return interitemSpacing / numberOfItems;
+        }
+    }
+
+    return self.buttonInsets.left + self.buttonInsets.right;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

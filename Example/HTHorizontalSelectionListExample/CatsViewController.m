@@ -35,6 +35,7 @@
     self.customViewSelectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleButtonBorder;
     self.customViewSelectionList.selectionIndicatorColor = [UIColor blueColor];
     self.customViewSelectionList.bottomTrimHidden = YES;
+    self.customViewSelectionList.showsEdgeFadeEffect = YES;
 
     self.customViewSelectionList.buttonInsets = UIEdgeInsetsMake(3, 10, 3, 10);
 

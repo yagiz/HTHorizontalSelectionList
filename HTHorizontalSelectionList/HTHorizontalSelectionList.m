@@ -151,6 +151,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
         _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
+        _selectionIdicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeHeavyBounce;
 
         _selectionIndicatorBar = [[UIView alloc] init];
         _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
@@ -290,7 +291,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     [self layoutIfNeeded];
     [UIView animateWithDuration:animated ? 0.4 : 0.0
                           delay:0
-         usingSpringWithDamping:0.5
+         usingSpringWithDamping:[self selectionIndicatorBarSpringDamping]
           initialSpringVelocity:0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
@@ -532,6 +533,20 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                       self.contentView.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight,
                                                       cellRect.size.width - self.buttonInsets.left - self.buttonInsets.right,
                                                       kHTHorizontalSelectionListSelectionIndicatorHeight);
+    }
+}
+
+- (CGFloat)selectionIndicatorBarSpringDamping {
+    switch (self.selectionIdicatorAnimationMode) {
+        case HTHorizontalSelectionIndicatorAnimationModeHeavyBounce:
+        default:
+            return 0.5;
+
+        case HTHorizontalSelectionIndicatorAnimationModeLightBounce:
+            return 0.8;
+
+        case HTHorizontalSelectionIndicatorAnimationModeNoBounce:
+            return 1.0;
     }
 }
 

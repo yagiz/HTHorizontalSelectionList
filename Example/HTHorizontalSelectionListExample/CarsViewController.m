@@ -30,6 +30,8 @@
     self.textSelectionList.delegate = self;
     self.textSelectionList.dataSource = self;
     
+    self.textSelectionList.selectionIdicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeLightBounce;
+
     self.textSelectionList.selectionIndicatorColor = [UIColor redColor];
     [self.textSelectionList setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [self.textSelectionList setTitleFont:[UIFont systemFontOfSize:13] forState:UIControlStateNormal];

@@ -17,6 +17,12 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
     HTHorizontalSelectionIndicatorStyleNone
 };
 
+typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
+    HTHorizontalSelectionIndicatorAnimationModeHeavyBounce,     // Default
+    HTHorizontalSelectionIndicatorAnimationModeLightBounce,
+    HTHorizontalSelectionIndicatorAnimationModeNoBounce
+};
+
 @interface HTHorizontalSelectionList : UIView
 
 @property (nonatomic) NSInteger selectedButtonIndex;        // returns selected button index. -1 if nothing selected
@@ -33,6 +39,8 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
                                                             // the selection list does not fill the space horizontally.
 
 @property (nonatomic) BOOL showsEdgeFadeEffect;             // Default is NO.  If set to YES, the buttons will fade away near the edges of the list.
+
+@property (nonatomic) HTHorizontalSelectionIndicatorAnimationMode selectionIdicatorAnimationMode;
 
 @property (nonatomic) UIEdgeInsets buttonInsets;
 

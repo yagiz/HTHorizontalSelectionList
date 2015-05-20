@@ -72,12 +72,17 @@ The horizontal selection list uses a data-source/delegate model (similar to UITa
 
 The HTHorizontalSelectionList has a number of configurable properties.
 
-To adjust the selected color of the buttons use the following method:
+To adjust the font and color of the buttons use the following methods:
 ```objc
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;
+- (void)setTitleFont:(UIFont *)font forState:(UIControlState)state;
 ```
 
-Additionally, you can set the selection indicator color with these proprties:
+Default (unselected) state is configured with UIControlStateNormal.
+The selection list can be configured for three states: UIControlStateNormal, UIControlStateHightlighted and UIControlStateSelected.
+If no explicit colors or fonts are specified for the selected or highlighted states, the control will fallback on the normal style.
+
+The appearance of the selection indicator can be configured with the following properties:
 ```objc
 @property (nonatomic, strong) UIColor *selectionIndicatorColor;
 
@@ -93,12 +98,17 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
 };
 ```
 
+The selection indicator bounce effect can be adjusted with this property:
+```objc
+@property (nonatomic) HTHorizontalSelectionIndicatorAnimationMode selectionIdicatorAnimationMode;
+```
+
 You can adjust the content insets of each button with:
 ```objc
 @property (nonatomic) UIEdgeInsets buttonInsets;
 ```
 
-Setting `bottomTrimColor` changes the appearance of the thin line below the entire view:
+Setting `bottomTrimColor` changes the appearance of the thin bottom border:
 ```objc
 @property (nonatomic, strong) UIColor *bottomTrimColor;
 @property (nonatomic) BOOL bottomTrimHidden;

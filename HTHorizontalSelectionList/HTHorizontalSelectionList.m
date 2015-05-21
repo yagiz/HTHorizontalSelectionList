@@ -42,7 +42,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        flowLayout.itemSize = CGSizeMake(100, 50);
+        flowLayout.minimumInteritemSpacing = 0;
+        flowLayout.minimumLineSpacing = 0;
 
         _collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
@@ -263,7 +264,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
             }
 
             case HTHorizontalSelectionIndicatorStyleButtonBorder: {
-                cell.layer.borderColor = self.selectionIndicatorColor.CGColor;
+                if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
+                    ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.borderColor = self.selectionIndicatorColor.CGColor;
+                } else {
+                    cell.layer.borderColor = self.selectionIndicatorColor.CGColor;
+                }
                 break;
             }
 
@@ -328,7 +333,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:ViewCellIdentifier
                                                          forIndexPath:indexPath];
 
-        [((HTHorizontalSelectionListCustomViewCell *)cell) setCustomView:[self.dataSource selectionList:self viewForItemWithIndex:indexPath.item]];
+        [((HTHorizontalSelectionListCustomViewCell *)cell) setCustomView:[self.dataSource selectionList:self viewForItemWithIndex:indexPath.item]
+                                                                  insets:self.buttonInsets];
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:LabelCellIdentifier
                                                          forIndexPath:indexPath];
@@ -347,10 +353,17 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     }
 
     if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
-        cell.layer.borderWidth = 1.0;
-        cell.layer.cornerRadius = 3.0;
-        cell.layer.borderColor = [UIColor clearColor].CGColor;
-        cell.layer.masksToBounds = YES;
+        if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
+            ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.borderWidth = 1.0;
+            ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.cornerRadius = 3.0;
+            ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.borderColor = [UIColor clearColor].CGColor;
+            ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.masksToBounds = YES;
+        } else {
+            cell.layer.borderWidth = 1.0;
+            cell.layer.cornerRadius = 3.0;
+            cell.layer.borderColor = [UIColor clearColor].CGColor;
+            cell.layer.masksToBounds = YES;
+        }
     }
 
     if (indexPath.item == self.selectedButtonIndex) {
@@ -368,26 +381,35 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
+    CGFloat verticalPadding = self.buttonInsets.top + self.buttonInsets.bottom;
+    CGFloat horizontalPadding = self.buttonInsets.left + self.buttonInsets.right;
+
     if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
         UIView *view = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.item];
 
-        CGFloat maxHeight = self.frame.size.height - self.buttonInsets.top - self.buttonInsets.bottom;
-        CGFloat height = MIN(maxHeight, view.frame.size.height);
+        CGFloat buttonHeight = view.frame.size.height;
+        CGFloat buttonWidth = view.frame.size.width;
 
-        if (self.frame.size.height) {
-            CGFloat scaleFactor = height / view.frame.size.height;
+        CGFloat itemHeight = MIN(self.frame.size.height, buttonHeight + verticalPadding);
 
-            CGFloat width = view.frame.size.width * scaleFactor;
+        if (buttonHeight) {
+            CGFloat scaleFactor = (itemHeight - verticalPadding) / buttonHeight;
 
-            return CGSizeMake(width, height);
+            CGFloat itemWidth = (buttonWidth * scaleFactor) + horizontalPadding;
+
+            return CGSizeMake(itemWidth, itemHeight);
         } else {
-            return view.frame.size;
+            return CGSizeMake(buttonWidth, buttonHeight);
         }
-
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
         CGSize titleSize = [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.titleFontsByState[@(UIControlStateNormal)]];
-        return CGSizeMake(titleSize.width, MIN(titleSize.height, collectionView.frame.size.height - self.buttonInsets.top - self.buttonInsets.bottom));
+
+        CGFloat width = titleSize.width + horizontalPadding;
+        CGFloat height = MIN(titleSize.height + verticalPadding,
+                             collectionView.frame.size.height - self.buttonInsets.top - self.buttonInsets.bottom);
+
+        return CGSizeMake(width, height);
     }
 
     return CGSizeZero;
@@ -444,7 +466,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         }
     }
 
-    return self.buttonInsets.left + self.buttonInsets.right;
+    return 0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -516,8 +538,13 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         }
 
         case HTHorizontalSelectionIndicatorStyleButtonBorder: {
-            selectedCell.layer.borderColor = self.selectionIndicatorColor.CGColor;
-            oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+            if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
+                ((HTHorizontalSelectionListCustomViewCell *)selectedCell).customView.layer.borderColor = self.selectionIndicatorColor.CGColor;
+                ((HTHorizontalSelectionListCustomViewCell *)oldSelectedCell).customView.layer.borderColor = [UIColor clearColor].CGColor;
+            } else {
+                selectedCell.layer.borderColor = self.selectionIndicatorColor.CGColor;
+                oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+            }
             break;
         }
 

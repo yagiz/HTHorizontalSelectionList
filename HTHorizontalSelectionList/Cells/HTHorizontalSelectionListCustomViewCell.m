@@ -32,20 +32,23 @@
 
 #pragma mark - Custom Getters and Setters
 
-- (void)setCustomView:(UIView *)customView {
+- (void)setCustomView:(UIView *)customView insets:(UIEdgeInsets)insets {
+    _customView = customView;
     customView.translatesAutoresizingMaskIntoConstraints = NO;
 
     if (customView) {
         [self.contentView addSubview:customView];
 
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|"
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-leftInset-[customView]-rightInset-|"
                                                                                  options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                 metrics:nil
+                                                                                 metrics:@{@"leftInset" : @(insets.left),
+                                                                                           @"rightInset" : @(insets.right)}
                                                                                    views:NSDictionaryOfVariableBindings(customView)]];
 
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[customView]|"
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-topInset-[customView]-bottomInset-|"
                                                                                  options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                 metrics:nil
+                                                                                 metrics:@{@"topInset" : @(insets.top),
+                                                                                           @"bottomInset" : @(insets.bottom)}
                                                                                    views:NSDictionaryOfVariableBindings(customView)]];
     }
 }

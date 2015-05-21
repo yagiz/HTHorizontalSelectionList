@@ -33,11 +33,11 @@
     self.customViewSelectionList.dataSource = self;
 
     self.customViewSelectionList.selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleButtonBorder;
-    self.customViewSelectionList.selectionIndicatorColor = [UIColor blueColor];
+    self.customViewSelectionList.selectionIndicatorColor = [UIColor grayColor];
     self.customViewSelectionList.bottomTrimHidden = YES;
     self.customViewSelectionList.showsEdgeFadeEffect = YES;
 
-    self.customViewSelectionList.buttonInsets = UIEdgeInsetsMake(3, 10, 3, 10);
+    self.customViewSelectionList.buttonInsets = UIEdgeInsetsMake(15, 15, 15, 15);
 
     self.spaceCats = @[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat1.jpeg"]],
                        [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat2.jpeg"]],

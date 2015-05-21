@@ -11,6 +11,6 @@
 
 @interface HTHorizontalSelectionListCustomViewCell : UICollectionViewCell <HTHorizontalSelectionListCell>
 
-- (void)setCustomView:(UIView *)customView;
+- (void)setCustomView:(UIView *)customView insets:(UIEdgeInsets)insets;
 
 @end

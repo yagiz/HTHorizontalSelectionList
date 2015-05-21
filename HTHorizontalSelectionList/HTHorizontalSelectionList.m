@@ -328,7 +328,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:ViewCellIdentifier
                                                          forIndexPath:indexPath];
 
-        [((HTHorizontalSelectionListCustomViewCell *)cell) setCustomView:[self.dataSource selectionList:self viewForItemWithIndex:indexPath.item]];
+        [((HTHorizontalSelectionListCustomViewCell *)cell) setCustomView:[self.dataSource selectionList:self viewForItemWithIndex:indexPath.item]
+                                                                  insets:self.buttonInsets];
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:LabelCellIdentifier
                                                          forIndexPath:indexPath];
@@ -371,19 +372,23 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
         UIView *view = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.item];
 
-        CGFloat maxHeight = self.frame.size.height - self.buttonInsets.top - self.buttonInsets.bottom;
-        CGFloat height = MIN(maxHeight, view.frame.size.height);
+        CGFloat verticalPadding = self.buttonInsets.top + self.buttonInsets.bottom;
+        CGFloat horizontalPadding = self.buttonInsets.left + self.buttonInsets.right;
 
-        if (self.frame.size.height) {
-            CGFloat scaleFactor = height / view.frame.size.height;
+        CGFloat buttonHeight = view.frame.size.height;
+        CGFloat buttonWidth = view.frame.size.width;
 
-            CGFloat width = view.frame.size.width * scaleFactor;
+        CGFloat itemHeight = MIN(self.frame.size.height, buttonHeight + verticalPadding);
 
-            return CGSizeMake(width, height);
+        if (buttonHeight) {
+            CGFloat scaleFactor = (itemHeight - verticalPadding) / buttonHeight;
+
+            CGFloat itemWidth = (buttonWidth * scaleFactor) + horizontalPadding;
+
+            return CGSizeMake(itemWidth, itemHeight);
         } else {
-            return view.frame.size;
+            return CGSizeMake(buttonWidth, buttonHeight);
         }
-
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
         CGSize titleSize = [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.titleFontsByState[@(UIControlStateNormal)]];

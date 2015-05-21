@@ -219,6 +219,12 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     return !self.edgeFadeGradientView.hidden;
 }
 
+- (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
+    [super setUserInteractionEnabled:userInteractionEnabled];
+
+    self.collectionView.allowsSelection = userInteractionEnabled;
+}
+
 #pragma mark - Public Methods
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {

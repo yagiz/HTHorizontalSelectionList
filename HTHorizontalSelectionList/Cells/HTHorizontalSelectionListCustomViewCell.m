@@ -33,6 +33,7 @@
 #pragma mark - Custom Getters and Setters
 
 - (void)setCustomView:(UIView *)customView insets:(UIEdgeInsets)insets {
+    _customView = customView;
     customView.translatesAutoresizingMaskIntoConstraints = NO;
 
     if (customView) {

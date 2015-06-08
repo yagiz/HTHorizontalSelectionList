@@ -528,7 +528,10 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 - (void)setupSelectedCell:(UICollectionViewCell *)selectedCell oldSelectedCell:(UICollectionViewCell *)oldSelectedCell {
     ((id<HTHorizontalSelectionListCell>)selectedCell).state = UIControlStateSelected;
-    ((id<HTHorizontalSelectionListCell>)oldSelectedCell).state = UIControlStateNormal;
+
+    if (oldSelectedCell != selectedCell) {
+        ((id<HTHorizontalSelectionListCell>)oldSelectedCell).state = UIControlStateNormal;
+    }
 
     switch (self.selectionIndicatorStyle) {
         case HTHorizontalSelectionIndicatorStyleBottomBar: {
@@ -540,17 +543,26 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         case HTHorizontalSelectionIndicatorStyleButtonBorder: {
             if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
                 ((HTHorizontalSelectionListCustomViewCell *)selectedCell).customView.layer.borderColor = self.selectionIndicatorColor.CGColor;
-                ((HTHorizontalSelectionListCustomViewCell *)oldSelectedCell).customView.layer.borderColor = [UIColor clearColor].CGColor;
+
+                if (oldSelectedCell != selectedCell) {
+                    ((HTHorizontalSelectionListCustomViewCell *)oldSelectedCell).customView.layer.borderColor = [UIColor clearColor].CGColor;
+                }
             } else {
                 selectedCell.layer.borderColor = self.selectionIndicatorColor.CGColor;
-                oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+
+                if (oldSelectedCell != selectedCell) {
+                    oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+                }
             }
             break;
         }
 
         case HTHorizontalSelectionIndicatorStyleNone: {
             selectedCell.layer.borderColor = [UIColor clearColor].CGColor;
-            oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+
+            if (oldSelectedCell != selectedCell) {
+                oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+            }
         }
     }
 }

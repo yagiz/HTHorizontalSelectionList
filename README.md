@@ -12,7 +12,7 @@ A simple side-scrolling list of items (perhaps filters for a UITableView below).
 
 Add HTHorizontalSelectionList pod into your Podfile
 ```
-pod 'HTHorizontalSelectionList', '~> 0.5.3'
+pod 'HTHorizontalSelectionList', '~> 0.5.4'
 ```
 
 ##Usage
@@ -97,6 +97,19 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorStyle) {
     HTHorizontalSelectionIndicatorStyleNone
 };
 ```
+
+To configure the height of the bottom bar use:
+```objc
+@property (nonatomic) CGFloat selectionIndicatorHeight;
+```
+
+Default height is 3 points.  To adjust how wide this bottom bar extends beyond the label use:
+```objc
+@property (nonatomic) CGFloat selectionIndicatorHorizontalPadding;
+
+```
+The default horizontal padding for the bottom bar is 7.5 points.  These properties only take effect if selection style is HTHorizontalSelectionIndicatorStyleBottomBar.
+
 
 The selection indicator bounce effect can be adjusted with this property:
 ```objc

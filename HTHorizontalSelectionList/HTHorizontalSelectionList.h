@@ -32,8 +32,8 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 @property (nonatomic, weak) id<HTHorizontalSelectionListDataSource> dataSource;
 @property (nonatomic, weak) id<HTHorizontalSelectionListDelegate> delegate;
 
-@property (nonatomic) NSInteger selectionIndicatorHeight;
-@property (nonatomic) NSInteger selectionIndicatorHorizontalPadding;
+@property (nonatomic) CGFloat selectionIndicatorHeight;
+@property (nonatomic) CGFloat selectionIndicatorHorizontalPadding;
 @property (nonatomic, strong) UIColor *selectionIndicatorColor;
 @property (nonatomic, strong) UIColor *bottomTrimColor;
 @property (nonatomic) BOOL bottomTrimHidden;                // Default is NO

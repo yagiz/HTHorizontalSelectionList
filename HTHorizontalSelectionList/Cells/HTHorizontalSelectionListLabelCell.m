@@ -17,8 +17,6 @@
 
 @end
 
-#define kHTHorizontalSelectionListLabelCellInternalPadding 15
-
 @implementation HTHorizontalSelectionListLabelCell
 
 @synthesize state = _state;
@@ -72,8 +70,8 @@
                                         attributes:@{NSFontAttributeName : font}
                                            context:nil];
 
-    return CGSizeMake(titleRect.size.width + kHTHorizontalSelectionListLabelCellInternalPadding,
-                      titleRect.size.height + kHTHorizontalSelectionListLabelCellInternalPadding);
+    return CGSizeMake(titleRect.size.width,
+                      titleRect.size.height);
 }
 
 #pragma mark - Custom Getters and Setters

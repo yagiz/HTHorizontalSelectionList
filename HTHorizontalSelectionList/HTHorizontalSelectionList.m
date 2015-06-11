@@ -25,10 +25,12 @@
 
 @end
 
-#define kHTHorizontalSelectionListHorizontalMargin 10
+const CGFloat kHTHorizontalSelectionListHorizontalMargin = 10;
 
-#define kHTHorizontalSelectionListSelectionIndicatorHeight 3
-#define kHTHorizontalSelectionListTrimHeight 0.5
+const CGFloat kHTHorizontalSelectionListTrimHeight = 0.5;
+
+const CGFloat kHTHorizontalSelectionListLabelCellInternalPadding = 15;
+
 
 static NSString *LabelCellIdentifier = @"LabelCell";
 static NSString *ViewCellIdentifier = @"ViewCell";
@@ -151,6 +153,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                                        views:NSDictionaryOfVariableBindings(_bottomTrim)]];
 
         _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+        _selectionIndicatorHeight = 3;
+        _selectionIndicatorHorizontalPadding = kHTHorizontalSelectionListLabelCellInternalPadding/2;
         _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
         _selectionIdicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeHeavyBounce;
 
@@ -382,7 +386,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     CGFloat verticalPadding = self.buttonInsets.top + self.buttonInsets.bottom;
-    CGFloat horizontalPadding = self.buttonInsets.left + self.buttonInsets.right;
+    CGFloat horizontalPadding = self.buttonInsets.left + self.buttonInsets.right + kHTHorizontalSelectionListLabelCellInternalPadding;
 
     if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
         UIView *view = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.item];
@@ -574,10 +578,10 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:selectedIndexPath];
         CGRect cellRect = attributes.frame;
 
-        self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x + self.buttonInsets.left,
-                                                      self.contentView.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight,
-                                                      cellRect.size.width - self.buttonInsets.left - self.buttonInsets.right,
-                                                      kHTHorizontalSelectionListSelectionIndicatorHeight);
+        self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x + self.buttonInsets.left + kHTHorizontalSelectionListLabelCellInternalPadding/2 - self.selectionIndicatorHorizontalPadding,
+                                                      self.contentView.frame.size.height - self.selectionIndicatorHeight,
+                                                      cellRect.size.width - self.buttonInsets.left - self.buttonInsets.right - kHTHorizontalSelectionListLabelCellInternalPadding + 2*self.selectionIndicatorHorizontalPadding,
+                                                      self.selectionIndicatorHeight);
     }
 }
 

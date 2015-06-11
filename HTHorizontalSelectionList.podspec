@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "HTHorizontalSelectionList"
-  s.version      = "0.5.2"
+  s.version      = "0.5.3"
   s.summary      = "A simple, horizontally-scrolling list of buttons."
 
   s.description  = <<-DESC
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/hightower/HTHorizontalSelectionList"
   s.license      = { :type => "MIT", :file => "LICENSE" }
 
-  s.author             = { "Erik Ackermann" => "erik@gethightower.com" }
+  s.author             = { "Erik Ackermann" => "erik@gethightower.com", "Dustin Burge" => "dustin@gethightower.com" }
   s.social_media_url   = "http://twitter.com/erikwithfriends"
 
   s.platform     = :ios, "7.0"

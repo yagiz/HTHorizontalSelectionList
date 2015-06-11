@@ -388,7 +388,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     CGFloat verticalPadding = self.buttonInsets.top + self.buttonInsets.bottom;
-    CGFloat horizontalPadding = self.buttonInsets.left + self.buttonInsets.right + kHTHorizontalSelectionListLabelCellInternalPadding;
+    CGFloat horizontalPadding = self.buttonInsets.left + self.buttonInsets.right;
 
     if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
         UIView *view = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.item];
@@ -411,7 +411,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
         CGSize titleSize = [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.titleFontsByState[@(UIControlStateNormal)]];
 
-        CGFloat width = titleSize.width + horizontalPadding;
+        CGFloat width = titleSize.width + horizontalPadding + kHTHorizontalSelectionListLabelCellInternalPadding;
         CGFloat height = MIN(titleSize.height + verticalPadding,
                              collectionView.frame.size.height - self.buttonInsets.top - self.buttonInsets.bottom);
 

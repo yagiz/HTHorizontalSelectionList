@@ -28,7 +28,7 @@
     self.title = @"Cats";
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    self.customViewSelectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 80)];
+    self.customViewSelectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
     self.customViewSelectionList.delegate = self;
     self.customViewSelectionList.dataSource = self;
 
@@ -37,7 +37,7 @@
     self.customViewSelectionList.bottomTrimHidden = YES;
     self.customViewSelectionList.showsEdgeFadeEffect = YES;
 
-    self.customViewSelectionList.buttonInsets = UIEdgeInsetsMake(10, 15, 10, 15);
+    self.customViewSelectionList.buttonInsets = UIEdgeInsetsMake(15, 10, 15, 10);
 
     self.spaceCats = @[[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat1.jpeg"]],
                        [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"spacecat2.jpeg"]],

@@ -26,9 +26,7 @@
 @end
 
 const CGFloat kHTHorizontalSelectionListHorizontalMargin = 10;
-
 const CGFloat kHTHorizontalSelectionListTrimHeight = 0.5;
-
 const CGFloat kHTHorizontalSelectionListLabelCellInternalPadding = 15;
 
 
@@ -47,7 +45,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.minimumLineSpacing = 0;
 
-        _collectionView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.backgroundColor = [UIColor clearColor];
@@ -390,30 +388,32 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     CGFloat verticalPadding = self.buttonInsets.top + self.buttonInsets.bottom;
     CGFloat horizontalPadding = self.buttonInsets.left + self.buttonInsets.right;
 
+    CGFloat collectionViewHeight = collectionView.frame.size.height;
+
     if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
         UIView *view = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.item];
 
         CGFloat buttonHeight = view.frame.size.height;
         CGFloat buttonWidth = view.frame.size.width;
 
-        CGFloat itemHeight = MIN(self.frame.size.height, buttonHeight + verticalPadding);
-
         if (buttonHeight) {
-            CGFloat scaleFactor = (itemHeight - verticalPadding) / buttonHeight;
+            CGFloat itemHeight = collectionViewHeight - verticalPadding;
+
+            CGFloat scaleFactor = itemHeight / buttonHeight;
 
             CGFloat itemWidth = (buttonWidth * scaleFactor) + horizontalPadding;
 
-            return CGSizeMake(itemWidth, itemHeight);
+            return CGSizeMake(itemWidth, collectionViewHeight);
         } else {
-            return CGSizeMake(buttonWidth, buttonHeight);
+            return CGSizeMake(buttonWidth, collectionViewHeight);
         }
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
         CGSize titleSize = [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.titleFontsByState[@(UIControlStateNormal)]];
 
         CGFloat width = titleSize.width + horizontalPadding + kHTHorizontalSelectionListLabelCellInternalPadding;
-        CGFloat height = MIN(titleSize.height + verticalPadding,
-                             collectionView.frame.size.height - self.buttonInsets.top - self.buttonInsets.bottom);
+        CGFloat height = MAX(MIN(titleSize.height + verticalPadding,
+                                 collectionViewHeight - self.buttonInsets.top - self.buttonInsets.bottom), collectionViewHeight / 1.9);
 
         return CGSizeMake(width, height);
     }

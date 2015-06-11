@@ -333,6 +333,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell;
 
+    BOOL isSelected = (indexPath.item == self.selectedButtonIndex);
+
     if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:ViewCellIdentifier
                                                          forIndexPath:indexPath];
@@ -360,17 +362,17 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
             ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.borderWidth = 1.0;
             ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.cornerRadius = 3.0;
-            ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.borderColor = [UIColor clearColor].CGColor;
+            ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.borderColor = isSelected ? self.selectionIndicatorColor.CGColor : [UIColor clearColor].CGColor;
             ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.masksToBounds = YES;
         } else {
             cell.layer.borderWidth = 1.0;
             cell.layer.cornerRadius = 3.0;
-            cell.layer.borderColor = [UIColor clearColor].CGColor;
+            cell.layer.borderColor = isSelected ? self.selectionIndicatorColor.CGColor : [UIColor clearColor].CGColor;
             cell.layer.masksToBounds = YES;
         }
     }
 
-    if (indexPath.item == self.selectedButtonIndex) {
+    if (isSelected) {
         ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateSelected;
     } else {
         ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateNormal;

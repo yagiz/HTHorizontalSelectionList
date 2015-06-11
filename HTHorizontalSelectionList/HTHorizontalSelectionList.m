@@ -25,11 +25,12 @@
 
 @end
 
-#define kHTHorizontalSelectionListHorizontalMargin 10
+const CGFloat kHTHorizontalSelectionListHorizontalMargin = 10;
 
-#define kHTHorizontalSelectionListLabelCellInternalPadding 15
+const CGFloat kHTHorizontalSelectionListTrimHeight = 0.5;
 
-#define kHTHorizontalSelectionListTrimHeight 0.5
+const CGFloat kHTHorizontalSelectionListLabelCellInternalPadding = 15;
+
 
 static NSString *LabelCellIdentifier = @"LabelCell";
 static NSString *ViewCellIdentifier = @"ViewCell";

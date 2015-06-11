@@ -27,7 +27,8 @@
 
 #define kHTHorizontalSelectionListHorizontalMargin 10
 
-#define kHTHorizontalSelectionListSelectionIndicatorHeight 3
+#define kHTHorizontalSelectionListHorizontalPaddingOffset 7
+
 #define kHTHorizontalSelectionListTrimHeight 0.5
 
 static NSString *LabelCellIdentifier = @"LabelCell";
@@ -151,6 +152,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                                        views:NSDictionaryOfVariableBindings(_bottomTrim)]];
 
         _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+        _selectionIndicatorHeight = 3;
+        _selectionIndicatorHorizontalPadding = kHTHorizontalSelectionListHorizontalPaddingOffset;
         _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
         _selectionIdicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeHeavyBounce;
 
@@ -574,10 +577,10 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:selectedIndexPath];
         CGRect cellRect = attributes.frame;
 
-        self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x + self.buttonInsets.left,
-                                                      self.contentView.frame.size.height - kHTHorizontalSelectionListSelectionIndicatorHeight,
-                                                      cellRect.size.width - self.buttonInsets.left - self.buttonInsets.right,
-                                                      kHTHorizontalSelectionListSelectionIndicatorHeight);
+        self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x + self.buttonInsets.left + kHTHorizontalSelectionListHorizontalPaddingOffset - self.selectionIndicatorHorizontalPadding,
+                                                      self.contentView.frame.size.height - self.selectionIndicatorHeight,
+                                                      cellRect.size.width - self.buttonInsets.left - self.buttonInsets.right - 2*kHTHorizontalSelectionListHorizontalPaddingOffset + 2*self.selectionIndicatorHorizontalPadding,
+                                                      self.selectionIndicatorHeight);
     }
 }
 

@@ -31,6 +31,7 @@
     self.textSelectionList.dataSource = self;
     
     self.textSelectionList.selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeLightBounce;
+    self.textSelectionList.showsEdgeFadeEffect = YES;
 
     self.textSelectionList.selectionIndicatorColor = [UIColor redColor];
     [self.textSelectionList setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];

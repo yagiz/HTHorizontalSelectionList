@@ -68,27 +68,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         [_collectionView registerClass:[HTHorizontalSelectionListLabelCell class] forCellWithReuseIdentifier:LabelCellIdentifier];
         [_collectionView registerClass:[HTHorizontalSelectionListCustomViewCell class] forCellWithReuseIdentifier:ViewCellIdentifier];
 
-        CAGradientLayer *maskLayer = [CAGradientLayer layer];
-
-        CGColorRef outerColor = [[UIColor colorWithWhite:0.0 alpha:1.0] CGColor];
-        CGColorRef innerColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
-
-        maskLayer.colors = @[(__bridge id)outerColor,
-                             (__bridge id)innerColor,
-                             (__bridge id)innerColor,
-                             (__bridge id)outerColor];
-
-        maskLayer.locations = @[@0.0, @0.04, @0.96, @1.0];
-
-        [maskLayer setStartPoint:CGPointMake(0, 0.5)];
-        [maskLayer setEndPoint:CGPointMake(1, 0.5)];
-
-        maskLayer.bounds = _collectionView.bounds;
-        maskLayer.anchorPoint = CGPointZero;
-
         _edgeFadeGradientView = [[UIView alloc] init];
         _edgeFadeGradientView.backgroundColor = self.backgroundColor;
-        _edgeFadeGradientView.layer.mask = maskLayer;
         _edgeFadeGradientView.hidden = YES;
         _edgeFadeGradientView.userInteractionEnabled = NO;
         _edgeFadeGradientView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -171,7 +152,29 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (void)layoutSubviews {
     [self reloadData];
 
-    [self bringSubviewToFront:self.edgeFadeGradientView];
+    if (self.showsEdgeFadeEffect) {
+        CAGradientLayer *maskLayer = [CAGradientLayer layer];
+
+        CGColorRef outerColor = [[UIColor colorWithWhite:0.0 alpha:1.0] CGColor];
+        CGColorRef innerColor = [[UIColor colorWithWhite:0.0 alpha:0.0] CGColor];
+
+        maskLayer.colors = @[(__bridge id)outerColor,
+                             (__bridge id)innerColor,
+                             (__bridge id)innerColor,
+                             (__bridge id)outerColor];
+
+        maskLayer.locations = @[@0.0, @0.04, @0.96, @1.0];
+
+        [maskLayer setStartPoint:CGPointMake(0, 0.5)];
+        [maskLayer setEndPoint:CGPointMake(1, 0.5)];
+
+        maskLayer.bounds = _collectionView.bounds;
+        maskLayer.anchorPoint = CGPointZero;
+
+        self.edgeFadeGradientView.layer.mask = maskLayer;
+
+        [self bringSubviewToFront:self.edgeFadeGradientView];
+    }
 
     [super layoutSubviews];
 }

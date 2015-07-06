@@ -154,7 +154,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         _selectionIndicatorHeight = 3;
         _selectionIndicatorHorizontalPadding = kHTHorizontalSelectionListLabelCellInternalPadding/2;
         _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
-        _selectionIdicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeHeavyBounce;
+        _selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeHeavyBounce;
 
         _selectionIndicatorBar = [[UIView alloc] init];
         _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
@@ -588,7 +588,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 }
 
 - (CGFloat)selectionIndicatorBarSpringDamping {
-    switch (self.selectionIdicatorAnimationMode) {
+    switch (self.selectionIndicatorAnimationMode) {
         case HTHorizontalSelectionIndicatorAnimationModeHeavyBounce:
         default:
             return 0.5;

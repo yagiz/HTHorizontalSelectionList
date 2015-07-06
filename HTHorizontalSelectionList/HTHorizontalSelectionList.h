@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 
 @property (nonatomic) BOOL showsEdgeFadeEffect;             // Default is NO.  If set to YES, the buttons will fade away near the edges of the list.
 
-@property (nonatomic) HTHorizontalSelectionIndicatorAnimationMode selectionIdicatorAnimationMode;
+@property (nonatomic) HTHorizontalSelectionIndicatorAnimationMode selectionIndicatorAnimationMode;
 
 @property (nonatomic) UIEdgeInsets buttonInsets;
 

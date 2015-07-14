@@ -256,7 +256,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     }
 
     if (totalButtons > 0 && self.selectedButtonIndex >= 0 && self.selectedButtonIndex < totalButtons) {
-        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0]];
+        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0];
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:selectedIndexPath];
 
         ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateSelected;
 
@@ -264,7 +265,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
             case HTHorizontalSelectionIndicatorStyleBottomBar: {
                 [self.contentView addSubview:self.selectionIndicatorBar];
                 [self.contentView layoutIfNeeded];
-                [self alignSelectionIndicatorWithCell:cell];
+                [self alignSelectionIndicatorWithCellWithIndexPath:selectedIndexPath];
                 break;
             }
 
@@ -298,11 +299,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         _selectedButtonIndex = -1;
     }
 
-    UICollectionViewCell *oldSelectedCell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:oldSelectedIndex
-                                                                                                            inSection:0]];
+    NSIndexPath *oldSelectedIndexPath = [NSIndexPath indexPathForItem:oldSelectedIndex inSection:0];
+    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0];
 
-    UICollectionViewCell *selectedCell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectedButtonIndex
-                                                                                                         inSection:0]];
+    UICollectionViewLayoutAttributes *selectedCellAttributes = [self.collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:selectedIndexPath];
+    CGRect selectedCellFrame = selectedCellAttributes.frame;
 
     [self layoutIfNeeded];
     [UIView animateWithDuration:animated ? 0.4 : 0.0
@@ -311,14 +312,51 @@ static NSString *ViewCellIdentifier = @"ViewCell";
           initialSpringVelocity:0
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         [self setupSelectedCell:selectedCell oldSelectedCell:oldSelectedCell];
+                         UICollectionViewCell *oldSelectedCell = [self.collectionView cellForItemAtIndexPath:oldSelectedIndexPath];
+                         UICollectionViewCell *selectedCell = [self.collectionView cellForItemAtIndexPath:selectedIndexPath];
+
+                         ((id<HTHorizontalSelectionListCell>)selectedCell).state = UIControlStateSelected;
+
+                         if (oldSelectedCell != selectedCell) {
+                             ((id<HTHorizontalSelectionListCell>)oldSelectedCell).state = UIControlStateNormal;
+                         }
+
+                         switch (self.selectionIndicatorStyle) {
+                             case HTHorizontalSelectionIndicatorStyleBottomBar: {
+                                 [self alignSelectionIndicatorWithCellWithIndexPath:selectedIndexPath];
+                                 break;
+                             }
+
+                             case HTHorizontalSelectionIndicatorStyleButtonBorder: {
+                                 if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
+                                     ((HTHorizontalSelectionListCustomViewCell *)selectedCell).customView.layer.borderColor = self.selectionIndicatorColor.CGColor;
+
+                                     if (oldSelectedCell != selectedCell) {
+                                         ((HTHorizontalSelectionListCustomViewCell *)oldSelectedCell).customView.layer.borderColor = [UIColor clearColor].CGColor;
+                                     }
+                                 } else {
+                                     selectedCell.layer.borderColor = self.selectionIndicatorColor.CGColor;
+
+                                     if (oldSelectedCell != selectedCell) {
+                                         oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+                                     }
+                                 }
+                                 break;
+                             }
+
+                             case HTHorizontalSelectionIndicatorStyleNone: {
+                                 selectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+
+                                 if (oldSelectedCell != selectedCell) {
+                                     oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
+                                 }
+                             }
+                         }
                      }
                      completion:nil];
 
-    if (selectedCell) {
-        [self.collectionView scrollRectToVisible:CGRectInset(selectedCell.frame, -kHTHorizontalSelectionListHorizontalMargin, 0)
-                                        animated:animated];
-    }
+    [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
+                                    animated:animated];
 }
 
 #pragma mark - UICollectionViewDataSource Protocol Methods
@@ -535,52 +573,9 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 #pragma mark - Private Methods
 
-- (void)setupSelectedCell:(UICollectionViewCell *)selectedCell oldSelectedCell:(UICollectionViewCell *)oldSelectedCell {
-    ((id<HTHorizontalSelectionListCell>)selectedCell).state = UIControlStateSelected;
-
-    if (oldSelectedCell != selectedCell) {
-        ((id<HTHorizontalSelectionListCell>)oldSelectedCell).state = UIControlStateNormal;
-    }
-
-    switch (self.selectionIndicatorStyle) {
-        case HTHorizontalSelectionIndicatorStyleBottomBar: {
-            [self layoutIfNeeded];
-            [self alignSelectionIndicatorWithCell:selectedCell];
-            break;
-        }
-
-        case HTHorizontalSelectionIndicatorStyleButtonBorder: {
-            if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
-                ((HTHorizontalSelectionListCustomViewCell *)selectedCell).customView.layer.borderColor = self.selectionIndicatorColor.CGColor;
-
-                if (oldSelectedCell != selectedCell) {
-                    ((HTHorizontalSelectionListCustomViewCell *)oldSelectedCell).customView.layer.borderColor = [UIColor clearColor].CGColor;
-                }
-            } else {
-                selectedCell.layer.borderColor = self.selectionIndicatorColor.CGColor;
-
-                if (oldSelectedCell != selectedCell) {
-                    oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
-                }
-            }
-            break;
-        }
-
-        case HTHorizontalSelectionIndicatorStyleNone: {
-            selectedCell.layer.borderColor = [UIColor clearColor].CGColor;
-
-            if (oldSelectedCell != selectedCell) {
-                oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
-            }
-        }
-    }
-}
-
-- (void)alignSelectionIndicatorWithCell:(UICollectionViewCell *)cell {
-    NSIndexPath *selectedIndexPath = [self.collectionView indexPathForCell:cell];
-
-    if (selectedIndexPath) {
-        UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:selectedIndexPath];
+- (void)alignSelectionIndicatorWithCellWithIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath) {
+        UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
         CGRect cellRect = attributes.frame;
 
         self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x + self.buttonInsets.left + kHTHorizontalSelectionListLabelCellInternalPadding/2 - self.selectionIndicatorHorizontalPadding,

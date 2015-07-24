@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 
 @interface HTHorizontalSelectionList : UIView
 
-/** 
+/**
     Returns selected button index. -1 if nothing selected to animate this change, use `-setSelectedButtonIndex:animated:`
     NOTE: this value will persist between calls to `-reloadData`
  */

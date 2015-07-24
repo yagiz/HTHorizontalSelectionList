@@ -485,8 +485,9 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                         layout:(UICollectionViewLayout *)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section {
     
+    NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
+    
     if (self.centerOnSelection) {
-        NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
         
         if (numberOfItems > 0) {
             CGFloat firstItemWidth = [self collectionView:collectionView
@@ -500,12 +501,9 @@ static NSString *ViewCellIdentifier = @"ViewCell";
             CGFloat halfWidth = CGRectGetWidth(collectionView.frame) / 2;
             
             return UIEdgeInsetsMake(0, halfWidth - (firstItemWidth / 2), 0, halfWidth - (lastItemWidth / 2));
-            
         }
         
     } else if (self.centerAlignButtons) {
-        NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
-        
         CGFloat interitemSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
         
         for (NSInteger item = 0; item < numberOfItems; item++) {
@@ -575,8 +573,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
         [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
     }
-    
-    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -632,7 +628,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
             [self correctSelection:scrollView];
         }
     }
-    
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -648,13 +643,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 }
 
 - (void)correctSelection:(UIScrollView *)scrollView {
-    
     CGPoint centerPoint = CGPointMake(self.collectionView.frame.size.width / 2 + scrollView.contentOffset.x, self.collectionView.frame.size.height /2 + scrollView.contentOffset.y);
     
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:centerPoint];
     
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-    
 }
 
 #pragma mark - NSKeyValueObserving

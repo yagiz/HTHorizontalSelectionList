@@ -38,115 +38,128 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        flowLayout.minimumInteritemSpacing = 0;
-        flowLayout.minimumLineSpacing = 0;
-
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
-        _collectionView.dataSource = self;
-        _collectionView.delegate = self;
-        _collectionView.backgroundColor = [UIColor clearColor];
-        _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.scrollsToTop = NO;
-        _collectionView.canCancelContentTouches = YES;
-        _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_collectionView];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_collectionView]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_collectionView)]];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_collectionView]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_collectionView)]];
-
-        [_collectionView registerClass:[HTHorizontalSelectionListLabelCell class] forCellWithReuseIdentifier:LabelCellIdentifier];
-        [_collectionView registerClass:[HTHorizontalSelectionListCustomViewCell class] forCellWithReuseIdentifier:ViewCellIdentifier];
-
-        _edgeFadeGradientView = [[UIView alloc] init];
-        _edgeFadeGradientView.backgroundColor = self.backgroundColor;
-        _edgeFadeGradientView.hidden = YES;
-        _edgeFadeGradientView.userInteractionEnabled = NO;
-        _edgeFadeGradientView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_edgeFadeGradientView];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_edgeFadeGradientView]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_edgeFadeGradientView]-trimHeight-|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:@{@"trimHeight" : @(kHTHorizontalSelectionListTrimHeight)}
-                                                                       views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
-
-        [_collectionView addObserver:self
-                          forKeyPath:@"contentSize"
-                             options:NSKeyValueObservingOptionNew
-                             context:NULL];
-
-        _contentView = [[UIScrollView alloc] init];
-        _contentView.userInteractionEnabled = NO;
-        _contentView.scrollsToTop = NO;
-        _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_contentView];
-
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
-                                                         attribute:NSLayoutAttributeTop
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeTop
-                                                        multiplier:1.0
-                                                          constant:0.0]];
-
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
-                                                         attribute:NSLayoutAttributeBottom
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeBottom
-                                                        multiplier:1.0
-                                                          constant:0.0]];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentView]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_contentView)]];
-        _bottomTrim = [[UIView alloc] init];
-        _bottomTrim.backgroundColor = [UIColor blackColor];
-        _bottomTrim.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_bottomTrim];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_bottomTrim]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_bottomTrim)]];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomTrim(height)]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
-                                                                       views:NSDictionaryOfVariableBindings(_bottomTrim)]];
-
-        _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        _selectionIndicatorHeight = 3;
-        _selectionIndicatorHorizontalPadding = kHTHorizontalSelectionListLabelCellInternalPadding/2;
-        _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
-        _selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeHeavyBounce;
-
-        _selectionIndicatorBar = [[UIView alloc] init];
-        _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
-        _selectionIndicatorBar.backgroundColor = [UIColor blackColor];
-
-        _titleColorsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIColor blackColor]}];
-        _titleFontsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:13]}];
-
-        _centerAlignButtons = NO;
+        [self commonInit];
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.backgroundColor = [UIColor whiteColor];
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    flowLayout.minimumInteritemSpacing = 0;
+    flowLayout.minimumLineSpacing = 0;
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
+    _collectionView.backgroundColor = [UIColor clearColor];
+    _collectionView.showsHorizontalScrollIndicator = NO;
+    _collectionView.scrollsToTop = NO;
+    _collectionView.canCancelContentTouches = YES;
+    _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_collectionView];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_collectionView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_collectionView)]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_collectionView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_collectionView)]];
+    
+    [_collectionView registerClass:[HTHorizontalSelectionListLabelCell class] forCellWithReuseIdentifier:LabelCellIdentifier];
+    [_collectionView registerClass:[HTHorizontalSelectionListCustomViewCell class] forCellWithReuseIdentifier:ViewCellIdentifier];
+    
+    _edgeFadeGradientView = [[UIView alloc] init];
+    _edgeFadeGradientView.backgroundColor = self.backgroundColor;
+    _edgeFadeGradientView.hidden = YES;
+    _edgeFadeGradientView.userInteractionEnabled = NO;
+    _edgeFadeGradientView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_edgeFadeGradientView];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_edgeFadeGradientView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_edgeFadeGradientView]-trimHeight-|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:@{@"trimHeight" : @(kHTHorizontalSelectionListTrimHeight)}
+                                                                   views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
+    
+    [_collectionView addObserver:self
+                      forKeyPath:@"contentSize"
+                         options:NSKeyValueObservingOptionNew
+                         context:NULL];
+    
+    _contentView = [[UIScrollView alloc] init];
+    _contentView.userInteractionEnabled = NO;
+    _contentView.scrollsToTop = NO;
+    _contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_contentView];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
+                                                     attribute:NSLayoutAttributeTop
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self
+                                                     attribute:NSLayoutAttributeTop
+                                                    multiplier:1.0
+                                                      constant:0.0]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
+                                                     attribute:NSLayoutAttributeBottom
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self
+                                                     attribute:NSLayoutAttributeBottom
+                                                    multiplier:1.0
+                                                      constant:0.0]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_contentView)]];
+    _bottomTrim = [[UIView alloc] init];
+    _bottomTrim.backgroundColor = [UIColor blackColor];
+    _bottomTrim.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_bottomTrim];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_bottomTrim]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_bottomTrim)]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomTrim(height)]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
+                                                                   views:NSDictionaryOfVariableBindings(_bottomTrim)]];
+    
+    _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    _selectionIndicatorHeight = 3;
+    _selectionIndicatorHorizontalPadding = kHTHorizontalSelectionListLabelCellInternalPadding/2;
+    _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
+    _selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeHeavyBounce;
+    
+    _selectionIndicatorBar = [[UIView alloc] init];
+    _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
+    _selectionIndicatorBar.backgroundColor = [UIColor blackColor];
+    
+    _titleColorsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIColor blackColor]}];
+    _titleFontsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:13]}];
+    
+    _centerAlignButtons = NO;
 }
 
 - (void)layoutSubviews {

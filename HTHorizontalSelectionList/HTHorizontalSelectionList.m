@@ -615,6 +615,10 @@ static NSString *ViewCellIdentifier = @"ViewCell";
             if (indexPath && self.selectedButtonIndex != indexPath.item) {
                 
                 [self setSelectedButtonIndex:indexPath.item animated:YES];
+                
+                if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
+                    [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
+                }
             }
         }
     }

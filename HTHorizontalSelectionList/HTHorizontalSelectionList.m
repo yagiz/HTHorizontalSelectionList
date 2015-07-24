@@ -164,7 +164,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     _centerOnSelection = NO;
     _scrollingDirectly = NO;
     _autoselectCentralItem = NO;
-    _autocorectCentralItemSelection = NO;
+    _autocorrectCentralItemSelection = NO;
 }
 
 - (void)layoutSubviews {
@@ -373,7 +373,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                      }
                      completion:nil];
     
-    if (!self.autocorectCentralItemSelection) {
+    if (!self.autocorrectCentralItemSelection) {
         [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
                                         animated:animated];
     }
@@ -625,7 +625,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     if (!decelerate) {
         self.scrollingDirectly = NO;
         
-        if (self.autocorectCentralItemSelection) {
+        if (self.autocorrectCentralItemSelection) {
             [self correctSelection:scrollView];
         }
     }
@@ -635,7 +635,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     self.scrollingDirectly = NO;
     
-    if (self.autocorectCentralItemSelection) {
+    if (self.autocorrectCentralItemSelection) {
         [self correctSelection:scrollView];
     }
 }

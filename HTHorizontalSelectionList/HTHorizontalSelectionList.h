@@ -43,8 +43,8 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 @property (assign, nonatomic) BOOL centerOnSelection;
 /// If YES, select automatically item at the center. Default is NO.
 @property (assign, nonatomic) BOOL autoselectCentralItem;
-/// If YES, corects position after dragging to be at the center. Default is NO.
-@property (assign, nonatomic) BOOL autocorectCentralItemSelection;
+/// If YES, corrects position after dragging to be at the center. Default is NO.
+@property (assign, nonatomic) BOOL autocorrectCentralItemSelection;
 
 @property (nonatomic) BOOL showsEdgeFadeEffect;             // Default is NO.  If set to YES, the buttons will fade away near the edges of the list.
 

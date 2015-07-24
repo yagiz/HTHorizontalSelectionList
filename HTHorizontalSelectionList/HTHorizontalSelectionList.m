@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSMutableDictionary *titleFontsByState;
 
 @property (nonatomic, strong) UIView *edgeFadeGradientView;
+@property (assign, nonatomic) BOOL scrollingDirectly;
 
 @end
 
@@ -38,115 +39,131 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        flowLayout.minimumInteritemSpacing = 0;
-        flowLayout.minimumLineSpacing = 0;
-
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
-        _collectionView.dataSource = self;
-        _collectionView.delegate = self;
-        _collectionView.backgroundColor = [UIColor clearColor];
-        _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.scrollsToTop = NO;
-        _collectionView.canCancelContentTouches = YES;
-        _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_collectionView];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_collectionView]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_collectionView)]];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_collectionView]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_collectionView)]];
-
-        [_collectionView registerClass:[HTHorizontalSelectionListLabelCell class] forCellWithReuseIdentifier:LabelCellIdentifier];
-        [_collectionView registerClass:[HTHorizontalSelectionListCustomViewCell class] forCellWithReuseIdentifier:ViewCellIdentifier];
-
-        _edgeFadeGradientView = [[UIView alloc] init];
-        _edgeFadeGradientView.backgroundColor = self.backgroundColor;
-        _edgeFadeGradientView.hidden = YES;
-        _edgeFadeGradientView.userInteractionEnabled = NO;
-        _edgeFadeGradientView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_edgeFadeGradientView];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_edgeFadeGradientView]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_edgeFadeGradientView]-trimHeight-|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:@{@"trimHeight" : @(kHTHorizontalSelectionListTrimHeight)}
-                                                                       views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
-
-        [_collectionView addObserver:self
-                          forKeyPath:@"contentSize"
-                             options:NSKeyValueObservingOptionNew
-                             context:NULL];
-
-        _contentView = [[UIScrollView alloc] init];
-        _contentView.userInteractionEnabled = NO;
-        _contentView.scrollsToTop = NO;
-        _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_contentView];
-
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
-                                                         attribute:NSLayoutAttributeTop
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeTop
-                                                        multiplier:1.0
-                                                          constant:0.0]];
-
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
-                                                         attribute:NSLayoutAttributeBottom
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:self
-                                                         attribute:NSLayoutAttributeBottom
-                                                        multiplier:1.0
-                                                          constant:0.0]];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentView]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_contentView)]];
-        _bottomTrim = [[UIView alloc] init];
-        _bottomTrim.backgroundColor = [UIColor blackColor];
-        _bottomTrim.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:_bottomTrim];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_bottomTrim]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:nil
-                                                                       views:NSDictionaryOfVariableBindings(_bottomTrim)]];
-
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomTrim(height)]|"
-                                                                     options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                     metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
-                                                                       views:NSDictionaryOfVariableBindings(_bottomTrim)]];
-
-        _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
-        _selectionIndicatorHeight = 3;
-        _selectionIndicatorHorizontalPadding = kHTHorizontalSelectionListLabelCellInternalPadding/2;
-        _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
-        _selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeHeavyBounce;
-
-        _selectionIndicatorBar = [[UIView alloc] init];
-        _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
-        _selectionIndicatorBar.backgroundColor = [UIColor blackColor];
-
-        _titleColorsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIColor blackColor]}];
-        _titleFontsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:13]}];
-
-        _centerAlignButtons = NO;
+        [self commonInit];
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit {
+    self.backgroundColor = [UIColor whiteColor];
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    flowLayout.minimumInteritemSpacing = 0;
+    flowLayout.minimumLineSpacing = 0;
+    
+    _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
+    _collectionView.backgroundColor = [UIColor clearColor];
+    _collectionView.showsHorizontalScrollIndicator = NO;
+    _collectionView.scrollsToTop = NO;
+    _collectionView.canCancelContentTouches = YES;
+    _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_collectionView];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_collectionView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_collectionView)]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_collectionView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_collectionView)]];
+    
+    [_collectionView registerClass:[HTHorizontalSelectionListLabelCell class] forCellWithReuseIdentifier:LabelCellIdentifier];
+    [_collectionView registerClass:[HTHorizontalSelectionListCustomViewCell class] forCellWithReuseIdentifier:ViewCellIdentifier];
+    
+    _edgeFadeGradientView = [[UIView alloc] init];
+    _edgeFadeGradientView.backgroundColor = self.backgroundColor;
+    _edgeFadeGradientView.hidden = YES;
+    _edgeFadeGradientView.userInteractionEnabled = NO;
+    _edgeFadeGradientView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_edgeFadeGradientView];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_edgeFadeGradientView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_edgeFadeGradientView]-trimHeight-|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:@{@"trimHeight" : @(kHTHorizontalSelectionListTrimHeight)}
+                                                                   views:NSDictionaryOfVariableBindings(_edgeFadeGradientView)]];
+    
+    [_collectionView addObserver:self
+                      forKeyPath:@"contentSize"
+                         options:NSKeyValueObservingOptionNew
+                         context:NULL];
+    
+    _contentView = [[UIScrollView alloc] init];
+    _contentView.userInteractionEnabled = NO;
+    _contentView.scrollsToTop = NO;
+    _contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_contentView];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
+                                                     attribute:NSLayoutAttributeTop
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self
+                                                     attribute:NSLayoutAttributeTop
+                                                    multiplier:1.0
+                                                      constant:0.0]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
+                                                     attribute:NSLayoutAttributeBottom
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self
+                                                     attribute:NSLayoutAttributeBottom
+                                                    multiplier:1.0
+                                                      constant:0.0]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_contentView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_contentView)]];
+    _bottomTrim = [[UIView alloc] init];
+    _bottomTrim.backgroundColor = [UIColor blackColor];
+    _bottomTrim.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:_bottomTrim];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_bottomTrim]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:NSDictionaryOfVariableBindings(_bottomTrim)]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomTrim(height)]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
+                                                                   views:NSDictionaryOfVariableBindings(_bottomTrim)]];
+    
+    _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    _selectionIndicatorHeight = 3;
+    _selectionIndicatorHorizontalPadding = kHTHorizontalSelectionListLabelCellInternalPadding/2;
+    _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
+    _selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeHeavyBounce;
+    
+    _selectionIndicatorBar = [[UIView alloc] init];
+    _selectionIndicatorBar.translatesAutoresizingMaskIntoConstraints = NO;
+    _selectionIndicatorBar.backgroundColor = [UIColor blackColor];
+    
+    _titleColorsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIColor blackColor]}];
+    _titleFontsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:13]}];
+
+    _centerAlignButtons = NO;
+    _centerOnSelection = NO;
+    _scrollingDirectly = NO;
+    _autoselectCentralItem = NO;
+    _autocorrectCentralItemSelection = NO;
 }
 
 - (void)layoutSubviews {
@@ -227,7 +244,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 - (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
     [super setUserInteractionEnabled:userInteractionEnabled];
-
+    
     self.collectionView.allowsSelection = userInteractionEnabled;
 }
 
@@ -244,23 +261,23 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (void)reloadData {
     [self.collectionView reloadData];
     [self.collectionView layoutIfNeeded];
-
+    
     NSInteger totalButtons = [self.dataSource numberOfItemsInSelectionList:self];
-
+    
     if (totalButtons < 1) {
         return;
     }
-
+    
     if (_selectedButtonIndex > totalButtons - 1) {
         _selectedButtonIndex = -1;
     }
-
+    
     if (totalButtons > 0 && self.selectedButtonIndex >= 0 && self.selectedButtonIndex < totalButtons) {
         NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0];
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:selectedIndexPath];
-
+        
         ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateSelected;
-
+        
         switch (self.selectionIndicatorStyle) {
             case HTHorizontalSelectionIndicatorStyleBottomBar: {
                 [self.contentView addSubview:self.selectionIndicatorBar];
@@ -268,7 +285,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                 [self alignSelectionIndicatorWithCellWithIndexPath:selectedIndexPath];
                 break;
             }
-
+                
             case HTHorizontalSelectionIndicatorStyleButtonBorder: {
                 if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
                     ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.borderColor = self.selectionIndicatorColor.CGColor;
@@ -277,34 +294,34 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                 }
                 break;
             }
-
+                
             default:
                 break;
         }
     }
-
+    
     [self sendSubviewToBack:self.bottomTrim];
-
+    
     [self updateConstraintsIfNeeded];
 }
 
 - (void)setSelectedButtonIndex:(NSInteger)selectedButtonIndex animated:(BOOL)animated {
-
+    
     NSInteger buttonCount = [self.dataSource numberOfItemsInSelectionList:self];
-
+    
     NSInteger oldSelectedIndex = _selectedButtonIndex;
     if (selectedButtonIndex < buttonCount && selectedButtonIndex >= 0) {
         _selectedButtonIndex = selectedButtonIndex;
     } else {
         _selectedButtonIndex = -1;
     }
-
+    
     NSIndexPath *oldSelectedIndexPath = [NSIndexPath indexPathForItem:oldSelectedIndex inSection:0];
     NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0];
-
+    
     UICollectionViewLayoutAttributes *selectedCellAttributes = [self.collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:selectedIndexPath];
     CGRect selectedCellFrame = selectedCellAttributes.frame;
-
+    
     [self layoutIfNeeded];
     [UIView animateWithDuration:animated ? 0.4 : 0.0
                           delay:0
@@ -314,39 +331,39 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                      animations:^{
                          UICollectionViewCell *oldSelectedCell = [self.collectionView cellForItemAtIndexPath:oldSelectedIndexPath];
                          UICollectionViewCell *selectedCell = [self.collectionView cellForItemAtIndexPath:selectedIndexPath];
-
+                         
                          ((id<HTHorizontalSelectionListCell>)selectedCell).state = UIControlStateSelected;
-
+                         
                          if (oldSelectedCell != selectedCell) {
                              ((id<HTHorizontalSelectionListCell>)oldSelectedCell).state = UIControlStateNormal;
                          }
-
+                         
                          switch (self.selectionIndicatorStyle) {
                              case HTHorizontalSelectionIndicatorStyleBottomBar: {
                                  [self alignSelectionIndicatorWithCellWithIndexPath:selectedIndexPath];
                                  break;
                              }
-
+                                 
                              case HTHorizontalSelectionIndicatorStyleButtonBorder: {
                                  if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
                                      ((HTHorizontalSelectionListCustomViewCell *)selectedCell).customView.layer.borderColor = self.selectionIndicatorColor.CGColor;
-
+                                     
                                      if (oldSelectedCell != selectedCell) {
                                          ((HTHorizontalSelectionListCustomViewCell *)oldSelectedCell).customView.layer.borderColor = [UIColor clearColor].CGColor;
                                      }
                                  } else {
                                      selectedCell.layer.borderColor = self.selectionIndicatorColor.CGColor;
-
+                                     
                                      if (oldSelectedCell != selectedCell) {
                                          oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
                                      }
                                  }
                                  break;
                              }
-
+                                 
                              case HTHorizontalSelectionIndicatorStyleNone: {
                                  selectedCell.layer.borderColor = [UIColor clearColor].CGColor;
-
+                                 
                                  if (oldSelectedCell != selectedCell) {
                                      oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
                                  }
@@ -354,9 +371,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                          }
                      }
                      completion:nil];
-
-    [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
-                                    animated:animated];
+    
+    if (!self.autocorrectCentralItemSelection) {
+        [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
+                                        animated:animated];
+    }
 }
 
 #pragma mark - UICollectionViewDataSource Protocol Methods
@@ -371,32 +390,32 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell;
-
+    
     BOOL isSelected = (indexPath.item == self.selectedButtonIndex);
-
+    
     if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:ViewCellIdentifier
                                                          forIndexPath:indexPath];
-
+        
         [((HTHorizontalSelectionListCustomViewCell *)cell) setCustomView:[self.dataSource selectionList:self viewForItemWithIndex:indexPath.item]
                                                                   insets:self.buttonInsets];
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:LabelCellIdentifier
                                                          forIndexPath:indexPath];
-
+        
         ((HTHorizontalSelectionListLabelCell *)cell).title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
-
+        
         for (NSNumber *controlState in [self.titleColorsByState allKeys]) {
             [((HTHorizontalSelectionListLabelCell *)cell) setTitleColor:self.titleColorsByState[controlState]
                                                                forState:controlState.integerValue];
         }
-
+        
         for (NSNumber *controlState in [self.titleFontsByState allKeys]) {
             [((HTHorizontalSelectionListLabelCell *)cell) setTitleFont:self.titleFontsByState[controlState]
                                                               forState:controlState.integerValue];
         }
     }
-
+    
     if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
         if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
             ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.borderWidth = 1.0;
@@ -410,13 +429,13 @@ static NSString *ViewCellIdentifier = @"ViewCell";
             cell.layer.masksToBounds = YES;
         }
     }
-
+    
     if (isSelected) {
         ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateSelected;
     } else {
         ((id<HTHorizontalSelectionListCell>)cell).state = UIControlStateNormal;
     }
-
+    
     return cell;
 }
 
@@ -425,25 +444,25 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     CGFloat verticalPadding = self.buttonInsets.top + self.buttonInsets.bottom;
     CGFloat horizontalPadding = self.buttonInsets.left + self.buttonInsets.right;
-
+    
     CGFloat collectionViewHeight = collectionView.frame.size.height;
-
+    
     if ([self.dataSource respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
         UIView *view = [self.dataSource selectionList:self viewForItemWithIndex:indexPath.item];
-
+        
         CGFloat buttonHeight = view.frame.size.height;
         CGFloat buttonWidth = view.frame.size.width;
-
+        
         if (buttonHeight) {
             CGFloat itemHeight = collectionViewHeight - verticalPadding;
-
+            
             CGFloat scaleFactor = itemHeight / buttonHeight;
-
+            
             CGFloat itemWidth = (buttonWidth * scaleFactor) + horizontalPadding;
-
+            
             return CGSizeMake(itemWidth, collectionViewHeight);
         } else {
             return CGSizeMake(buttonWidth, collectionViewHeight);
@@ -451,84 +470,106 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     } else if ([self.dataSource respondsToSelector:@selector(selectionList:titleForItemWithIndex:)]) {
         NSString *title = [self.dataSource selectionList:self titleForItemWithIndex:indexPath.item];
         CGSize titleSize = [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.titleFontsByState[@(UIControlStateNormal)]];
-
+        
         CGFloat width = titleSize.width + horizontalPadding + kHTHorizontalSelectionListLabelCellInternalPadding;
         CGFloat height = MAX(MIN(titleSize.height + verticalPadding,
                                  collectionViewHeight - self.buttonInsets.top - self.buttonInsets.bottom), collectionViewHeight / 1.9);
-
+        
         return CGSizeMake(width, height);
     }
-
+    
     return CGSizeZero;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
                         layout:(UICollectionViewLayout *)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section {
-
-    if (self.centerAlignButtons) {
-        NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
-
+    
+    NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
+    
+    if (self.centerOnSelection) {
+        
+        if (numberOfItems > 0) {
+            CGFloat firstItemWidth = [self collectionView:collectionView
+                                                   layout:collectionViewLayout
+                                   sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]].width;
+            
+            CGFloat lastItemWidth = [self collectionView:collectionView
+                                                  layout:collectionViewLayout
+                                  sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:numberOfItems-1 inSection:section]].width;
+            
+            CGFloat halfWidth = CGRectGetWidth(collectionView.frame) / 2;
+            
+            return UIEdgeInsetsMake(0, halfWidth - (firstItemWidth / 2), 0, halfWidth - (lastItemWidth / 2));
+        }
+        
+    } else if (self.centerAlignButtons) {
         CGFloat interitemSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
-
+        
         for (NSInteger item = 0; item < numberOfItems; item++) {
             interitemSpacing -= [self collectionView:collectionView
                                               layout:collectionViewLayout
                               sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
-
+            
             if (interitemSpacing < 0) {
                 break;
             }
         }
-
+        
         if (interitemSpacing > 0 && numberOfItems > 0) {
             CGFloat inset = (interitemSpacing / (2 * numberOfItems)) + kHTHorizontalSelectionListHorizontalMargin;
-
+            
             return UIEdgeInsetsMake(0, inset, 0, inset);
         }
     }
-
+    
     return UIEdgeInsetsMake(0, kHTHorizontalSelectionListHorizontalMargin, 0, kHTHorizontalSelectionListHorizontalMargin);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-
+    
     if (self.centerAlignButtons) {
         NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
-
+        
         CGFloat interitemSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
-
+        
         for (NSInteger item = 0; item < numberOfItems; item++) {
             interitemSpacing -= [self collectionView:collectionView
                                               layout:collectionViewLayout
                               sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
-
+            
             if (interitemSpacing < 0) {
                 break;
             }
         }
-
+        
         if (interitemSpacing > 0 && numberOfItems > 0) {
             return interitemSpacing / numberOfItems;
         }
     }
-
+    
     return 0;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (self.centerOnSelection) {
+        self.scrollingDirectly = YES;
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    }
+    
     if (indexPath.item == self.selectedButtonIndex) {
         if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleNone) {
             if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
                 [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
             }
         }
-
+        
         return;
     }
-
+    
     [self setSelectedButtonIndex:indexPath.item animated:YES];
-
+    
     if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
         [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
     }
@@ -536,7 +577,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     id<HTHorizontalSelectionListCell> cell = (id<HTHorizontalSelectionListCell>)[collectionView cellForItemAtIndexPath:indexPath];
-
+    
     if (cell.state == UIControlStateSelected && self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleNone) {
         cell.state = UIControlStateHighlighted;
     } else if (cell.state != UIControlStateSelected) {
@@ -546,7 +587,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     id<HTHorizontalSelectionListCell> cell = (id<HTHorizontalSelectionListCell>)[collectionView cellForItemAtIndexPath:indexPath];
-
+    
     if (self.selectedButtonIndex == indexPath.item) {
         cell.state = UIControlStateSelected;
     } else {
@@ -560,7 +601,53 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         CGPoint offset = self.contentView.contentOffset;
         offset.x = scrollView.contentOffset.x;
         [self.contentView setContentOffset:offset];
+        
+        if (self.autoselectCentralItem && !self.scrollingDirectly) {
+            
+            CGPoint centerPoint = CGPointMake(self.collectionView.frame.size.width / 2 + scrollView.contentOffset.x, self.collectionView.frame.size.height /2 + scrollView.contentOffset.y);
+            
+            NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:centerPoint];
+            
+            if (indexPath && self.selectedButtonIndex != indexPath.item) {
+                
+                [self setSelectedButtonIndex:indexPath.item animated:YES];
+                
+                if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
+                    [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
+                }
+            }
+        }
     }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        self.scrollingDirectly = NO;
+        
+        if (self.autocorrectCentralItemSelection) {
+            [self correctSelection:scrollView];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    self.scrollingDirectly = NO;
+    
+    if (self.autocorrectCentralItemSelection) {
+        [self correctSelection:scrollView];
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.scrollingDirectly = NO;
+}
+
+- (void)correctSelection:(UIScrollView *)scrollView {
+    CGPoint centerPoint = CGPointMake(self.collectionView.frame.size.width / 2 + scrollView.contentOffset.x, self.collectionView.frame.size.height /2 + scrollView.contentOffset.y);
+    
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:centerPoint];
+    
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
 
 #pragma mark - NSKeyValueObserving
@@ -577,7 +664,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     if (indexPath) {
         UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
         CGRect cellRect = attributes.frame;
-
+        
         self.selectionIndicatorBar.frame = CGRectMake(cellRect.origin.x + self.buttonInsets.left + kHTHorizontalSelectionListLabelCellInternalPadding/2 - self.selectionIndicatorHorizontalPadding,
                                                       self.contentView.frame.size.height - self.selectionIndicatorHeight,
                                                       cellRect.size.width - self.buttonInsets.left - self.buttonInsets.right - kHTHorizontalSelectionListLabelCellInternalPadding + 2*self.selectionIndicatorHorizontalPadding,
@@ -590,10 +677,10 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         case HTHorizontalSelectionIndicatorAnimationModeHeavyBounce:
         default:
             return 0.5;
-
+            
         case HTHorizontalSelectionIndicatorAnimationModeLightBounce:
             return 0.8;
-
+            
         case HTHorizontalSelectionIndicatorAnimationModeNoBounce:
             return 1.0;
     }

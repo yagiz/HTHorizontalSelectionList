@@ -160,6 +160,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     _titleFontsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:13]}];
     
     _centerAlignButtons = NO;
+    _centerOnSelection = NO;
 }
 
 - (void)layoutSubviews {
@@ -479,7 +480,25 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                         layout:(UICollectionViewLayout *)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section {
 
-    if (self.centerAlignButtons) {
+    if (self.centerOnSelection) {
+        NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
+        
+        if (numberOfItems > 0) {
+            CGFloat firstItemWidth = [self collectionView:collectionView
+                                                   layout:collectionViewLayout
+                                   sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]].width;
+            
+            CGFloat lastItemWidth = [self collectionView:collectionView
+                                                  layout:collectionViewLayout
+                                  sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:numberOfItems-1 inSection:section]].width;
+            
+            CGFloat halfWidth = CGRectGetWidth(collectionView.frame) / 2;
+            
+            return UIEdgeInsetsMake(0, halfWidth - (firstItemWidth / 2), 0, halfWidth - (lastItemWidth / 2));
+            
+        }
+        
+    } else if (self.centerAlignButtons) {
         NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
 
         CGFloat interitemSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
@@ -545,6 +564,12 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
         [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
     }
+    
+    if (self.centerOnSelection) {
+        
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    }
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath {

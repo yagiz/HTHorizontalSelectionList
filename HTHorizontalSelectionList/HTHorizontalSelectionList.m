@@ -202,6 +202,12 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 #pragma mark - Custom Getters and Setters
 
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:backgroundColor];
+
+    self.edgeFadeGradientView.backgroundColor = backgroundColor;
+}
+
 - (void)setSelectedButtonIndex:(NSInteger)selectedButtonIndex {
     [self setSelectedButtonIndex:selectedButtonIndex animated:NO];
 }

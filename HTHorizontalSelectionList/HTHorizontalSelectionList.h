@@ -45,13 +45,13 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 /// Default is NO.  Only has an affect if the number of buttons if the selection list does not fill the space horizontally.
 @property (nonatomic) BOOL centerAlignButtons;
 
-/// Default is NO. If YES, center all items on selection.
+/// Default is NO.  If YES, center all items on selection.
 @property (nonatomic) BOOL centerOnSelection;
 
-/// Default is NO. If YES, center item is automatically selected when control is initialized.
+/// Default is NO.  If YES, center item is automatically selected when control is initialized.
 @property (nonatomic) BOOL autoselectCentralItem;
 
-/// Default is NO. If YES, corrects position to center after dragging.
+/// Default is NO.  If YES, corrects position to center after dragging.
 @property (nonatomic) BOOL autocorrectCentralItemSelection;
 
 /// Default is NO.  If set to YES, the buttons will fade away near the edges of the list.

@@ -378,7 +378,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                      }
                      completion:nil];
 
-    if (!self.autocorrectCentralItemSelection) {
+    if (self.centerOnSelection) {
+        [self.collectionView scrollToItemAtIndexPath:selectedCellAttributes.indexPath
+                                    atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                            animated:YES];
+    } else if (!self.autocorrectCentralItemSelection) {
         [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
                                         animated:animated];
     }
@@ -561,7 +565,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
     if (self.centerOnSelection) {
         self.scrollingDirectly = YES;
-        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     }
 
     if (indexPath.item == self.selectedButtonIndex) {

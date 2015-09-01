@@ -393,6 +393,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                  if (oldSelectedCell != selectedCell) {
                                      oldSelectedCell.layer.borderColor = [UIColor clearColor].CGColor;
                                  }
+                                 break;
                              }
                          }
 

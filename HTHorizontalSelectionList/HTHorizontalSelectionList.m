@@ -288,6 +288,18 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         _selectedButtonIndex = -1;
     }
 
+    if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleBottomBar) {
+        [self.contentView layoutIfNeeded];
+        self.selectionIndicatorBar.frame = CGRectMake(0,
+                                                      self.contentView.frame.size.height - self.selectionIndicatorHeight,
+                                                      0,
+                                                      self.selectionIndicatorHeight);
+
+        [self.contentView addSubview:self.selectionIndicatorBar];
+    } else {
+        [self.selectionIndicatorBar removeFromSuperview];
+    }
+
     if (totalButtons > 0 && self.selectedButtonIndex >= 0 && self.selectedButtonIndex < totalButtons) {
         NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0];
         UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:selectedIndexPath];
@@ -296,8 +308,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         switch (self.selectionIndicatorStyle) {
             case HTHorizontalSelectionIndicatorStyleBottomBar: {
-                [self.contentView addSubview:self.selectionIndicatorBar];
-                [self.contentView layoutIfNeeded];
                 [self alignSelectionIndicatorWithCellWithIndexPath:selectedIndexPath];
                 break;
             }

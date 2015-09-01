@@ -402,13 +402,13 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                          atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                                                  animated:NO];
                          }
-                     }
-                     completion:^(BOOL finished) {
-                         if (finished && !self.autoselectCentralItem) {
+
+                         if (!self.autoselectCentralItem) {
                              [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
                                                              animated:animated];
                          }
-                     }];
+                     }
+                     completion:nil];
 }
 
 #pragma mark - UICollectionViewDataSource Protocol Methods

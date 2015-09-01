@@ -159,11 +159,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     _titleColorsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIColor blackColor]}];
     _titleFontsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:13]}];
 
-    _centerAlignButtons = NO;
     _centerOnSelection = NO;
+    _centerAlignButtons = NO;
     _scrollingDirectly = NO;
+    _snapToCenter = NO;
     _autoselectCentralItem = NO;
-    _autocorrectCentralItemSelection = NO;
 }
 
 - (void)layoutSubviews {
@@ -252,6 +252,16 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     [super setUserInteractionEnabled:userInteractionEnabled];
 
     self.collectionView.allowsSelection = userInteractionEnabled;
+}
+
+// Deprecations
+
+- (void)setAutocorrectCentralItemSelection:(BOOL)autocorrectCentralItemSelection {
+    _snapToCenter = autocorrectCentralItemSelection;
+}
+
+- (BOOL)autocorrectCentralItemSelection {
+    return _snapToCenter;
 }
 
 #pragma mark - Public Methods
@@ -383,7 +393,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                          }
                      }
                      completion:^(BOOL finished) {
-                         if (finished && !self.autocorrectCentralItemSelection && !self.autoselectCentralItem) {
+                         if (finished && !self.snapToCenter && !self.autoselectCentralItem) {
                              [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
                                                              animated:animated];
                          }
@@ -636,7 +646,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     if (!decelerate) {
         self.scrollingDirectly = NO;
 
-        if (self.autocorrectCentralItemSelection) {
+        if (self.snapToCenter) {
             [self correctSelection:scrollView];
         }
     }
@@ -645,7 +655,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     self.scrollingDirectly = NO;
 
-    if (self.autocorrectCentralItemSelection) {
+    if (self.snapToCenter) {
         [self correctSelection:scrollView];
     }
 }

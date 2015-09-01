@@ -78,6 +78,8 @@
                                                          attribute:NSLayoutAttributeCenterY
                                                         multiplier:1.0
                                                           constant:0.0]];
+
+    self.textSelectionList.snapToCenter = YES;
 }
 
 #pragma mark - HTHorizontalSelectionListDataSource Protocol Methods

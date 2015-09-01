@@ -375,17 +375,19 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                  }
                              }
                          }
-                     }
-                     completion:nil];
 
-    if (self.centerOnSelection) {
-        [self.collectionView scrollToItemAtIndexPath:selectedCellAttributes.indexPath
-                                    atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
-                                            animated:YES];
-    } else if (!self.autocorrectCentralItemSelection) {
-        [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
-                                        animated:animated];
-    }
+                         if (self.centerOnSelection) {
+                             [self.collectionView scrollToItemAtIndexPath:selectedCellAttributes.indexPath
+                                                         atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                                                 animated:NO];
+                         }
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished && !self.autocorrectCentralItemSelection && !self.autoselectCentralItem) {
+                             [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
+                                                             animated:animated];
+                         }
+                     }];
 }
 
 #pragma mark - UICollectionViewDataSource Protocol Methods
@@ -613,7 +615,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         if (self.autoselectCentralItem && !self.scrollingDirectly) {
 
-            CGPoint centerPoint = CGPointMake(self.collectionView.frame.size.width / 2 + scrollView.contentOffset.x, self.collectionView.frame.size.height /2 + scrollView.contentOffset.y);
+            CGPoint centerPoint = CGPointMake(self.collectionView.frame.size.width / 2 + scrollView.contentOffset.x,
+                                              self.collectionView.frame.size.height /2 + scrollView.contentOffset.y);
 
             NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:centerPoint];
 

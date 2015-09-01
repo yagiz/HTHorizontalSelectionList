@@ -159,11 +159,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     _titleColorsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIColor blackColor]}];
     _titleFontsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:13]}];
 
-    _centerAlignButtons = NO;
     _centerOnSelection = NO;
+    _centerAlignButtons = NO;
     _scrollingDirectly = NO;
+    _snapToCenter = NO;
     _autoselectCentralItem = NO;
-    _autocorrectCentralItemSelection = NO;
 }
 
 - (void)layoutSubviews {
@@ -252,6 +252,16 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     [super setUserInteractionEnabled:userInteractionEnabled];
 
     self.collectionView.allowsSelection = userInteractionEnabled;
+}
+
+// Deprecations
+
+- (void)setAutocorrectCentralItemSelection:(BOOL)autocorrectCentralItemSelection {
+    _snapToCenter = autocorrectCentralItemSelection;
+}
+
+- (BOOL)autocorrectCentralItemSelection {
+    return _snapToCenter;
 }
 
 #pragma mark - Public Methods
@@ -375,13 +385,19 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                  }
                              }
                          }
-                     }
-                     completion:nil];
 
-    if (!self.autocorrectCentralItemSelection) {
-        [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
-                                        animated:animated];
-    }
+                         if (self.centerOnSelection) {
+                             [self.collectionView scrollToItemAtIndexPath:selectedCellAttributes.indexPath
+                                                         atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                                                 animated:NO];
+                         }
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished && !self.snapToCenter && !self.autoselectCentralItem) {
+                             [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
+                                                             animated:animated];
+                         }
+                     }];
 }
 
 #pragma mark - UICollectionViewDataSource Protocol Methods
@@ -561,7 +577,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
     if (self.centerOnSelection) {
         self.scrollingDirectly = YES;
-        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     }
 
     if (indexPath.item == self.selectedButtonIndex) {
@@ -610,7 +625,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         if (self.autoselectCentralItem && !self.scrollingDirectly) {
 
-            CGPoint centerPoint = CGPointMake(self.collectionView.frame.size.width / 2 + scrollView.contentOffset.x, self.collectionView.frame.size.height /2 + scrollView.contentOffset.y);
+            CGPoint centerPoint = CGPointMake(self.collectionView.frame.size.width / 2 + scrollView.contentOffset.x,
+                                              self.collectionView.frame.size.height /2 + scrollView.contentOffset.y);
 
             NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:centerPoint];
 
@@ -630,7 +646,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     if (!decelerate) {
         self.scrollingDirectly = NO;
 
-        if (self.autocorrectCentralItemSelection) {
+        if (self.snapToCenter) {
             [self correctSelection:scrollView];
         }
     }
@@ -639,7 +655,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     self.scrollingDirectly = NO;
 
-    if (self.autocorrectCentralItemSelection) {
+    if (self.snapToCenter) {
         [self correctSelection:scrollView];
     }
 }

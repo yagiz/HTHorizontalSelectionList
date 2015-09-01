@@ -393,7 +393,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                          }
                      }
                      completion:^(BOOL finished) {
-                         if (finished && !self.snapToCenter && !self.autoselectCentralItem) {
+                         if (finished && !self.autoselectCentralItem) {
                              [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
                                                              animated:animated];
                          }

@@ -41,9 +41,9 @@ import UIKit
         self.view.addSubview(self.selectionList)
 
         self.selectedFlowerView = UIImageView()
-        var selectedImage = self.flowers[self.selectionList.selectedButtonIndex].image
+        let selectedImage = self.flowers[self.selectionList.selectedButtonIndex].image
         self.selectedFlowerView.image = selectedImage
-        self.selectedFlowerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.selectedFlowerView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.selectedFlowerView)
 
         self.view.addConstraint(NSLayoutConstraint(item: self.selectedFlowerView,

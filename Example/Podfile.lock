@@ -1,5 +1,5 @@
 PODS:
-  - HTHorizontalSelectionList (0.4.7)
+  - HTHorizontalSelectionList (0.6.2)
 
 DEPENDENCIES:
   - HTHorizontalSelectionList (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HTHorizontalSelectionList: 9a6195ecec2356c6cc4b4c792fa082a3d7347967
+  HTHorizontalSelectionList: 104417001c87753cc9560ab9674c7974db079a32
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.39.0

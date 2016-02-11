@@ -1,1 +1,10 @@
+PODS:
+  - M13BadgeView (1.0.4)
+
+DEPENDENCIES:
+  - M13BadgeView (~> 1.0.4)
+
+SPEC CHECKSUMS:
+  M13BadgeView: 700dd0714fdc837c0cf1c8c004454963ec22441f
+
 COCOAPODS: 0.39.0

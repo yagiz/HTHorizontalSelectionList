@@ -48,6 +48,7 @@
         _badgeView.font = [UIFont systemFontOfSize:10];
         _badgeView.horizontalAlignment = M13BadgeViewHorizontalAlignmentRight;
         _badgeView.alignmentShift = CGSizeMake(-5, 5);
+        _badgeView.hidesWhenZero = YES;
         [_titleLabel addSubview:_badgeView];
 
         _titleColorsByState = [NSMutableDictionary dictionary];
@@ -78,7 +79,7 @@
     [self.contentView layoutSubviews];
     [self.titleLabel layoutSubviews];
 
-    self.badgeView.text = self.badgeValue;
+    self.badgeView.text = self.badgeValue ?: @"0";
 }
 
 #pragma mark - Public Methods

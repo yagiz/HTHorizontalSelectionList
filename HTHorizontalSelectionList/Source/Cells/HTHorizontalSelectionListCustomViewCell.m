@@ -28,6 +28,7 @@
         _badgeView = [[M13BadgeView alloc] initWithFrame:CGRectMake(0, 0, 8, 14)];
         _badgeView.font = [UIFont systemFontOfSize:10];
         _badgeView.horizontalAlignment = M13BadgeViewHorizontalAlignmentRight;
+        _badgeView.hidesWhenZero = YES;
         [self.contentView addSubview:_badgeView];
     }
     return self;
@@ -49,7 +50,7 @@
     [self.contentView layoutSubviews];
     [self.customView layoutSubviews];
 
-    self.badgeView.text = self.badgeValue;
+    self.badgeView.text = self.badgeValue ?: @"0";
     [self.contentView bringSubviewToFront:self.badgeView];
 }
 

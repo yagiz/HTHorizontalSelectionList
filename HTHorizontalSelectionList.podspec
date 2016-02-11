@@ -20,4 +20,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.frameworks   = 'Foundation', 'UIKit'
 
+  s.dependency 'M13BadgeView', '~> 1.0.4'
 end

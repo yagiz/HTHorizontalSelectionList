@@ -449,6 +449,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         }
     }
 
+    if ([self.delegate respondsToSelector:@selector(selectionList:badgeValueForItemWithIndex:)]) {
+        NSString *badgeValue = [self.dataSource selectionList:self badgeValueForItemWithIndex:indexPath.item];
+        ((HTHorizontalSelectionListLabelCell *)cell).badgeValue = badgeValue;
+    }
+
     if (self.selectionIndicatorStyle == HTHorizontalSelectionIndicatorStyleButtonBorder) {
         if ([self.delegate respondsToSelector:@selector(selectionList:viewForItemWithIndex:)]) {
             ((HTHorizontalSelectionListCustomViewCell *)cell).customView.layer.borderWidth = 1.0;

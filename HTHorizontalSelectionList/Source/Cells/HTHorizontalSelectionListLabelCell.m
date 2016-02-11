@@ -8,9 +8,13 @@
 
 #import "HTHorizontalSelectionListLabelCell.h"
 
+#import <M13BadgeView/M13BadgeView.h>
+
 @interface HTHorizontalSelectionListLabelCell ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic, strong) M13BadgeView *badgeView;
 
 @property (nonatomic, strong) NSMutableDictionary *titleColorsByState;
 @property (nonatomic, strong) NSMutableDictionary *titleFontsByState;
@@ -19,7 +23,7 @@
 
 @implementation HTHorizontalSelectionListLabelCell
 
-@synthesize state = _state;
+@synthesize state = _state, badgeValue = _badgeValue;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -39,6 +43,12 @@
                                                                                  options:NSLayoutFormatDirectionLeadingToTrailing
                                                                                  metrics:nil
                                                                                    views:NSDictionaryOfVariableBindings(_titleLabel)]];
+
+        _badgeView = [[M13BadgeView alloc] initWithFrame:CGRectMake(0, 0, 8, 14)];
+        _badgeView.font = [UIFont systemFontOfSize:10];
+        _badgeView.horizontalAlignment = M13BadgeViewHorizontalAlignmentRight;
+        _badgeView.alignmentShift = CGSizeMake(-5, 5);
+        [_titleLabel addSubview:_badgeView];
 
         _titleColorsByState = [NSMutableDictionary dictionary];
         _titleColorsByState[@(UIControlStateNormal)] = [UIColor blackColor];
@@ -62,6 +72,15 @@
     self.state = UIControlStateNormal;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    [self.contentView layoutSubviews];
+    [self.titleLabel layoutSubviews];
+
+    self.badgeView.text = self.badgeValue;
+}
+
 #pragma mark - Public Methods
 
 + (CGSize)sizeForTitle:(NSString *)title withFont:(UIFont *)font {
@@ -79,6 +98,12 @@
 - (void)setTitle:(NSString *)title {
     _title = title;
     self.titleLabel.text = title;
+}
+
+- (void)setBadgeValue:(NSString *)badgeValue {
+    _badgeValue = badgeValue;
+
+    [self setNeedsLayout];
 }
 
 - (void)setState:(UIControlState)state {

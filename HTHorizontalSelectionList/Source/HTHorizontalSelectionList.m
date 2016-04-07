@@ -57,8 +57,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    flowLayout.minimumInteritemSpacing = 0;
-    flowLayout.minimumLineSpacing = 0;
 
     _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
     _collectionView.dataSource = self;
@@ -564,25 +562,25 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     return UIEdgeInsetsMake(0, kHTHorizontalSelectionListHorizontalMargin, 0, kHTHorizontalSelectionListHorizontalMargin);
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 
     if (self.centerAlignButtons) {
         NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
 
-        CGFloat interitemSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
+        CGFloat lineSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
 
         for (NSInteger item = 0; item < numberOfItems; item++) {
-            interitemSpacing -= [self collectionView:collectionView
-                                              layout:collectionViewLayout
-                              sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
+            lineSpacing -= [self collectionView:collectionView
+                                         layout:collectionViewLayout
+                         sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
 
-            if (interitemSpacing < 0) {
+            if (lineSpacing < 0) {
                 break;
             }
         }
 
-        if (interitemSpacing > 0 && numberOfItems > 0) {
-            return interitemSpacing / numberOfItems;
+        if (lineSpacing > 0 && numberOfItems > 0) {
+            return lineSpacing / numberOfItems;
         }
     }
 

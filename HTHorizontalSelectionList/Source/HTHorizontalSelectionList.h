@@ -48,6 +48,9 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 /// Default is NO.  Only has an affect if the number of buttons in the selection list does not fill the space horizontally.
 @property (nonatomic) BOOL centerAlignButtons;
 
+/// Default is NO.  If YES, buttons will be aligned to center in view.
+@property (nonatomic) BOOL centerButtons;
+
 /// Default is NO.  If YES, the selected button will be centered on selection.
 @property (nonatomic) BOOL centerOnSelection;
 

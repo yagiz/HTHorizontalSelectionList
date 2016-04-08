@@ -518,7 +518,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
-                        layout:(UICollectionViewLayout *)collectionViewLayout
+                        layout:(UICollectionViewFlowLayout *)collectionViewLayout
         insetForSectionAtIndex:(NSInteger)section {
 
     NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
@@ -539,23 +539,33 @@ static NSString *ViewCellIdentifier = @"ViewCell";
             return UIEdgeInsetsMake(0, halfWidth - (firstItemWidth / 2), 0, halfWidth - (lastItemWidth / 2));
         }
 
-    } else if (self.centerAlignButtons) {
-        CGFloat interitemSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
+    } else if (self.centerAlignButtons || self.centerButtons) {
+        CGFloat extraSpace = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
 
         for (NSInteger item = 0; item < numberOfItems; item++) {
-            interitemSpacing -= [self collectionView:collectionView
-                                              layout:collectionViewLayout
-                              sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
+            extraSpace -= [self collectionView:collectionView
+                                        layout:collectionViewLayout
+                        sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:item inSection:section]].width;
 
-            if (interitemSpacing < 0) {
+            if (extraSpace < 0) {
                 break;
             }
         }
 
-        if (interitemSpacing > 0 && numberOfItems > 0) {
-            CGFloat inset = (interitemSpacing / (2 * numberOfItems)) + kHTHorizontalSelectionListHorizontalMargin;
+        if (self.centerAlignButtons) {
+            if (extraSpace > 0 && numberOfItems > 0) {
+                CGFloat inset = (extraSpace / (2 * numberOfItems)) + kHTHorizontalSelectionListHorizontalMargin;
 
-            return UIEdgeInsetsMake(0, inset, 0, inset);
+                return UIEdgeInsetsMake(0, inset, 0, inset);
+            }
+        } else if (self.centerButtons) {
+            extraSpace -= numberOfItems * kHTHorizontalSelectionListHorizontalMargin;
+
+            if (extraSpace > 0 && numberOfItems > 0) {
+                CGFloat inset = extraSpace / 2 + kHTHorizontalSelectionListHorizontalMargin;
+
+                return UIEdgeInsetsMake(0, inset, 0, inset);
+            }
         }
     }
 
@@ -587,6 +597,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         if (lineSpacing > 0 && numberOfItems > 0) {
             return lineSpacing / numberOfItems;
         }
+    } else if (self.centerButtons) {
+        return kHTHorizontalSelectionListHorizontalMargin;
     }
 
     return 0;

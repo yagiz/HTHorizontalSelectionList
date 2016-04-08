@@ -23,6 +23,8 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
     HTHorizontalSelectionIndicatorAnimationModeNoBounce
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface HTHorizontalSelectionList : UIView
 
 /**
@@ -31,8 +33,8 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
  */
 @property (nonatomic) NSInteger selectedButtonIndex;
 
-@property (nonatomic, weak) id<HTHorizontalSelectionListDataSource> dataSource;
-@property (nonatomic, weak) id<HTHorizontalSelectionListDelegate> delegate;
+@property (nonatomic, weak, nullable) id<HTHorizontalSelectionListDataSource> dataSource;
+@property (nonatomic, weak, nullable) id<HTHorizontalSelectionListDelegate> delegate;
 
 @property (nonatomic) CGFloat selectionIndicatorHeight;
 @property (nonatomic) CGFloat selectionIndicatorHorizontalPadding;
@@ -87,10 +89,10 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 - (NSInteger)numberOfItemsInSelectionList:(HTHorizontalSelectionList *)selectionList;
 
 @optional
-- (NSString *)selectionList:(HTHorizontalSelectionList *)selectionList titleForItemWithIndex:(NSInteger)index;
-- (UIView *)selectionList:(HTHorizontalSelectionList *)selectionList viewForItemWithIndex:(NSInteger)index;
+- (nullable NSString *)selectionList:(HTHorizontalSelectionList *)selectionList titleForItemWithIndex:(NSInteger)index;
+- (nullable UIView *)selectionList:(HTHorizontalSelectionList *)selectionList viewForItemWithIndex:(NSInteger)index;
 
-- (NSString *)selectionList:(HTHorizontalSelectionList *)selectionList badgeValueForItemWithIndex:(NSInteger)index;
+- (nullable NSString *)selectionList:(HTHorizontalSelectionList *)selectionList badgeValueForItemWithIndex:(NSInteger)index;
 
 @end
 
@@ -99,3 +101,5 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 - (void)selectionList:(HTHorizontalSelectionList *)selectionList didSelectButtonWithIndex:(NSInteger)index;
 
 @end
+
+NS_ASSUME_NONNULL_END

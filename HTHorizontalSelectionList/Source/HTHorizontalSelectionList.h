@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Default is NO.  Centers buttons within the selection list.  Has no effect if the buttons do not fill the space horizontally.
 @property (nonatomic) BOOL centerButtons;
 
-/// Default is YES.  Controls how buttons are aligned when centered.  Has no effeect if `centerButtons` is NO.
+/// Default is YES.  Controls how buttons are aligned when centered.  Has no effect if `centerButtons` is NO.
 /// When set to YES, buttons will be spaced evenly within the selection list.
 /// If NO, buttons will clustered together in the center of the selection list (with the standard button padding between adjacent items).
 @property (nonatomic) BOOL evenlySpaceButtons;

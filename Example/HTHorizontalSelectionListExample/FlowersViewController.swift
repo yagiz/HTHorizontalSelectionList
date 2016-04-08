@@ -24,7 +24,6 @@ import UIKit
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Flowers"
         self.edgesForExtendedLayout = .None
 
         self.selectionList = HTHorizontalSelectionList(frame: CGRectMake(0, 0, self.view.frame.size.width, 80))
@@ -34,15 +33,13 @@ import UIKit
         self.selectionList.selectionIndicatorStyle = .ButtonBorder
         self.selectionList.selectionIndicatorColor = UIColor.blueColor()
         self.selectionList.bottomTrimHidden = true
-        self.selectionList.centerAlignButtons = true
 
         self.selectionList.buttonInsets = UIEdgeInsetsMake(3, 10, 3, 10);
 
         self.view.addSubview(self.selectionList)
 
         self.selectedFlowerView = UIImageView()
-        let selectedImage = self.flowers[self.selectionList.selectedButtonIndex].image
-        self.selectedFlowerView.image = selectedImage
+        self.selectedFlowerView.image = self.flowers[self.selectionList.selectedButtonIndex].image
         self.selectedFlowerView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.selectedFlowerView)
 

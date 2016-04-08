@@ -158,7 +158,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     _titleFontsByState = [NSMutableDictionary dictionaryWithDictionary:@{@(UIControlStateNormal) : [UIFont systemFontOfSize:13]}];
 
     _centerOnSelection = NO;
-    _centerAlignButtons = NO;
+    _centerButtons = NO;
+    _evenlySpaceButtons = YES;
     _scrollingDirectly = NO;
     _snapToCenter = NO;
     _autoselectCentralItem = NO;
@@ -260,6 +261,14 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 - (BOOL)autocorrectCentralItemSelection {
     return _snapToCenter;
+}
+
+- (void)setCenterAlignButtons:(BOOL)centerAlignButtons {
+    _centerButtons = centerAlignButtons;
+}
+
+- (BOOL)centerAlignButtons {
+    return _centerButtons;
 }
 
 #pragma mark - Public Methods
@@ -539,7 +548,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
             return UIEdgeInsetsMake(0, halfWidth - (firstItemWidth / 2), 0, halfWidth - (lastItemWidth / 2));
         }
 
-    } else if (self.centerAlignButtons || self.centerButtons) {
+    } else if (self.centerButtons) {
         CGFloat extraSpace = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
 
         for (NSInteger item = 0; item < numberOfItems; item++) {
@@ -552,13 +561,13 @@ static NSString *ViewCellIdentifier = @"ViewCell";
             }
         }
 
-        if (self.centerAlignButtons) {
+        if (self.evenlySpaceButtons) {
             if (extraSpace > 0 && numberOfItems > 0) {
                 CGFloat inset = (extraSpace / (2 * numberOfItems)) + kHTHorizontalSelectionListHorizontalMargin;
 
                 return UIEdgeInsetsMake(0, inset, 0, inset);
             }
-        } else if (self.centerButtons) {
+        } else {
             extraSpace -= numberOfItems * kHTHorizontalSelectionListHorizontalMargin;
 
             if (extraSpace > 0 && numberOfItems > 0) {
@@ -579,7 +588,11 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 
-    if (self.centerAlignButtons) {
+    if (self.centerButtons) {
+        if (!self.evenlySpaceButtons) {
+            return kHTHorizontalSelectionListHorizontalMargin;
+        }
+
         NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
 
         CGFloat lineSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
@@ -597,8 +610,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         if (lineSpacing > 0 && numberOfItems > 0) {
             return lineSpacing / numberOfItems;
         }
-    } else if (self.centerButtons) {
-        return kHTHorizontalSelectionListHorizontalMargin;
     }
 
     return 0;

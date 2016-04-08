@@ -45,11 +45,13 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 /// Default is NO.  If set to YES, the buttons will fade away near the edges of the list.
 @property (nonatomic) BOOL showsEdgeFadeEffect;
 
-/// Default is NO.  Only has an affect if the number of buttons in the selection list does not fill the space horizontally.
-@property (nonatomic) BOOL centerAlignButtons;
-
-/// Default is NO.  If YES, buttons will be aligned to center in view.
+/// Default is NO.  Centers buttons within the selection list.  Has no effect if the buttons do not fill the space horizontally.
 @property (nonatomic) BOOL centerButtons;
+
+/// Default is YES.  Controls how buttons are aligned when centered.  Has no effeect if `centerButtons` is NO.
+/// When set to YES, buttons will be spaced evenly within the selection list.
+/// If NO, buttons will clustered together in the center of the selection list (with the standard button padding between adjacent items).
+@property (nonatomic) BOOL evenlySpaceButtons;
 
 /// Default is NO.  If YES, the selected button will be centered on selection.
 @property (nonatomic) BOOL centerOnSelection;
@@ -76,6 +78,7 @@ typedef NS_ENUM(NSInteger, HTHorizontalSelectionIndicatorAnimationMode) {
 // Deprecations
 
 @property (nonatomic) BOOL autocorrectCentralItemSelection __attribute__((deprecated("Use snapToCenter instead.")));
+@property (nonatomic) BOOL centerAlignButtons __attribute__((deprecated("Use centerButtons instead.")));
 
 @end
 

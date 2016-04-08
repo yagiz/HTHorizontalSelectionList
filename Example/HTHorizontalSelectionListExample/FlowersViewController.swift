@@ -10,7 +10,7 @@ import UIKit
 
 @objc class FlowersViewController: UIViewController, HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource {
 
-    var selectionList : HTHorizontalSelectionList!
+    var selectionList : HTHorizontalSelectionList?
     let flowers : [UIImageView] = [UIImageView(image: UIImage(named: "flower1.jpeg")),
         UIImageView(image: UIImage(named: "flower2.jpeg")),
         UIImageView(image: UIImage(named: "flower3.jpeg")),
@@ -19,62 +19,62 @@ import UIKit
         UIImageView(image: UIImage(named: "flower6.jpeg")),
         UIImageView(image: UIImage(named: "flower7.jpeg")),
         UIImageView(image: UIImage(named: "flower8.jpeg"))]
-    var selectedFlowerView : UIImageView!
+    var selectedFlowerView : UIImageView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Flowers"
-        self.edgesForExtendedLayout = .None
+        edgesForExtendedLayout = .None
 
-        self.selectionList = HTHorizontalSelectionList(frame: CGRectMake(0, 0, self.view.frame.size.width, 80))
-        self.selectionList.delegate = self
-        self.selectionList.dataSource = self
+        let selectionList = HTHorizontalSelectionList(frame: CGRectMake(0, 0, view.frame.size.width, 80))
+        selectionList.delegate = self
+        selectionList.dataSource = self
 
-        self.selectionList.selectionIndicatorStyle = .ButtonBorder
-        self.selectionList.selectionIndicatorColor = UIColor.blueColor()
-        self.selectionList.bottomTrimHidden = true
-        self.selectionList.centerAlignButtons = true
+        selectionList.selectionIndicatorStyle = .ButtonBorder
+        selectionList.selectionIndicatorColor = UIColor.blueColor()
+        selectionList.bottomTrimHidden = true
 
-        self.selectionList.buttonInsets = UIEdgeInsetsMake(3, 10, 3, 10);
+        selectionList.buttonInsets = UIEdgeInsetsMake(3, 10, 3, 10);
 
-        self.view.addSubview(self.selectionList)
+        view.addSubview(selectionList)
 
-        self.selectedFlowerView = UIImageView()
-        let selectedImage = self.flowers[self.selectionList.selectedButtonIndex].image
-        self.selectedFlowerView.image = selectedImage
-        self.selectedFlowerView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(self.selectedFlowerView)
+        let selectedFlowerView = UIImageView()
+        selectedFlowerView.image = flowers[selectionList.selectedButtonIndex].image
+        selectedFlowerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(selectedFlowerView)
 
-        self.view.addConstraint(NSLayoutConstraint(item: self.selectedFlowerView,
+        view.addConstraint(NSLayoutConstraint(item: selectedFlowerView,
             attribute: .CenterX,
             relatedBy: .Equal,
-            toItem: self.view,
+            toItem: view,
             attribute: .CenterX,
             multiplier: 1.0,
             constant: 0.0))
 
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[selectionList]-margin-[selectedFlowerView]",
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[selectionList]-margin-[selectedFlowerView]",
             options: .DirectionLeadingToTrailing,
             metrics: ["margin" : 50],
-            views: ["selectionList" : self.selectionList, "selectedFlowerView" : self.selectedFlowerView]))
+            views: ["selectionList" : selectionList, "selectedFlowerView" : selectedFlowerView]))
+
+        self.selectionList = selectionList
+        self.selectedFlowerView = selectedFlowerView
     }
 
     // MARK: - HTHorizontalSelectionListDataSource Protocol Methods
 
-    func numberOfItemsInSelectionList(selectionList: HTHorizontalSelectionList!) -> Int {
+    func numberOfItemsInSelectionList(selectionList: HTHorizontalSelectionList) -> Int {
         return flowers.count
     }
 
-    func selectionList(selectionList: HTHorizontalSelectionList!, viewForItemWithIndex index: Int) -> UIView! {
+    func selectionList(selectionList: HTHorizontalSelectionList, viewForItemWithIndex index: Int) -> UIView? {
         return flowers[index]
     }
 
     // MARK: - HTHorizontalSelectionListDelegate Protocol Methods
 
-    func selectionList(selectionList: HTHorizontalSelectionList!, didSelectButtonWithIndex index: Int) {
+    func selectionList(selectionList: HTHorizontalSelectionList, didSelectButtonWithIndex index: Int) {
         // update the view for the corresponding index
-        self.selectedFlowerView.image = self.flowers[index].image
+        selectedFlowerView?.image = flowers[index].image
     }
 
 }

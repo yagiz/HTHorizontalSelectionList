@@ -35,8 +35,10 @@
     catsNavigationController.tabBarItem.title = @"Cats";
     UINavigationController *flowersNavigationController = [[UINavigationController alloc] initWithRootViewController:[[FlowersViewController alloc] init]];
     flowersNavigationController.tabBarItem.title = @"Flowers";
+    UINavigationController *twoButtonsNavigationController = [[UINavigationController alloc] initWithRootViewController:[[TwoButtonViewController alloc] init]];
+    twoButtonsNavigationController.tabBarItem.title = @"2 Buttons";
 
-    self.tabBarController.viewControllers = @[carsNavigationController, catsNavigationController, flowersNavigationController];
+    self.tabBarController.viewControllers = @[carsNavigationController, catsNavigationController, flowersNavigationController, twoButtonsNavigationController];
 
     self.window.backgroundColor = [UIColor lightGrayColor];
     [self.window makeKeyAndVisible];

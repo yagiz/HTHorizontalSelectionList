@@ -7,7 +7,8 @@
 //
 
 #import "CatsViewController.h"
-#import "HTHorizontalSelectionList.h"
+
+#import <HTHorizontalSelectionList/HTHorizontalSelectionList.h>
 
 @interface CatsViewController () <HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource>
 
@@ -25,7 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"Cats";
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     self.customViewSelectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];

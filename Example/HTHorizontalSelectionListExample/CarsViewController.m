@@ -7,7 +7,8 @@
 //
 
 #import "CarsViewController.h"
-#import "HTHorizontalSelectionList.h"
+
+#import <HTHorizontalSelectionList/HTHorizontalSelectionList.h>
 
 @interface CarsViewController () <HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource>
 
@@ -22,8 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"Cars";
+
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.textSelectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];

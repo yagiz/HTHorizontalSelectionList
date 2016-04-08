@@ -7,7 +7,8 @@
 //
 
 #import "CarsViewController.h"
-#import "HTHorizontalSelectionList.h"
+
+#import <HTHorizontalSelectionList/HTHorizontalSelectionList.h>
 
 @interface CarsViewController () <HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource>
 

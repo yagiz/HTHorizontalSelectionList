@@ -7,7 +7,8 @@
 //
 
 #import "CatsViewController.h"
-#import "HTHorizontalSelectionList.h"
+
+#import <HTHorizontalSelectionList/HTHorizontalSelectionList.h>
 
 @interface CatsViewController () <HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource>
 

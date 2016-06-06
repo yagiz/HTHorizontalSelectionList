@@ -517,10 +517,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         CGSize titleSize = [HTHorizontalSelectionListLabelCell sizeForTitle:title withFont:self.titleFontsByState[@(UIControlStateNormal)]];
 
         CGFloat width = titleSize.width + horizontalPadding + kHTHorizontalSelectionListLabelCellInternalPadding;
-        CGFloat height = MAX(MIN(titleSize.height + verticalPadding,
-                                 collectionViewHeight - self.buttonInsets.top - self.buttonInsets.bottom), collectionViewHeight / 1.9);
 
-        return CGSizeMake(width, height);
+        return CGSizeMake(width, collectionViewHeight);
     }
 
     return CGSizeZero;

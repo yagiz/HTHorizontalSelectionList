@@ -30,7 +30,6 @@ const CGFloat kHTHorizontalSelectionListHorizontalMargin = 10;
 const CGFloat kHTHorizontalSelectionListTrimHeight = 0.5;
 const CGFloat kHTHorizontalSelectionListLabelCellInternalPadding = 15;
 
-
 static NSString *LabelCellIdentifier = @"LabelCell";
 static NSString *ViewCellIdentifier = @"ViewCell";
 
@@ -731,6 +730,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                       self.contentView.frame.size.height - self.selectionIndicatorHeight,
                                                       cellRect.size.width - self.buttonInsets.left - self.buttonInsets.right - kHTHorizontalSelectionListLabelCellInternalPadding + 2*self.selectionIndicatorHorizontalPadding,
                                                       self.selectionIndicatorHeight);
+
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
     }
 }
 

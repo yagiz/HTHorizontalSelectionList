@@ -314,7 +314,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         switch (self.selectionIndicatorStyle) {
             case HTHorizontalSelectionIndicatorStyleBottomBar: {
-                [self alignSelectionIndicatorWithCellWithIndexPath:selectedIndexPath];
+                [self alignSelectionIndicatorWithCellAtIndexPath:selectedIndexPath];
                 break;
             }
 
@@ -372,7 +372,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
                          switch (self.selectionIndicatorStyle) {
                              case HTHorizontalSelectionIndicatorStyleBottomBar: {
-                                 [self alignSelectionIndicatorWithCellWithIndexPath:selectedIndexPath];
+                                 [self alignSelectionIndicatorWithCellAtIndexPath:selectedIndexPath];
                                  break;
                              }
 
@@ -723,7 +723,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 #pragma mark - Private Methods
 
-- (void)alignSelectionIndicatorWithCellWithIndexPath:(NSIndexPath *)indexPath {
+- (void)alignSelectionIndicatorWithCellAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath) {
         UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
         CGRect cellRect = attributes.frame;

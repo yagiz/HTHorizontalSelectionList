@@ -403,6 +403,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                              }
                          }
 
+                         [self.collectionView scrollToItemAtIndexPath:selectedIndexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+
                          if (self.centerOnSelection) {
                              [self.collectionView scrollToItemAtIndexPath:selectedCellAttributes.indexPath
                                                          atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
@@ -730,8 +732,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                       self.contentView.frame.size.height - self.selectionIndicatorHeight,
                                                       cellRect.size.width - self.buttonInsets.left - self.buttonInsets.right - kHTHorizontalSelectionListLabelCellInternalPadding + 2*self.selectionIndicatorHorizontalPadding,
                                                       self.selectionIndicatorHeight);
-
-        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
     }
 }
 

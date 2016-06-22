@@ -1,5 +1,5 @@
 PODS:
-  - HTHorizontalSelectionList (0.7.1):
+  - HTHorizontalSelectionList (0.7.2):
     - M13BadgeView (~> 1.0.4)
   - M13BadgeView (1.0.4)
 
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HTHorizontalSelectionList: 1ae1e93bff65749f11c984d25da24a8500b20128
+  HTHorizontalSelectionList: 1ce35f094c6fe4913fae15b50ba407b125f26865
   M13BadgeView: 700dd0714fdc837c0cf1c8c004454963ec22441f
 
 COCOAPODS: 0.39.0

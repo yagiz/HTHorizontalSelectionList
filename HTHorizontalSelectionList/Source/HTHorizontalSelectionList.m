@@ -30,7 +30,6 @@ const CGFloat kHTHorizontalSelectionListHorizontalMargin = 10;
 const CGFloat kHTHorizontalSelectionListTrimHeight = 0.5;
 const CGFloat kHTHorizontalSelectionListLabelCellInternalPadding = 15;
 
-
 static NSString *LabelCellIdentifier = @"LabelCell";
 static NSString *ViewCellIdentifier = @"ViewCell";
 
@@ -315,7 +314,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         switch (self.selectionIndicatorStyle) {
             case HTHorizontalSelectionIndicatorStyleBottomBar: {
-                [self alignSelectionIndicatorWithCellWithIndexPath:selectedIndexPath];
+                [self alignSelectionIndicatorWithCellAtIndexPath:selectedIndexPath];
                 break;
             }
 
@@ -373,7 +372,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
                          switch (self.selectionIndicatorStyle) {
                              case HTHorizontalSelectionIndicatorStyleBottomBar: {
-                                 [self alignSelectionIndicatorWithCellWithIndexPath:selectedIndexPath];
+                                 [self alignSelectionIndicatorWithCellAtIndexPath:selectedIndexPath];
                                  break;
                              }
 
@@ -403,6 +402,8 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                  break;
                              }
                          }
+
+                         [self.collectionView scrollToItemAtIndexPath:selectedIndexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
 
                          if (self.centerOnSelection) {
                              [self.collectionView scrollToItemAtIndexPath:selectedCellAttributes.indexPath
@@ -722,7 +723,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
 #pragma mark - Private Methods
 
-- (void)alignSelectionIndicatorWithCellWithIndexPath:(NSIndexPath *)indexPath {
+- (void)alignSelectionIndicatorWithCellAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath) {
         UICollectionViewLayoutAttributes *attributes = [self.collectionView layoutAttributesForItemAtIndexPath:indexPath];
         CGRect cellRect = attributes.frame;

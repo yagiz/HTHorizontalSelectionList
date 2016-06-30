@@ -252,24 +252,6 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     self.collectionView.allowsSelection = userInteractionEnabled;
 }
 
-// Deprecations
-
-- (void)setAutocorrectCentralItemSelection:(BOOL)autocorrectCentralItemSelection {
-    _snapToCenter = autocorrectCentralItemSelection;
-}
-
-- (BOOL)autocorrectCentralItemSelection {
-    return _snapToCenter;
-}
-
-- (void)setCenterAlignButtons:(BOOL)centerAlignButtons {
-    _centerButtons = centerAlignButtons;
-}
-
-- (BOOL)centerAlignButtons {
-    return _centerButtons;
-}
-
 #pragma mark - Public Methods
 
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state {

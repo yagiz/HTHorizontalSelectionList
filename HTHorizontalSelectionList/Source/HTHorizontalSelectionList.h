@@ -77,11 +77,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setSelectedButtonIndex:(NSInteger)selectedButtonIndex animated:(BOOL)animated;
 
-// Deprecations
-
-@property (nonatomic) BOOL autocorrectCentralItemSelection __attribute__((deprecated("Use snapToCenter instead.")));
-@property (nonatomic) BOOL centerAlignButtons __attribute__((deprecated("Use centerButtons instead.")));
-
 @end
 
 @protocol HTHorizontalSelectionListDataSource <NSObject>

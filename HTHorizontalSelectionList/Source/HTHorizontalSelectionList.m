@@ -143,7 +143,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                                                                  metrics:@{@"height" : @(kHTHorizontalSelectionListTrimHeight)}
                                                                    views:NSDictionaryOfVariableBindings(_bottomTrim)]];
 
-    _buttonInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    _buttonInsets = UIEdgeInsetsMake(0, 5, 0, 5);
     _selectionIndicatorHeight = 3;
     _selectionIndicatorHorizontalPadding = kHTHorizontalSelectionListLabelCellInternalPadding/2;
     _selectionIndicatorStyle = HTHorizontalSelectionIndicatorStyleBottomBar;
@@ -519,7 +519,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         CGFloat width = titleSize.width + horizontalPadding + kHTHorizontalSelectionListLabelCellInternalPadding;
 
-        return CGSizeMake(width, collectionViewHeight);
+        return CGSizeMake(width, MAX(0, MIN(collectionViewHeight, collectionViewHeight - verticalPadding)));
     }
 
     return CGSizeZero;

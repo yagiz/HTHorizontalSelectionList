@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		033578231AA125340009DB4C /* spacecat5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 033578221AA125340009DB4C /* spacecat5.jpeg */; };
+		034081421D25695700ECF5E6 /* flower1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813A1D25695700ECF5E6 /* flower1.jpeg */; };
+		034081431D25695700ECF5E6 /* flower2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813B1D25695700ECF5E6 /* flower2.jpeg */; };
+		034081441D25695700ECF5E6 /* flower3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813C1D25695700ECF5E6 /* flower3.jpeg */; };
+		034081451D25695700ECF5E6 /* flower4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813D1D25695700ECF5E6 /* flower4.jpeg */; };
+		034081461D25695700ECF5E6 /* flower5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813E1D25695700ECF5E6 /* flower5.jpeg */; };
+		034081471D25695700ECF5E6 /* flower6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813F1D25695700ECF5E6 /* flower6.jpeg */; };
+		034081481D25695700ECF5E6 /* flower7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 034081401D25695700ECF5E6 /* flower7.jpeg */; };
+		034081491D25695700ECF5E6 /* flower8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 034081411D25695700ECF5E6 /* flower8.jpeg */; };
 		036F054119C624D9000D2EEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054019C624D9000D2EEB /* main.m */; };
 		036F054419C624D9000D2EEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054319C624D9000D2EEB /* AppDelegate.m */; };
 		036F054719C624D9000D2EEB /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054619C624D9000D2EEB /* CarsViewController.m */; };
@@ -20,19 +28,19 @@
 		03FCAF911A8424A1004857A7 /* spacecat2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */; };
 		03FCAF921A8424A1004857A7 /* spacecat1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */; };
 		03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FCAF941A842B1B004857A7 /* CatsViewController.m */; };
-		03FE115C1AD99C8300174CDA /* flower1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FE11571AD99C8300174CDA /* flower1.jpeg */; };
-		03FE115D1AD99C8300174CDA /* flower2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FE11581AD99C8300174CDA /* flower2.jpeg */; };
-		03FE115E1AD99C8300174CDA /* flower3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FE11591AD99C8300174CDA /* flower3.jpeg */; };
-		03FE115F1AD99C8300174CDA /* flower4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FE115A1AD99C8300174CDA /* flower4.jpeg */; };
-		03FE11601AD99C8300174CDA /* flower5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FE115B1AD99C8300174CDA /* flower5.jpeg */; };
-		03FE11641AD9A06B00174CDA /* flower6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FE11611AD9A06B00174CDA /* flower6.jpeg */; };
-		03FE11651AD9A06B00174CDA /* flower7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FE11621AD9A06B00174CDA /* flower7.jpeg */; };
-		03FE11661AD9A06B00174CDA /* flower8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FE11631AD9A06B00174CDA /* flower8.jpeg */; };
 		EDF540BAA6CF4691A14FDFE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D75892556E902593167951 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		033578221AA125340009DB4C /* spacecat5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat5.jpeg; path = Resources/spacecat5.jpeg; sourceTree = "<group>"; };
+		0340813A1D25695700ECF5E6 /* flower1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower1.jpeg; path = Resources/flower1.jpeg; sourceTree = "<group>"; };
+		0340813B1D25695700ECF5E6 /* flower2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower2.jpeg; path = Resources/flower2.jpeg; sourceTree = "<group>"; };
+		0340813C1D25695700ECF5E6 /* flower3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower3.jpeg; path = Resources/flower3.jpeg; sourceTree = "<group>"; };
+		0340813D1D25695700ECF5E6 /* flower4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower4.jpeg; path = Resources/flower4.jpeg; sourceTree = "<group>"; };
+		0340813E1D25695700ECF5E6 /* flower5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower5.jpeg; path = Resources/flower5.jpeg; sourceTree = "<group>"; };
+		0340813F1D25695700ECF5E6 /* flower6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower6.jpeg; path = Resources/flower6.jpeg; sourceTree = "<group>"; };
+		034081401D25695700ECF5E6 /* flower7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower7.jpeg; path = Resources/flower7.jpeg; sourceTree = "<group>"; };
+		034081411D25695700ECF5E6 /* flower8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower8.jpeg; path = Resources/flower8.jpeg; sourceTree = "<group>"; };
 		036F053B19C624D9000D2EEB /* HTHorizontalSelectionListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTHorizontalSelectionListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		036F053F19C624D9000D2EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		036F054019C624D9000D2EEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,14 +59,6 @@
 		03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat1.jpeg; path = Resources/spacecat1.jpeg; sourceTree = "<group>"; };
 		03FCAF931A842B1B004857A7 /* CatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatsViewController.h; sourceTree = "<group>"; };
 		03FCAF941A842B1B004857A7 /* CatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatsViewController.m; sourceTree = "<group>"; };
-		03FE11571AD99C8300174CDA /* flower1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower1.jpeg; sourceTree = "<group>"; };
-		03FE11581AD99C8300174CDA /* flower2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower2.jpeg; sourceTree = "<group>"; };
-		03FE11591AD99C8300174CDA /* flower3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower3.jpeg; sourceTree = "<group>"; };
-		03FE115A1AD99C8300174CDA /* flower4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower4.jpeg; sourceTree = "<group>"; };
-		03FE115B1AD99C8300174CDA /* flower5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower5.jpeg; sourceTree = "<group>"; };
-		03FE11611AD9A06B00174CDA /* flower6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower6.jpeg; sourceTree = "<group>"; };
-		03FE11621AD9A06B00174CDA /* flower7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower7.jpeg; sourceTree = "<group>"; };
-		03FE11631AD9A06B00174CDA /* flower8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower8.jpeg; sourceTree = "<group>"; };
 		3822EECEE73FE98A333005FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5A76B993AA991B87BBB0F365 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B7D75892556E902593167951 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,19 +127,19 @@
 		03FCAF821A84235C004857A7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0340813A1D25695700ECF5E6 /* flower1.jpeg */,
+				0340813B1D25695700ECF5E6 /* flower2.jpeg */,
+				0340813C1D25695700ECF5E6 /* flower3.jpeg */,
+				0340813D1D25695700ECF5E6 /* flower4.jpeg */,
+				0340813E1D25695700ECF5E6 /* flower5.jpeg */,
+				0340813F1D25695700ECF5E6 /* flower6.jpeg */,
+				034081401D25695700ECF5E6 /* flower7.jpeg */,
+				034081411D25695700ECF5E6 /* flower8.jpeg */,
 				03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */,
 				03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */,
 				03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */,
 				03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */,
 				033578221AA125340009DB4C /* spacecat5.jpeg */,
-				03FE11571AD99C8300174CDA /* flower1.jpeg */,
-				03FE11581AD99C8300174CDA /* flower2.jpeg */,
-				03FE11591AD99C8300174CDA /* flower3.jpeg */,
-				03FE115A1AD99C8300174CDA /* flower4.jpeg */,
-				03FE115B1AD99C8300174CDA /* flower5.jpeg */,
-				03FE11611AD9A06B00174CDA /* flower6.jpeg */,
-				03FE11621AD9A06B00174CDA /* flower7.jpeg */,
-				03FE11631AD9A06B00174CDA /* flower8.jpeg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -223,20 +223,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034081421D25695700ECF5E6 /* flower1.jpeg in Resources */,
 				03FCAF911A8424A1004857A7 /* spacecat2.jpeg in Resources */,
 				036F054F19C624D9000D2EEB /* LaunchScreen.xib in Resources */,
-				03FE115C1AD99C8300174CDA /* flower1.jpeg in Resources */,
-				03FE115F1AD99C8300174CDA /* flower4.jpeg in Resources */,
+				034081481D25695700ECF5E6 /* flower7.jpeg in Resources */,
+				034081441D25695700ECF5E6 /* flower3.jpeg in Resources */,
 				03FCAF901A8424A1004857A7 /* spacecat3.jpeg in Resources */,
-				03FE115E1AD99C8300174CDA /* flower3.jpeg in Resources */,
-				03FE11601AD99C8300174CDA /* flower5.jpeg in Resources */,
 				036F054C19C624D9000D2EEB /* Images.xcassets in Resources */,
 				03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */,
-				03FE11661AD9A06B00174CDA /* flower8.jpeg in Resources */,
-				03FE115D1AD99C8300174CDA /* flower2.jpeg in Resources */,
-				03FE11651AD9A06B00174CDA /* flower7.jpeg in Resources */,
+				034081451D25695700ECF5E6 /* flower4.jpeg in Resources */,
 				03FCAF921A8424A1004857A7 /* spacecat1.jpeg in Resources */,
-				03FE11641AD9A06B00174CDA /* flower6.jpeg in Resources */,
+				034081491D25695700ECF5E6 /* flower8.jpeg in Resources */,
+				034081471D25695700ECF5E6 /* flower6.jpeg in Resources */,
+				034081461D25695700ECF5E6 /* flower5.jpeg in Resources */,
+				034081431D25695700ECF5E6 /* flower2.jpeg in Resources */,
 				033578231AA125340009DB4C /* spacecat5.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

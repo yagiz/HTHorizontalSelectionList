@@ -439,7 +439,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         }
     }
 
-    if ([self.delegate respondsToSelector:@selector(selectionList:badgeValueForItemWithIndex:)]) {
+    if ([self.dataSource respondsToSelector:@selector(selectionList:badgeValueForItemWithIndex:)]) {
         NSString *badgeValue = [self.dataSource selectionList:self badgeValueForItemWithIndex:indexPath.item];
         ((HTHorizontalSelectionListLabelCell *)cell).badgeValue = badgeValue;
     }

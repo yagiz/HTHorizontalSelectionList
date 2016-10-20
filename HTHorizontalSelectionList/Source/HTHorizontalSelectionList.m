@@ -26,7 +26,6 @@
 
 @end
 
-const CGFloat kHTHorizontalSelectionListHorizontalMargin = 10;
 const CGFloat kHTHorizontalSelectionListTrimHeight = 0.5;
 const CGFloat kHTHorizontalSelectionListLabelCellInternalPadding = 15;
 
@@ -162,6 +161,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     _scrollingDirectly = NO;
     _snapToCenter = NO;
     _autoselectCentralItem = NO;
+    _horizontalMargin = 10;
 }
 
 - (void)layoutSubviews {
@@ -394,7 +394,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
                          }
 
                          if (!self.autoselectCentralItem) {
-                             [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -kHTHorizontalSelectionListHorizontalMargin, 0)
+                             [self.collectionView scrollRectToVisible:CGRectInset(selectedCellFrame, -self.horizontalMargin, 0)
                                                              animated:animated];
                          }
                      }
@@ -530,7 +530,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         }
 
     } else if (self.centerButtons) {
-        CGFloat extraSpace = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
+        CGFloat extraSpace = collectionView.frame.size.width - 2*self.horizontalMargin;
 
         for (NSInteger item = 0; item < numberOfItems; item++) {
             extraSpace -= [self collectionView:collectionView
@@ -544,22 +544,22 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
         if (self.evenlySpaceButtons) {
             if (extraSpace > 0 && numberOfItems > 0) {
-                CGFloat inset = (extraSpace / (2 * numberOfItems)) + kHTHorizontalSelectionListHorizontalMargin;
+                CGFloat inset = (extraSpace / (2 * numberOfItems)) + self.horizontalMargin;
 
                 return UIEdgeInsetsMake(0, inset, 0, inset);
             }
         } else {
-            extraSpace -= numberOfItems * kHTHorizontalSelectionListHorizontalMargin;
+            extraSpace -= numberOfItems * self.horizontalMargin;
 
             if (extraSpace > 0 && numberOfItems > 0) {
-                CGFloat inset = extraSpace / 2 + kHTHorizontalSelectionListHorizontalMargin;
+                CGFloat inset = extraSpace / 2 + self.horizontalMargin;
 
                 return UIEdgeInsetsMake(0, inset, 0, inset);
             }
         }
     }
 
-    return UIEdgeInsetsMake(0, kHTHorizontalSelectionListHorizontalMargin, 0, kHTHorizontalSelectionListHorizontalMargin);
+    return UIEdgeInsetsMake(0, self.horizontalMargin, 0, self.horizontalMargin);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
@@ -571,12 +571,12 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
     if (self.centerButtons) {
         if (!self.evenlySpaceButtons) {
-            return kHTHorizontalSelectionListHorizontalMargin;
+            return self.horizontalMargin;
         }
 
         NSInteger numberOfItems = [self.dataSource numberOfItemsInSelectionList:self];
 
-        CGFloat lineSpacing = collectionView.frame.size.width - 2*kHTHorizontalSelectionListHorizontalMargin;
+        CGFloat lineSpacing = collectionView.frame.size.width - 2*self.horizontalMargin;
 
         for (NSInteger item = 0; item < numberOfItems; item++) {
             lineSpacing -= [self collectionView:collectionView

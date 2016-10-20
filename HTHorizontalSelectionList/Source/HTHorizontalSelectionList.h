@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, nullable) id<HTHorizontalSelectionListDataSource> dataSource;
 @property (nonatomic, weak, nullable) id<HTHorizontalSelectionListDelegate> delegate;
 
+@property (nonatomic) CGFloat horizontalMargin;
 @property (nonatomic) CGFloat selectionIndicatorHeight;
 @property (nonatomic) CGFloat selectionIndicatorHorizontalPadding;
 @property (nonatomic, strong) UIColor *selectionIndicatorColor;

@@ -14,7 +14,7 @@
 		03ED30B51DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A91DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h */; };
 		03ED30B81DDA556B00A408E3 /* HTHorizontalSelectionList.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30AC1DDA556B00A408E3 /* HTHorizontalSelectionList.h */; };
 		03ED30B91DDA556B00A408E3 /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30AD1DDA556B00A408E3 /* HTHorizontalSelectionList.m */; };
-		173B9701537D20470CDC8B95 /* libPods-HTHorizontalSelectionList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 095A43FA3ADD7158857A81FB /* libPods-HTHorizontalSelectionList.a */; };
+		7B90A270DC2037E4A76C2DFE /* libPods-HTHorizontalSelectionList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A3695D21BEE40C86553725 /* libPods-HTHorizontalSelectionList.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,9 +32,9 @@
 		03ED30AB1DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListLabelCell.m; path = Source/Cells/HTHorizontalSelectionListLabelCell.m; sourceTree = SOURCE_ROOT; };
 		03ED30AC1DDA556B00A408E3 /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionList.h; path = Source/HTHorizontalSelectionList.h; sourceTree = SOURCE_ROOT; };
 		03ED30AD1DDA556B00A408E3 /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionList.m; path = Source/HTHorizontalSelectionList.m; sourceTree = SOURCE_ROOT; };
-		095A43FA3ADD7158857A81FB /* libPods-HTHorizontalSelectionList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HTHorizontalSelectionList.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		64E33596F506E7DFDE07AD69 /* Pods-HTHorizontalSelectionList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTHorizontalSelectionList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HTHorizontalSelectionList/Pods-HTHorizontalSelectionList.debug.xcconfig"; sourceTree = "<group>"; };
-		A1E9590F64020FF816F219D0 /* Pods-HTHorizontalSelectionList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTHorizontalSelectionList.release.xcconfig"; path = "Pods/Target Support Files/Pods-HTHorizontalSelectionList/Pods-HTHorizontalSelectionList.release.xcconfig"; sourceTree = "<group>"; };
+		04A3695D21BEE40C86553725 /* libPods-HTHorizontalSelectionList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HTHorizontalSelectionList.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		147C1A9D49CBD71D465B5231 /* Pods-HTHorizontalSelectionList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTHorizontalSelectionList.release.xcconfig"; path = "Pods/Target Support Files/Pods-HTHorizontalSelectionList/Pods-HTHorizontalSelectionList.release.xcconfig"; sourceTree = "<group>"; };
+		3F221813C9EA6D3648BAB7B3 /* Pods-HTHorizontalSelectionList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTHorizontalSelectionList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HTHorizontalSelectionList/Pods-HTHorizontalSelectionList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				173B9701537D20470CDC8B95 /* libPods-HTHorizontalSelectionList.a in Frameworks */,
+				7B90A270DC2037E4A76C2DFE /* libPods-HTHorizontalSelectionList.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +55,8 @@
 				0386AC991C6BEDF900F6D73F /* HTHorizontalSelectionList */,
 				0386AC981C6BEDF900F6D73F /* Products */,
 				03ED309B1DDA536600A408E3 /* Supporting Files */,
-				6D2258EEBEFE08A64B7F65D8 /* Pods */,
-				987EDE784E8494FA86F58F3E /* Frameworks */,
+				B38170D7F7E0174272E24E56 /* Pods */,
+				939ED32F29062C4862B888C1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,21 +104,21 @@
 			path = Source/Cells;
 			sourceTree = SOURCE_ROOT;
 		};
-		6D2258EEBEFE08A64B7F65D8 /* Pods */ = {
+		939ED32F29062C4862B888C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				64E33596F506E7DFDE07AD69 /* Pods-HTHorizontalSelectionList.debug.xcconfig */,
-				A1E9590F64020FF816F219D0 /* Pods-HTHorizontalSelectionList.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		987EDE784E8494FA86F58F3E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				095A43FA3ADD7158857A81FB /* libPods-HTHorizontalSelectionList.a */,
+				04A3695D21BEE40C86553725 /* libPods-HTHorizontalSelectionList.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B38170D7F7E0174272E24E56 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3F221813C9EA6D3648BAB7B3 /* Pods-HTHorizontalSelectionList.debug.xcconfig */,
+				147C1A9D49CBD71D465B5231 /* Pods-HTHorizontalSelectionList.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,12 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0386ACAB1C6BEDFA00F6D73F /* Build configuration list for PBXNativeTarget "HTHorizontalSelectionList" */;
 			buildPhases = (
-				73F161B75ABE755B1537479F /* Check Pods Manifest.lock */,
+				5FCA1428A2C16DBD91E01974 /* [CP] Check Pods Manifest.lock */,
 				0386AC921C6BEDF900F6D73F /* Sources */,
 				0386AC931C6BEDF900F6D73F /* Frameworks */,
 				0386AC941C6BEDF900F6D73F /* Headers */,
 				0386AC951C6BEDF900F6D73F /* Resources */,
-				E27B0E68505D2CD7F417676D /* Copy Pods Resources */,
+				C9C97F699CBDF2F58E1BABD0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,29 +200,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		73F161B75ABE755B1537479F /* Check Pods Manifest.lock */ = {
+		5FCA1428A2C16DBD91E01974 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		E27B0E68505D2CD7F417676D /* Copy Pods Resources */ = {
+		C9C97F699CBDF2F58E1BABD0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +342,7 @@
 		};
 		0386ACAC1C6BEDFA00F6D73F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64E33596F506E7DFDE07AD69 /* Pods-HTHorizontalSelectionList.debug.xcconfig */;
+			baseConfigurationReference = 3F221813C9EA6D3648BAB7B3 /* Pods-HTHorizontalSelectionList.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
@@ -360,7 +360,7 @@
 		};
 		0386ACAD1C6BEDFA00F6D73F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1E9590F64020FF816F219D0 /* Pods-HTHorizontalSelectionList.release.xcconfig */;
+			baseConfigurationReference = 147C1A9D49CBD71D465B5231 /* Pods-HTHorizontalSelectionList.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;

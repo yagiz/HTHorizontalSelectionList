@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		03ED30AE1DDA556B00A408E3 /* HTHorizontalSelectionListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A21DDA556B00A408E3 /* HTHorizontalSelectionListCell.h */; };
-		03ED30AF1DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A31DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h */; };
 		03ED30B01DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30A41DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.m */; };
-		03ED30B11DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A51DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h */; };
 		03ED30B21DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30A61DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m */; };
-		03ED30B31DDA556B00A408E3 /* HTHorizontalSelectionListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A71DDA556B00A408E3 /* HTHorizontalSelectionListCell.h */; };
 		03ED30B41DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A81DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h */; };
 		03ED30B51DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A91DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h */; };
 		03ED30B81DDA556B00A408E3 /* HTHorizontalSelectionList.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30AC1DDA556B00A408E3 /* HTHorizontalSelectionList.h */; };
@@ -135,9 +132,6 @@
 				03ED30B41DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h in Headers */,
 				03ED30B51DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h in Headers */,
 				03ED30B81DDA556B00A408E3 /* HTHorizontalSelectionList.h in Headers */,
-				03ED30B31DDA556B00A408E3 /* HTHorizontalSelectionListCell.h in Headers */,
-				03ED30AF1DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h in Headers */,
-				03ED30B11DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +164,7 @@
 		0386AC8E1C6BEDF900F6D73F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Hightower, Inc.";
 				TargetAttributes = {
 					0386AC961C6BEDF900F6D73F = {
@@ -265,8 +259,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -313,8 +309,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -346,6 +344,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 64E33596F506E7DFDE07AD69 /* Pods-HTHorizontalSelectionList.debug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -363,6 +362,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1E9590F64020FF816F219D0 /* Pods-HTHorizontalSelectionList.release.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

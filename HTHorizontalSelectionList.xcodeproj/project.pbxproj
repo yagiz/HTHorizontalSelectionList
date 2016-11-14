@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0386ACA21C6BEDFA00F6D73F /* HTHorizontalSelectionList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0386AC971C6BEDF900F6D73F /* HTHorizontalSelectionList.framework */; };
-		0386ACA71C6BEDFA00F6D73F /* HTHorizontalSelectionListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386ACA61C6BEDFA00F6D73F /* HTHorizontalSelectionListTests.m */; };
 		0386ACBA1C6BEEC700F6D73F /* HTHorizontalSelectionListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0386ACB31C6BEEC700F6D73F /* HTHorizontalSelectionListCell.h */; };
 		0386ACBB1C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0386ACB41C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.h */; };
 		0386ACBC1C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386ACB51C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.m */; };
@@ -19,22 +17,9 @@
 		173B9701537D20470CDC8B95 /* libPods-HTHorizontalSelectionList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 095A43FA3ADD7158857A81FB /* libPods-HTHorizontalSelectionList.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		0386ACA31C6BEDFA00F6D73F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0386AC8E1C6BEDF900F6D73F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0386AC961C6BEDF900F6D73F;
-			remoteInfo = HTHorizontalSelectionList;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		0386AC971C6BEDF900F6D73F /* HTHorizontalSelectionList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTHorizontalSelectionList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0386AC9C1C6BEDF900F6D73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0386ACA11C6BEDFA00F6D73F /* HTHorizontalSelectionListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTHorizontalSelectionListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0386ACA61C6BEDFA00F6D73F /* HTHorizontalSelectionListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListTests.m; sourceTree = "<group>"; };
-		0386ACA81C6BEDFA00F6D73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0386ACB31C6BEEC700F6D73F /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCell.h; sourceTree = "<group>"; };
 		0386ACB41C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCustomViewCell.h; sourceTree = "<group>"; };
 		0386ACB51C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListCustomViewCell.m; sourceTree = "<group>"; };
@@ -56,14 +41,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0386AC9E1C6BEDFA00F6D73F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0386ACA21C6BEDFA00F6D73F /* HTHorizontalSelectionList.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -71,7 +48,6 @@
 			isa = PBXGroup;
 			children = (
 				0386AC991C6BEDF900F6D73F /* HTHorizontalSelectionList */,
-				0386ACA51C6BEDFA00F6D73F /* HTHorizontalSelectionListTests */,
 				0386AC981C6BEDF900F6D73F /* Products */,
 				6D2258EEBEFE08A64B7F65D8 /* Pods */,
 				987EDE784E8494FA86F58F3E /* Frameworks */,
@@ -82,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				0386AC971C6BEDF900F6D73F /* HTHorizontalSelectionList.framework */,
-				0386ACA11C6BEDFA00F6D73F /* HTHorizontalSelectionListTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,15 +71,6 @@
 				0386AC9C1C6BEDF900F6D73F /* Info.plist */,
 			);
 			path = HTHorizontalSelectionList;
-			sourceTree = "<group>";
-		};
-		0386ACA51C6BEDFA00F6D73F /* HTHorizontalSelectionListTests */ = {
-			isa = PBXGroup;
-			children = (
-				0386ACA61C6BEDFA00F6D73F /* HTHorizontalSelectionListTests.m */,
-				0386ACA81C6BEDFA00F6D73F /* Info.plist */,
-			);
-			path = HTHorizontalSelectionListTests;
 			sourceTree = "<group>";
 		};
 		0386ACB21C6BEEC700F6D73F /* Cells */ = {
@@ -174,24 +140,6 @@
 			productReference = 0386AC971C6BEDF900F6D73F /* HTHorizontalSelectionList.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		0386ACA01C6BEDFA00F6D73F /* HTHorizontalSelectionListTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0386ACAE1C6BEDFA00F6D73F /* Build configuration list for PBXNativeTarget "HTHorizontalSelectionListTests" */;
-			buildPhases = (
-				0386AC9D1C6BEDFA00F6D73F /* Sources */,
-				0386AC9E1C6BEDFA00F6D73F /* Frameworks */,
-				0386AC9F1C6BEDFA00F6D73F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0386ACA41C6BEDFA00F6D73F /* PBXTargetDependency */,
-			);
-			name = HTHorizontalSelectionListTests;
-			productName = HTHorizontalSelectionListTests;
-			productReference = 0386ACA11C6BEDFA00F6D73F /* HTHorizontalSelectionListTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -202,9 +150,6 @@
 				ORGANIZATIONNAME = "Hightower, Inc.";
 				TargetAttributes = {
 					0386AC961C6BEDF900F6D73F = {
-						CreatedOnToolsVersion = 7.2.1;
-					};
-					0386ACA01C6BEDFA00F6D73F = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
 				};
@@ -222,20 +167,12 @@
 			projectRoot = "";
 			targets = (
 				0386AC961C6BEDF900F6D73F /* HTHorizontalSelectionList */,
-				0386ACA01C6BEDFA00F6D73F /* HTHorizontalSelectionListTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0386AC951C6BEDF900F6D73F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0386AC9F1C6BEDFA00F6D73F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,23 +225,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0386AC9D1C6BEDFA00F6D73F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0386ACA71C6BEDFA00F6D73F /* HTHorizontalSelectionListTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0386ACA41C6BEDFA00F6D73F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0386AC961C6BEDF900F6D73F /* HTHorizontalSelectionList */;
-			targetProxy = 0386ACA31C6BEDFA00F6D73F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0386ACA91C6BEDFA00F6D73F /* Debug */ = {
@@ -429,26 +350,6 @@
 			};
 			name = Release;
 		};
-		0386ACAF1C6BEDFA00F6D73F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = HTHorizontalSelectionListTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hightower.HTHorizontalSelectionListTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		0386ACB01C6BEDFA00F6D73F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = HTHorizontalSelectionListTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hightower.HTHorizontalSelectionListTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -466,15 +367,6 @@
 			buildConfigurations = (
 				0386ACAC1C6BEDFA00F6D73F /* Debug */,
 				0386ACAD1C6BEDFA00F6D73F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0386ACAE1C6BEDFA00F6D73F /* Build configuration list for PBXNativeTarget "HTHorizontalSelectionListTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0386ACAF1C6BEDFA00F6D73F /* Debug */,
-				0386ACB01C6BEDFA00F6D73F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

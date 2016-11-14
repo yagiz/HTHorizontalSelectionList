@@ -52,12 +52,12 @@
     self.selectedSpaceCatView.backgroundColor = [UIColor colorWithPatternImage:selectedImage];
     self.selectedSpaceCatView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.selectedSpaceCatView];
-    
+
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_selectedSpaceCatView]|"
                                                                       options:NSLayoutFormatDirectionLeadingToTrailing
                                                                       metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(_selectedSpaceCatView)]];
-    
+
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_customViewSelectionList][_selectedSpaceCatView]|"
                                                                       options:NSLayoutFormatDirectionLeadingToTrailing
                                                                       metrics:nil
@@ -66,11 +66,11 @@
     UIButton *filterToggleButton = [UIButton buttonWithType:UIButtonTypeSystem];
     filterToggleButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     [filterToggleButton setTitle:@"Filter Selection List" forState:UIControlStateNormal];
-    
+
     filterToggleButton.contentEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     filterToggleButton.backgroundColor = [UIColor whiteColor];
     filterToggleButton.layer.cornerRadius = 3.0;
-    
+
     [filterToggleButton addTarget:self
                            action:@selector(filterToggleButtonTapped:)
                  forControlEvents:UIControlEventTouchUpInside];

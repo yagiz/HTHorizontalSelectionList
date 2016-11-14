@@ -25,11 +25,11 @@
     [super viewDidLoad];
 
     self.edgesForExtendedLayout = UIRectEdgeNone;
-    
+
     self.textSelectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
     self.textSelectionList.delegate = self;
     self.textSelectionList.dataSource = self;
-    
+
     self.textSelectionList.selectionIndicatorAnimationMode = HTHorizontalSelectionIndicatorAnimationModeLightBounce;
     self.textSelectionList.showsEdgeFadeEffect = YES;
 
@@ -55,7 +55,7 @@
                       @"Robur",
                       @"Volkswagen",
                       @"Wiesmann"];
-    
+
     [self.view addSubview:self.textSelectionList];
 
     self.selectedCarLabel = [[UILabel alloc] init];

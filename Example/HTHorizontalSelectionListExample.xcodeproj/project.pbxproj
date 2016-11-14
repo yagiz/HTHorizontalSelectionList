@@ -7,61 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		033578231AA125340009DB4C /* spacecat5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 033578221AA125340009DB4C /* spacecat5.jpeg */; };
-		034081421D25695700ECF5E6 /* flower1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813A1D25695700ECF5E6 /* flower1.jpeg */; };
-		034081431D25695700ECF5E6 /* flower2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813B1D25695700ECF5E6 /* flower2.jpeg */; };
-		034081441D25695700ECF5E6 /* flower3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813C1D25695700ECF5E6 /* flower3.jpeg */; };
-		034081451D25695700ECF5E6 /* flower4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813D1D25695700ECF5E6 /* flower4.jpeg */; };
-		034081461D25695700ECF5E6 /* flower5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813E1D25695700ECF5E6 /* flower5.jpeg */; };
-		034081471D25695700ECF5E6 /* flower6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0340813F1D25695700ECF5E6 /* flower6.jpeg */; };
-		034081481D25695700ECF5E6 /* flower7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 034081401D25695700ECF5E6 /* flower7.jpeg */; };
-		034081491D25695700ECF5E6 /* flower8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 034081411D25695700ECF5E6 /* flower8.jpeg */; };
-		036F054119C624D9000D2EEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054019C624D9000D2EEB /* main.m */; };
-		036F054419C624D9000D2EEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054319C624D9000D2EEB /* AppDelegate.m */; };
-		036F054719C624D9000D2EEB /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036F054619C624D9000D2EEB /* CarsViewController.m */; };
-		036F054C19C624D9000D2EEB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 036F054B19C624D9000D2EEB /* Images.xcassets */; };
-		036F054F19C624D9000D2EEB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 036F054D19C624D9000D2EEB /* LaunchScreen.xib */; };
-		038ABFA51AC3A39100EC3ABC /* FlowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038ABFA41AC3A39100EC3ABC /* FlowersViewController.swift */; };
-		03B0515B1CB81C2F009AC16F /* TwoButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B0515A1CB81C2F009AC16F /* TwoButtonViewController.swift */; };
-		03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */; };
-		03FCAF901A8424A1004857A7 /* spacecat3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */; };
-		03FCAF911A8424A1004857A7 /* spacecat2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */; };
-		03FCAF921A8424A1004857A7 /* spacecat1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */; };
-		03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03FCAF941A842B1B004857A7 /* CatsViewController.m */; };
-		EDF540BAA6CF4691A14FDFE1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7D75892556E902593167951 /* libPods.a */; };
+		03ED30D71DDA563F00A408E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30BC1DDA563F00A408E3 /* AppDelegate.m */; };
+		03ED30D81DDA563F00A408E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30BD1DDA563F00A408E3 /* LaunchScreen.xib */; };
+		03ED30D91DDA563F00A408E3 /* CarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30C01DDA563F00A408E3 /* CarsViewController.m */; };
+		03ED30DA1DDA563F00A408E3 /* CatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30C21DDA563F00A408E3 /* CatsViewController.m */; };
+		03ED30E31DDA563F00A408E3 /* FlowersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30CB1DDA563F00A408E3 /* FlowersViewController.swift */; };
+		03ED30E41DDA563F00A408E3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30CD1DDA563F00A408E3 /* Images.xcassets */; };
+		03ED30E61DDA563F00A408E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30CF1DDA563F00A408E3 /* main.m */; };
+		03ED30E71DDA563F00A408E3 /* spacecat1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30D11DDA563F00A408E3 /* spacecat1.jpeg */; };
+		03ED30E81DDA563F00A408E3 /* spacecat2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30D21DDA563F00A408E3 /* spacecat2.jpeg */; };
+		03ED30E91DDA563F00A408E3 /* spacecat3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30D31DDA563F00A408E3 /* spacecat3.jpeg */; };
+		03ED30EA1DDA563F00A408E3 /* spacecat4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30D41DDA563F00A408E3 /* spacecat4.jpeg */; };
+		03ED30EB1DDA563F00A408E3 /* spacecat5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30D51DDA563F00A408E3 /* spacecat5.jpeg */; };
+		03ED30EC1DDA563F00A408E3 /* TwoButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30D61DDA563F00A408E3 /* TwoButtonViewController.swift */; };
+		03ED30F51DDA56B800A408E3 /* flower1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30ED1DDA56B800A408E3 /* flower1.jpeg */; };
+		03ED30F61DDA56B800A408E3 /* flower2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30EE1DDA56B800A408E3 /* flower2.jpeg */; };
+		03ED30F71DDA56B800A408E3 /* flower3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30EF1DDA56B800A408E3 /* flower3.jpeg */; };
+		03ED30F81DDA56B800A408E3 /* flower4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30F01DDA56B800A408E3 /* flower4.jpeg */; };
+		03ED30F91DDA56B800A408E3 /* flower5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30F11DDA56B800A408E3 /* flower5.jpeg */; };
+		03ED30FA1DDA56B800A408E3 /* flower6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30F21DDA56B800A408E3 /* flower6.jpeg */; };
+		03ED30FB1DDA56B800A408E3 /* flower7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30F31DDA56B800A408E3 /* flower7.jpeg */; };
+		03ED30FC1DDA56B800A408E3 /* flower8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 03ED30F41DDA56B800A408E3 /* flower8.jpeg */; };
+		E4EB0DEADCC001B5B5896B3F /* libPods-HTHorizontalSelectionListExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D61DC8390BF4AC29C16B5EF /* libPods-HTHorizontalSelectionListExample.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		033578221AA125340009DB4C /* spacecat5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat5.jpeg; path = Resources/spacecat5.jpeg; sourceTree = "<group>"; };
-		0340813A1D25695700ECF5E6 /* flower1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower1.jpeg; path = Resources/flower1.jpeg; sourceTree = "<group>"; };
-		0340813B1D25695700ECF5E6 /* flower2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower2.jpeg; path = Resources/flower2.jpeg; sourceTree = "<group>"; };
-		0340813C1D25695700ECF5E6 /* flower3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower3.jpeg; path = Resources/flower3.jpeg; sourceTree = "<group>"; };
-		0340813D1D25695700ECF5E6 /* flower4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower4.jpeg; path = Resources/flower4.jpeg; sourceTree = "<group>"; };
-		0340813E1D25695700ECF5E6 /* flower5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower5.jpeg; path = Resources/flower5.jpeg; sourceTree = "<group>"; };
-		0340813F1D25695700ECF5E6 /* flower6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower6.jpeg; path = Resources/flower6.jpeg; sourceTree = "<group>"; };
-		034081401D25695700ECF5E6 /* flower7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower7.jpeg; path = Resources/flower7.jpeg; sourceTree = "<group>"; };
-		034081411D25695700ECF5E6 /* flower8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = flower8.jpeg; path = Resources/flower8.jpeg; sourceTree = "<group>"; };
 		036F053B19C624D9000D2EEB /* HTHorizontalSelectionListExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTHorizontalSelectionListExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		036F053F19C624D9000D2EEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		036F054019C624D9000D2EEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		036F054219C624D9000D2EEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		036F054319C624D9000D2EEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		036F054519C624D9000D2EEB /* CarsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarsViewController.h; sourceTree = "<group>"; };
-		036F054619C624D9000D2EEB /* CarsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
-		036F054B19C624D9000D2EEB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		036F054E19C624D9000D2EEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		038ABFA31AC3A39100EC3ABC /* HTHorizontalSelectionListExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTHorizontalSelectionListExample-Bridging-Header.h"; sourceTree = "<group>"; };
-		038ABFA41AC3A39100EC3ABC /* FlowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowersViewController.swift; sourceTree = "<group>"; };
-		03B0515A1CB81C2F009AC16F /* TwoButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoButtonViewController.swift; sourceTree = "<group>"; };
-		03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat4.jpeg; path = Resources/spacecat4.jpeg; sourceTree = "<group>"; };
-		03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat3.jpeg; path = Resources/spacecat3.jpeg; sourceTree = "<group>"; };
-		03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat2.jpeg; path = Resources/spacecat2.jpeg; sourceTree = "<group>"; };
-		03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = spacecat1.jpeg; path = Resources/spacecat1.jpeg; sourceTree = "<group>"; };
-		03FCAF931A842B1B004857A7 /* CatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatsViewController.h; sourceTree = "<group>"; };
-		03FCAF941A842B1B004857A7 /* CatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatsViewController.m; sourceTree = "<group>"; };
-		3822EECEE73FE98A333005FF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		5A76B993AA991B87BBB0F365 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		B7D75892556E902593167951 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		03ED30BB1DDA563F00A408E3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		03ED30BC1DDA563F00A408E3 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		03ED30BE1DDA563F00A408E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		03ED30BF1DDA563F00A408E3 /* CarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarsViewController.h; sourceTree = "<group>"; };
+		03ED30C01DDA563F00A408E3 /* CarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarsViewController.m; sourceTree = "<group>"; };
+		03ED30C11DDA563F00A408E3 /* CatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatsViewController.h; sourceTree = "<group>"; };
+		03ED30C21DDA563F00A408E3 /* CatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatsViewController.m; sourceTree = "<group>"; };
+		03ED30CB1DDA563F00A408E3 /* FlowersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowersViewController.swift; sourceTree = "<group>"; };
+		03ED30CC1DDA563F00A408E3 /* HTHorizontalSelectionListExample-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HTHorizontalSelectionListExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		03ED30CD1DDA563F00A408E3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		03ED30CE1DDA563F00A408E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Source/Info.plist; sourceTree = "<group>"; };
+		03ED30CF1DDA563F00A408E3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../Source/main.m; sourceTree = "<group>"; };
+		03ED30D11DDA563F00A408E3 /* spacecat1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spacecat1.jpeg; sourceTree = "<group>"; };
+		03ED30D21DDA563F00A408E3 /* spacecat2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spacecat2.jpeg; sourceTree = "<group>"; };
+		03ED30D31DDA563F00A408E3 /* spacecat3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spacecat3.jpeg; sourceTree = "<group>"; };
+		03ED30D41DDA563F00A408E3 /* spacecat4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spacecat4.jpeg; sourceTree = "<group>"; };
+		03ED30D51DDA563F00A408E3 /* spacecat5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spacecat5.jpeg; sourceTree = "<group>"; };
+		03ED30D61DDA563F00A408E3 /* TwoButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoButtonViewController.swift; sourceTree = "<group>"; };
+		03ED30ED1DDA56B800A408E3 /* flower1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower1.jpeg; sourceTree = "<group>"; };
+		03ED30EE1DDA56B800A408E3 /* flower2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower2.jpeg; sourceTree = "<group>"; };
+		03ED30EF1DDA56B800A408E3 /* flower3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower3.jpeg; sourceTree = "<group>"; };
+		03ED30F01DDA56B800A408E3 /* flower4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower4.jpeg; sourceTree = "<group>"; };
+		03ED30F11DDA56B800A408E3 /* flower5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower5.jpeg; sourceTree = "<group>"; };
+		03ED30F21DDA56B800A408E3 /* flower6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower6.jpeg; sourceTree = "<group>"; };
+		03ED30F31DDA56B800A408E3 /* flower7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower7.jpeg; sourceTree = "<group>"; };
+		03ED30F41DDA56B800A408E3 /* flower8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = flower8.jpeg; sourceTree = "<group>"; };
+		23F52A51C55F61EDC373DA3F /* Pods-HTHorizontalSelectionListExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTHorizontalSelectionListExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HTHorizontalSelectionListExample/Pods-HTHorizontalSelectionListExample.debug.xcconfig"; sourceTree = "<group>"; };
+		7D61DC8390BF4AC29C16B5EF /* libPods-HTHorizontalSelectionListExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HTHorizontalSelectionListExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D570BCCA5A71FCE941E40C0 /* Pods-HTHorizontalSelectionListExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTHorizontalSelectionListExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-HTHorizontalSelectionListExample/Pods-HTHorizontalSelectionListExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDF540BAA6CF4691A14FDFE1 /* libPods.a in Frameworks */,
+				E4EB0DEADCC001B5B5896B3F /* libPods-HTHorizontalSelectionListExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +79,10 @@
 		036F053219C624D9000D2EEB = {
 			isa = PBXGroup;
 			children = (
-				036F053D19C624D9000D2EEB /* HTHorizontalSelectionList Example */,
+				03ED30BA1DDA563F00A408E3 /* HTHorizontalSelectionList Example */,
 				036F053C19C624D9000D2EEB /* Products */,
-				0F0C42EBE787870EA0F72779 /* Pods */,
-				60D84FDE1A2DB966BAF0A040 /* Frameworks */,
+				34BC5E47FFCBBE4CD26C6B59 /* Pods */,
+				1C3DEFC7EC3E8C1D926009B6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,71 +94,72 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		036F053D19C624D9000D2EEB /* HTHorizontalSelectionList Example */ = {
-			isa = PBXGroup;
-			children = (
-				036F054219C624D9000D2EEB /* AppDelegate.h */,
-				036F054319C624D9000D2EEB /* AppDelegate.m */,
-				036F054519C624D9000D2EEB /* CarsViewController.h */,
-				036F054619C624D9000D2EEB /* CarsViewController.m */,
-				03FCAF931A842B1B004857A7 /* CatsViewController.h */,
-				03FCAF941A842B1B004857A7 /* CatsViewController.m */,
-				038ABFA41AC3A39100EC3ABC /* FlowersViewController.swift */,
-				03B0515A1CB81C2F009AC16F /* TwoButtonViewController.swift */,
-				038ABFA31AC3A39100EC3ABC /* HTHorizontalSelectionListExample-Bridging-Header.h */,
-				036F054B19C624D9000D2EEB /* Images.xcassets */,
-				036F054D19C624D9000D2EEB /* LaunchScreen.xib */,
-				03FCAF821A84235C004857A7 /* Resources */,
-				036F053E19C624D9000D2EEB /* Supporting Files */,
-			);
-			name = "HTHorizontalSelectionList Example";
-			path = HTHorizontalSelectionListExample;
-			sourceTree = "<group>";
-		};
 		036F053E19C624D9000D2EEB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				036F053F19C624D9000D2EEB /* Info.plist */,
-				036F054019C624D9000D2EEB /* main.m */,
+				03ED30CE1DDA563F00A408E3 /* Info.plist */,
+				03ED30CF1DDA563F00A408E3 /* main.m */,
 			);
 			name = "Supporting Files";
+			path = ../HTHorizontalSelectionListExample;
 			sourceTree = "<group>";
 		};
-		03FCAF821A84235C004857A7 /* Resources */ = {
+		03ED30BA1DDA563F00A408E3 /* HTHorizontalSelectionList Example */ = {
 			isa = PBXGroup;
 			children = (
-				0340813A1D25695700ECF5E6 /* flower1.jpeg */,
-				0340813B1D25695700ECF5E6 /* flower2.jpeg */,
-				0340813C1D25695700ECF5E6 /* flower3.jpeg */,
-				0340813D1D25695700ECF5E6 /* flower4.jpeg */,
-				0340813E1D25695700ECF5E6 /* flower5.jpeg */,
-				0340813F1D25695700ECF5E6 /* flower6.jpeg */,
-				034081401D25695700ECF5E6 /* flower7.jpeg */,
-				034081411D25695700ECF5E6 /* flower8.jpeg */,
-				03FCAF8E1A8424A1004857A7 /* spacecat1.jpeg */,
-				03FCAF8D1A8424A1004857A7 /* spacecat2.jpeg */,
-				03FCAF8C1A8424A1004857A7 /* spacecat3.jpeg */,
-				03FCAF8B1A8424A1004857A7 /* spacecat4.jpeg */,
-				033578221AA125340009DB4C /* spacecat5.jpeg */,
+				03ED30BB1DDA563F00A408E3 /* AppDelegate.h */,
+				03ED30BC1DDA563F00A408E3 /* AppDelegate.m */,
+				03ED30BD1DDA563F00A408E3 /* LaunchScreen.xib */,
+				03ED30BF1DDA563F00A408E3 /* CarsViewController.h */,
+				03ED30C01DDA563F00A408E3 /* CarsViewController.m */,
+				03ED30C11DDA563F00A408E3 /* CatsViewController.h */,
+				03ED30C21DDA563F00A408E3 /* CatsViewController.m */,
+				03ED30CB1DDA563F00A408E3 /* FlowersViewController.swift */,
+				03ED30D61DDA563F00A408E3 /* TwoButtonViewController.swift */,
+				03ED30CD1DDA563F00A408E3 /* Images.xcassets */,
+				03ED30CC1DDA563F00A408E3 /* HTHorizontalSelectionListExample-Bridging-Header.h */,
+				03ED30D01DDA563F00A408E3 /* Resources */,
+				036F053E19C624D9000D2EEB /* Supporting Files */,
 			);
-			name = Resources;
+			name = "HTHorizontalSelectionList Example";
+			path = Source;
 			sourceTree = "<group>";
 		};
-		0F0C42EBE787870EA0F72779 /* Pods */ = {
+		03ED30D01DDA563F00A408E3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5A76B993AA991B87BBB0F365 /* Pods.debug.xcconfig */,
-				3822EECEE73FE98A333005FF /* Pods.release.xcconfig */,
+				03ED30ED1DDA56B800A408E3 /* flower1.jpeg */,
+				03ED30EE1DDA56B800A408E3 /* flower2.jpeg */,
+				03ED30EF1DDA56B800A408E3 /* flower3.jpeg */,
+				03ED30F01DDA56B800A408E3 /* flower4.jpeg */,
+				03ED30F11DDA56B800A408E3 /* flower5.jpeg */,
+				03ED30F21DDA56B800A408E3 /* flower6.jpeg */,
+				03ED30F31DDA56B800A408E3 /* flower7.jpeg */,
+				03ED30F41DDA56B800A408E3 /* flower8.jpeg */,
+				03ED30D11DDA563F00A408E3 /* spacecat1.jpeg */,
+				03ED30D21DDA563F00A408E3 /* spacecat2.jpeg */,
+				03ED30D31DDA563F00A408E3 /* spacecat3.jpeg */,
+				03ED30D41DDA563F00A408E3 /* spacecat4.jpeg */,
+				03ED30D51DDA563F00A408E3 /* spacecat5.jpeg */,
 			);
-			name = Pods;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		60D84FDE1A2DB966BAF0A040 /* Frameworks */ = {
+		1C3DEFC7EC3E8C1D926009B6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B7D75892556E902593167951 /* libPods.a */,
+				7D61DC8390BF4AC29C16B5EF /* libPods-HTHorizontalSelectionListExample.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34BC5E47FFCBBE4CD26C6B59 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				23F52A51C55F61EDC373DA3F /* Pods-HTHorizontalSelectionListExample.debug.xcconfig */,
+				9D570BCCA5A71FCE941E40C0 /* Pods-HTHorizontalSelectionListExample.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,12 +169,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 036F055E19C624D9000D2EEB /* Build configuration list for PBXNativeTarget "HTHorizontalSelectionListExample" */;
 			buildPhases = (
-				94A481C578F3C845AEDB9997 /* Check Pods Manifest.lock */,
+				A99D728011FE3A0E316DF034 /* [CP] Check Pods Manifest.lock */,
 				036F053719C624D9000D2EEB /* Sources */,
 				036F053819C624D9000D2EEB /* Frameworks */,
 				036F053919C624D9000D2EEB /* Resources */,
-				16C31D4F889A7CC67344D1D6 /* Copy Pods Resources */,
-				66881274CF55F039F651B08A /* Embed Pods Frameworks */,
+				A6221BD90D9CBDA6508F63B0 /* [CP] Embed Pods Frameworks */,
+				38F41EC5CA6492694DB7F24B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -223,70 +224,70 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				034081421D25695700ECF5E6 /* flower1.jpeg in Resources */,
-				03FCAF911A8424A1004857A7 /* spacecat2.jpeg in Resources */,
-				036F054F19C624D9000D2EEB /* LaunchScreen.xib in Resources */,
-				034081481D25695700ECF5E6 /* flower7.jpeg in Resources */,
-				034081441D25695700ECF5E6 /* flower3.jpeg in Resources */,
-				03FCAF901A8424A1004857A7 /* spacecat3.jpeg in Resources */,
-				036F054C19C624D9000D2EEB /* Images.xcassets in Resources */,
-				03FCAF8F1A8424A1004857A7 /* spacecat4.jpeg in Resources */,
-				034081451D25695700ECF5E6 /* flower4.jpeg in Resources */,
-				03FCAF921A8424A1004857A7 /* spacecat1.jpeg in Resources */,
-				034081491D25695700ECF5E6 /* flower8.jpeg in Resources */,
-				034081471D25695700ECF5E6 /* flower6.jpeg in Resources */,
-				034081461D25695700ECF5E6 /* flower5.jpeg in Resources */,
-				034081431D25695700ECF5E6 /* flower2.jpeg in Resources */,
-				033578231AA125340009DB4C /* spacecat5.jpeg in Resources */,
+				03ED30E91DDA563F00A408E3 /* spacecat3.jpeg in Resources */,
+				03ED30F91DDA56B800A408E3 /* flower5.jpeg in Resources */,
+				03ED30F61DDA56B800A408E3 /* flower2.jpeg in Resources */,
+				03ED30E41DDA563F00A408E3 /* Images.xcassets in Resources */,
+				03ED30FA1DDA56B800A408E3 /* flower6.jpeg in Resources */,
+				03ED30F51DDA56B800A408E3 /* flower1.jpeg in Resources */,
+				03ED30F81DDA56B800A408E3 /* flower4.jpeg in Resources */,
+				03ED30EA1DDA563F00A408E3 /* spacecat4.jpeg in Resources */,
+				03ED30D81DDA563F00A408E3 /* LaunchScreen.xib in Resources */,
+				03ED30F71DDA56B800A408E3 /* flower3.jpeg in Resources */,
+				03ED30FC1DDA56B800A408E3 /* flower8.jpeg in Resources */,
+				03ED30EB1DDA563F00A408E3 /* spacecat5.jpeg in Resources */,
+				03ED30FB1DDA56B800A408E3 /* flower7.jpeg in Resources */,
+				03ED30E81DDA563F00A408E3 /* spacecat2.jpeg in Resources */,
+				03ED30E71DDA563F00A408E3 /* spacecat1.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		16C31D4F889A7CC67344D1D6 /* Copy Pods Resources */ = {
+		38F41EC5CA6492694DB7F24B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HTHorizontalSelectionListExample/Pods-HTHorizontalSelectionListExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		66881274CF55F039F651B08A /* Embed Pods Frameworks */ = {
+		A6221BD90D9CBDA6508F63B0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HTHorizontalSelectionListExample/Pods-HTHorizontalSelectionListExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94A481C578F3C845AEDB9997 /* Check Pods Manifest.lock */ = {
+		A99D728011FE3A0E316DF034 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -296,22 +297,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				036F054719C624D9000D2EEB /* CarsViewController.m in Sources */,
-				03FCAF951A842B1B004857A7 /* CatsViewController.m in Sources */,
-				036F054419C624D9000D2EEB /* AppDelegate.m in Sources */,
-				03B0515B1CB81C2F009AC16F /* TwoButtonViewController.swift in Sources */,
-				038ABFA51AC3A39100EC3ABC /* FlowersViewController.swift in Sources */,
-				036F054119C624D9000D2EEB /* main.m in Sources */,
+				03ED30E31DDA563F00A408E3 /* FlowersViewController.swift in Sources */,
+				03ED30DA1DDA563F00A408E3 /* CatsViewController.m in Sources */,
+				03ED30D71DDA563F00A408E3 /* AppDelegate.m in Sources */,
+				03ED30EC1DDA563F00A408E3 /* TwoButtonViewController.swift in Sources */,
+				03ED30E61DDA563F00A408E3 /* main.m in Sources */,
+				03ED30D91DDA563F00A408E3 /* CarsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		036F054D19C624D9000D2EEB /* LaunchScreen.xib */ = {
+		03ED30BD1DDA563F00A408E3 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				036F054E19C624D9000D2EEB /* Base */,
+				03ED30BE1DDA563F00A408E3 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -402,36 +403,36 @@
 		};
 		036F055F19C624D9000D2EEB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A76B993AA991B87BBB0F365 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 23F52A51C55F61EDC373DA3F /* Pods-HTHorizontalSelectionListExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/HTHorizontalSelectionListExample/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hightower.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "HTHorizontalSelectionListExample/HTHorizontalSelectionListExample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Source/HTHorizontalSelectionListExample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		036F056019C624D9000D2EEB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3822EECEE73FE98A333005FF /* Pods.release.xcconfig */;
+			baseConfigurationReference = 9D570BCCA5A71FCE941E40C0 /* Pods-HTHorizontalSelectionListExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/HTHorizontalSelectionListExample/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hightower.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "HTHorizontalSelectionListExample/HTHorizontalSelectionListExample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Source/HTHorizontalSelectionListExample-Bridging-Header.h";
 			};
 			name = Release;
 		};

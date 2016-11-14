@@ -7,26 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0386ACBA1C6BEEC700F6D73F /* HTHorizontalSelectionListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0386ACB31C6BEEC700F6D73F /* HTHorizontalSelectionListCell.h */; };
-		0386ACBB1C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0386ACB41C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.h */; };
-		0386ACBC1C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386ACB51C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.m */; };
-		0386ACBD1C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0386ACB61C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.h */; };
-		0386ACBE1C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386ACB71C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.m */; };
-		0386ACBF1C6BEEC700F6D73F /* HTHorizontalSelectionList.h in Headers */ = {isa = PBXBuildFile; fileRef = 0386ACB81C6BEEC700F6D73F /* HTHorizontalSelectionList.h */; };
-		0386ACC01C6BEEC700F6D73F /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 0386ACB91C6BEEC700F6D73F /* HTHorizontalSelectionList.m */; };
+		03ED30AE1DDA556B00A408E3 /* HTHorizontalSelectionListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A21DDA556B00A408E3 /* HTHorizontalSelectionListCell.h */; };
+		03ED30AF1DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A31DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h */; };
+		03ED30B01DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30A41DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.m */; };
+		03ED30B11DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A51DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h */; };
+		03ED30B21DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30A61DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m */; };
+		03ED30B31DDA556B00A408E3 /* HTHorizontalSelectionListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A71DDA556B00A408E3 /* HTHorizontalSelectionListCell.h */; };
+		03ED30B41DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A81DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h */; };
+		03ED30B51DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30A91DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h */; };
+		03ED30B81DDA556B00A408E3 /* HTHorizontalSelectionList.h in Headers */ = {isa = PBXBuildFile; fileRef = 03ED30AC1DDA556B00A408E3 /* HTHorizontalSelectionList.h */; };
+		03ED30B91DDA556B00A408E3 /* HTHorizontalSelectionList.m in Sources */ = {isa = PBXBuildFile; fileRef = 03ED30AD1DDA556B00A408E3 /* HTHorizontalSelectionList.m */; };
 		173B9701537D20470CDC8B95 /* libPods-HTHorizontalSelectionList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 095A43FA3ADD7158857A81FB /* libPods-HTHorizontalSelectionList.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0386AC971C6BEDF900F6D73F /* HTHorizontalSelectionList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTHorizontalSelectionList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0386AC9C1C6BEDF900F6D73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0386ACB31C6BEEC700F6D73F /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCell.h; sourceTree = "<group>"; };
-		0386ACB41C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCustomViewCell.h; sourceTree = "<group>"; };
-		0386ACB51C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListCustomViewCell.m; sourceTree = "<group>"; };
-		0386ACB61C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListLabelCell.h; sourceTree = "<group>"; };
-		0386ACB71C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListLabelCell.m; sourceTree = "<group>"; };
-		0386ACB81C6BEEC700F6D73F /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionList.h; path = Source/HTHorizontalSelectionList.h; sourceTree = "<group>"; };
-		0386ACB91C6BEEC700F6D73F /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionList.m; path = Source/HTHorizontalSelectionList.m; sourceTree = "<group>"; };
+		03ED309C1DDA537100A408E3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = "<group>"; };
+		03ED30A21DDA556B00A408E3 /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCell.h; sourceTree = "<group>"; };
+		03ED30A31DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListCustomViewCell.h; sourceTree = "<group>"; };
+		03ED30A41DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListCustomViewCell.m; sourceTree = "<group>"; };
+		03ED30A51DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTHorizontalSelectionListLabelCell.h; sourceTree = "<group>"; };
+		03ED30A61DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTHorizontalSelectionListLabelCell.m; sourceTree = "<group>"; };
+		03ED30A71DDA556B00A408E3 /* HTHorizontalSelectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCell.h; path = Source/Cells/HTHorizontalSelectionListCell.h; sourceTree = SOURCE_ROOT; };
+		03ED30A81DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListCustomViewCell.h; path = Source/Cells/HTHorizontalSelectionListCustomViewCell.h; sourceTree = SOURCE_ROOT; };
+		03ED30A91DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionListLabelCell.h; path = Source/Cells/HTHorizontalSelectionListLabelCell.h; sourceTree = SOURCE_ROOT; };
+		03ED30AA1DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListCustomViewCell.m; path = Source/Cells/HTHorizontalSelectionListCustomViewCell.m; sourceTree = SOURCE_ROOT; };
+		03ED30AB1DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionListLabelCell.m; path = Source/Cells/HTHorizontalSelectionListLabelCell.m; sourceTree = SOURCE_ROOT; };
+		03ED30AC1DDA556B00A408E3 /* HTHorizontalSelectionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTHorizontalSelectionList.h; path = Source/HTHorizontalSelectionList.h; sourceTree = SOURCE_ROOT; };
+		03ED30AD1DDA556B00A408E3 /* HTHorizontalSelectionList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTHorizontalSelectionList.m; path = Source/HTHorizontalSelectionList.m; sourceTree = SOURCE_ROOT; };
 		095A43FA3ADD7158857A81FB /* libPods-HTHorizontalSelectionList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HTHorizontalSelectionList.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		64E33596F506E7DFDE07AD69 /* Pods-HTHorizontalSelectionList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTHorizontalSelectionList.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HTHorizontalSelectionList/Pods-HTHorizontalSelectionList.debug.xcconfig"; sourceTree = "<group>"; };
 		A1E9590F64020FF816F219D0 /* Pods-HTHorizontalSelectionList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTHorizontalSelectionList.release.xcconfig"; path = "Pods/Target Support Files/Pods-HTHorizontalSelectionList/Pods-HTHorizontalSelectionList.release.xcconfig"; sourceTree = "<group>"; };
@@ -49,6 +57,7 @@
 			children = (
 				0386AC991C6BEDF900F6D73F /* HTHorizontalSelectionList */,
 				0386AC981C6BEDF900F6D73F /* Products */,
+				03ED309B1DDA536600A408E3 /* Supporting Files */,
 				6D2258EEBEFE08A64B7F65D8 /* Pods */,
 				987EDE784E8494FA86F58F3E /* Frameworks */,
 			);
@@ -65,26 +74,38 @@
 		0386AC991C6BEDF900F6D73F /* HTHorizontalSelectionList */ = {
 			isa = PBXGroup;
 			children = (
-				0386ACB81C6BEEC700F6D73F /* HTHorizontalSelectionList.h */,
-				0386ACB91C6BEEC700F6D73F /* HTHorizontalSelectionList.m */,
-				0386ACB21C6BEEC700F6D73F /* Cells */,
-				0386AC9C1C6BEDF900F6D73F /* Info.plist */,
+				03ED30AC1DDA556B00A408E3 /* HTHorizontalSelectionList.h */,
+				03ED30AD1DDA556B00A408E3 /* HTHorizontalSelectionList.m */,
+				03ED30A71DDA556B00A408E3 /* HTHorizontalSelectionListCell.h */,
+				03ED30A81DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h */,
+				03ED30AA1DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.m */,
+				03ED30A91DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h */,
+				03ED30AB1DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m */,
+				03ED30A11DDA556B00A408E3 /* Cells */,
 			);
 			path = HTHorizontalSelectionList;
 			sourceTree = "<group>";
 		};
-		0386ACB21C6BEEC700F6D73F /* Cells */ = {
+		03ED309B1DDA536600A408E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0386ACB31C6BEEC700F6D73F /* HTHorizontalSelectionListCell.h */,
-				0386ACB41C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.h */,
-				0386ACB51C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.m */,
-				0386ACB61C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.h */,
-				0386ACB71C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.m */,
+				03ED309C1DDA537100A408E3 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		03ED30A11DDA556B00A408E3 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				03ED30A21DDA556B00A408E3 /* HTHorizontalSelectionListCell.h */,
+				03ED30A31DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h */,
+				03ED30A41DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.m */,
+				03ED30A51DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h */,
+				03ED30A61DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m */,
 			);
 			name = Cells;
 			path = Source/Cells;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		6D2258EEBEFE08A64B7F65D8 /* Pods */ = {
 			isa = PBXGroup;
@@ -110,10 +131,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0386ACBA1C6BEEC700F6D73F /* HTHorizontalSelectionListCell.h in Headers */,
-				0386ACBF1C6BEEC700F6D73F /* HTHorizontalSelectionList.h in Headers */,
-				0386ACBB1C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.h in Headers */,
-				0386ACBD1C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.h in Headers */,
+				03ED30AE1DDA556B00A408E3 /* HTHorizontalSelectionListCell.h in Headers */,
+				03ED30B41DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h in Headers */,
+				03ED30B51DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h in Headers */,
+				03ED30B81DDA556B00A408E3 /* HTHorizontalSelectionList.h in Headers */,
+				03ED30B31DDA556B00A408E3 /* HTHorizontalSelectionListCell.h in Headers */,
+				03ED30AF1DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.h in Headers */,
+				03ED30B11DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +243,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0386ACBC1C6BEEC700F6D73F /* HTHorizontalSelectionListCustomViewCell.m in Sources */,
-				0386ACC01C6BEEC700F6D73F /* HTHorizontalSelectionList.m in Sources */,
-				0386ACBE1C6BEEC700F6D73F /* HTHorizontalSelectionListLabelCell.m in Sources */,
+				03ED30B01DDA556B00A408E3 /* HTHorizontalSelectionListCustomViewCell.m in Sources */,
+				03ED30B91DDA556B00A408E3 /* HTHorizontalSelectionList.m in Sources */,
+				03ED30B21DDA556B00A408E3 /* HTHorizontalSelectionListLabelCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -306,6 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -324,7 +350,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = HTHorizontalSelectionList/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hightower.HTHorizontalSelectionList;
@@ -341,7 +367,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = HTHorizontalSelectionList/Info.plist;
+				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hightower.HTHorizontalSelectionList;

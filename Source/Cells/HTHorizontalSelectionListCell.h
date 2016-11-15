@@ -13,4 +13,6 @@
 
 @property (nonatomic) UIControlState state;
 
+@property (nonatomic, strong) NSString *badgeValue;
+
 @end

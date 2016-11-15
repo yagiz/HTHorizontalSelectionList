@@ -1,1 +1,3 @@
-pod "HTHorizontalSelectionList", :path => "../"
+target "HTHorizontalSelectionListExample" do
+  pod "HTHorizontalSelectionList", :path => "../"
+end

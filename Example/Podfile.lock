@@ -11,7 +11,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HTHorizontalSelectionList: f7db90d6e14849eed337236dc30ad82ee883eadf
+  HTHorizontalSelectionList: b86d6dfe31aeedd3db4ad422d46f2eb0c30f441f
   M13BadgeView: 700dd0714fdc837c0cf1c8c004454963ec22441f
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: b22ea03e2e0e7f60e45126dcaf32a9871c954e43
+
+COCOAPODS: 1.1.1

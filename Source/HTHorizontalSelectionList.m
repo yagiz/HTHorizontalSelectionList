@@ -331,7 +331,7 @@ static NSString *ViewCellIdentifier = @"ViewCell";
     }
 
     NSIndexPath *oldSelectedIndexPath = [NSIndexPath indexPathForItem:oldSelectedIndex inSection:0];
-    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0];
+    NSIndexPath *selectedIndexPath = self.selectedButtonIndex >= 0 ? [NSIndexPath indexPathForItem:self.selectedButtonIndex inSection:0] : nil;
 
     UICollectionViewLayoutAttributes *selectedCellAttributes = [self.collectionView.collectionViewLayout layoutAttributesForItemAtIndexPath:selectedIndexPath];
     CGRect selectedCellFrame = selectedCellAttributes.frame;

@@ -13,11 +13,12 @@
 @interface CatsViewController () <HTHorizontalSelectionListDelegate, HTHorizontalSelectionListDataSource>
 
 @property (nonatomic, strong) HTHorizontalSelectionList *customViewSelectionList;
-@property (nonatomic, strong) NSArray *spaceCats;
+@property (nonatomic, strong) NSArray<UIImageView *> *spaceCats;
 
 @property (nonatomic, strong) UIView *selectedSpaceCatView;
 
 @property (nonatomic) BOOL filtered;
+@property (nonatomic) UIImageView *selectedSpaceCatImageView;
 
 @end
 
@@ -110,7 +111,8 @@
 
 - (void)selectionList:(HTHorizontalSelectionList *)selectionList didSelectButtonWithIndex:(NSInteger)index {
     // update the view for the corresponding index
-    UIImage *selectedImage = ((UIImageView *)self.spaceCats[index]).image;
+    self.selectedSpaceCatImageView = self.spaceCats[index];
+    UIImage *selectedImage = self.spaceCats[index].image;
     self.selectedSpaceCatView.backgroundColor = [UIColor colorWithPatternImage:selectedImage];
 }
 
@@ -118,21 +120,21 @@
 
 - (void)filterToggleButtonTapped:(id)sender {
     self.filtered = !self.filtered;
-    ((UIButton *)sender).selected = !((UIButton *)sender).selected;
 
     [self.customViewSelectionList reloadData];
 
     // NOTE: After changing the selection list data source and reloading,
     // it is up to the data source to reselect the correct button
-    // (or do what is happening here: deselect everything by setting
-    // |selectedButtonIndex| to -1)
-    self.customViewSelectionList.selectedButtonIndex = -1;
+    // (or deselect everything by setting |selectedButtonIndex| to -1)
+    NSInteger selectedButtonIndex = [self.spaceCats indexOfObject:self.selectedSpaceCatImageView];
+    self.customViewSelectionList.selectedButtonIndex = selectedButtonIndex != NSNotFound ? selectedButtonIndex : -1;
 }
 
 #pragma mark - Custom Getters and Setters
 
 - (NSArray *)spaceCats {
     if (self.filtered) {
+        // take only the second half of the |spaceCats| array
         return [_spaceCats subarrayWithRange:NSMakeRange(_spaceCats.count/2, _spaceCats.count/2)];
     }
 

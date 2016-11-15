@@ -412,7 +412,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 23F52A51C55F61EDC373DA3F /* Pods-HTHorizontalSelectionListExample.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -430,7 +429,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9D570BCCA5A71FCE941E40C0 /* Pods-HTHorizontalSelectionListExample.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;

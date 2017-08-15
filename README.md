@@ -38,8 +38,8 @@ The horizontal selection list uses a data-source/delegate model (similar to UITa
 	[super viewDidLoad];
 
 	self.selectionList = [[HTHorizontalSelectionList alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 30)];
-	selectionList.delegate = self;
-	selectionList.dataSource = self;
+	self.selectionList.delegate = self;
+	self.selectionList.dataSource = self;
 
 	self.carMakes = @[@"ALL CARS",
                       @"AUDI",

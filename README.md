@@ -3,20 +3,20 @@ HTHorizontalSelectionList
 
 A simple, horizontally-scrolling list of items that can be used as a more flexible replacement for UISegmentedControl
 
-##Example
+## Example
 
 A simple side-scrolling list of items (perhaps filters for a UITableView below).
 ![alt tag](docs/car_list.gif)
 
-##Setup via CocoaPods
+## Setup via CocoaPods
 
 Add HTHorizontalSelectionList pod into your Podfile
 ```
 pod 'HTHorizontalSelectionList', '~> 0.7.4'
 ```
 
-##Usage
-###Setup and Initialization
+## Usage
+### Setup and Initialization
 
 To begin using HTHorizontalSelectionList, import the main header:
 ```objc
@@ -68,7 +68,7 @@ The horizontal selection list uses a data-source/delegate model (similar to UITa
 
 ```
 
-###Customizing the appearance
+### Customizing the appearance
 
 The HTHorizontalSelectionList has a number of configurable properties.
 

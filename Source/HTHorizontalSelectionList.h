@@ -65,6 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// Default is NO.  If YES, as the user drags the selection list, the central button will automatically become selected.
 @property (nonatomic) BOOL autoselectCentralItem;
 
+@property (nonatomic) BOOL autoselectCentralItemWithoutDragging;
+
 @property (nonatomic) HTHorizontalSelectionIndicatorAnimationMode selectionIndicatorAnimationMode;
 
 @property (nonatomic) UIEdgeInsets buttonInsets;

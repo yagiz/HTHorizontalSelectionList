@@ -672,6 +672,23 @@ static NSString *ViewCellIdentifier = @"ViewCell";
         if (self.snapToCenter) {
             [self correctSelection:scrollView];
         }
+        
+        if (self.autoselectCentralItemWithoutDragging) {
+            
+            CGPoint centerPoint = CGPointMake(self.collectionView.frame.size.width / 2 + scrollView.contentOffset.x,
+                                              self.collectionView.frame.size.height /2 + scrollView.contentOffset.y);
+            
+            NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:centerPoint];
+            
+            if (indexPath && self.selectedButtonIndex != indexPath.item) {
+                
+                [self setSelectedButtonIndex:indexPath.item animated:YES];
+                
+                if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
+                    [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
+                }
+            }
+        }
     }
 }
 
@@ -680,6 +697,23 @@ static NSString *ViewCellIdentifier = @"ViewCell";
 
     if (self.snapToCenter) {
         [self correctSelection:scrollView];
+    }
+    
+    if (self.autoselectCentralItemWithoutDragging) {
+        
+        CGPoint centerPoint = CGPointMake(self.collectionView.frame.size.width / 2 + scrollView.contentOffset.x,
+                                          self.collectionView.frame.size.height /2 + scrollView.contentOffset.y);
+        
+        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:centerPoint];
+        
+        if (indexPath && self.selectedButtonIndex != indexPath.item) {
+            
+            [self setSelectedButtonIndex:indexPath.item animated:YES];
+            
+            if ([self.delegate respondsToSelector:@selector(selectionList:didSelectButtonWithIndex:)]) {
+                [self.delegate selectionList:self didSelectButtonWithIndex:indexPath.item];
+            }
+        }
     }
 }
 
